@@ -59,4 +59,5 @@ class User extends Model
         $this->password = password_hash($password, PASSWORD_DEFAULT);
         return $this;
     }
+    
 }

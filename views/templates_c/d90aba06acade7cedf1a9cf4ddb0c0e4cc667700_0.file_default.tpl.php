@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-13 12:11:39
+/* Smarty version 5.8.0, created on 2026-05-13 13:29:07
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a044e5b65ad54_41074241',
+  'unifunc' => 'content_6a046083ba3460_40496634',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1778667098,
+      1 => 1778671725,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a044e5b65ad54_41074241 (\Smarty\Template $_smarty_tpl) {
+function content_6a046083ba3460_40496634 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -62,7 +62,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <section class="content">
         <div class="app-output">
             <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21142111916a044e5b654691_28674426', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10170287646a046083b98429_87471094', "content");
 ?>
 
         </div>
@@ -78,6 +78,8 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21142111916a0
         <?php } else { ?>
             Niezalogowany
         <?php }?>
+
+        <a href="index.php?page=logout" id="out">Wyloguj się</a>
     </div>
 
     <div class="footer-center">
@@ -108,7 +110,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21142111916a0
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_21142111916a044e5b654691_28674426 extends \Smarty\Runtime\Block
+class Block_10170287646a046083b98429_87471094 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';

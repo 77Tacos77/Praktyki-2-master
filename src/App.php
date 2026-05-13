@@ -3,6 +3,8 @@ namespace src;
 
 use src\Controllers\IndexController;
 use src\Controllers\LoginController;
+use src\Controllers\LogoutController;
+use src\Controllers\RegisterController;
 use Doctrine\ORM\EntityManager;
 
 class App {
@@ -40,6 +42,19 @@ class App {
         if($page === 'login'){
 
             $controller = new LoginController($this->entityManager);
+
+            return $controller->index();
+        }
+
+        if($page === 'logout'){
+
+            $controller = new LogoutController($this->entityManager);
+
+             $controller->index();
+        }
+        if($page === 'register'){
+
+            $controller = new RegisterController($this->entityManager);
 
             return $controller->index();
         }

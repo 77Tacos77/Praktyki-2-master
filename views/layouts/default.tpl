@@ -48,6 +48,8 @@
         {else}
             Niezalogowany
         {/if}
+
+        <a href="index.php?page=logout" id="out">Wyloguj się</a>
     </div>
 
     <div class="footer-center">

@@ -1,7 +1,12 @@
 <?php
 namespace src\Controllers;
 use src\Models\User;
+if(isset($_SESSION['login'])){
 
+    header('Location: index.php');
+
+    exit();
+}
 
 class LoginController extends FrontController
 {
@@ -16,6 +21,8 @@ class LoginController extends FrontController
             ->findOneBy(['login' => $login]);
         if ($user && password_verify($password, $user->getPassword())) {
             $_SESSION['login'] = $user->getLogin();
+            $user->setActive(true);
+            $this->entityManager->flush();
             header('Location: index.php');
             exit();
         }else{
