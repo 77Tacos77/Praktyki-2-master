@@ -3,41 +3,51 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-html,
-body{
-    height: 100%;
+p{
+    margin: 0;
 }
 
 body{
+    min-height: 100vh;
+
     background-color: rgb(146, 137, 137);
+
     font-family: serif;
+
     color: white;
 
     display: flex;
-    flex-direction: column;
 
-    min-height: 100vh;
+    flex-direction: column;
 }
 
 header{
     background-color: rgb(84, 85, 85);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     padding: 20px;
 
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
+.nav-container{
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
 .nav-logo{
     font-size: 32px;
+
     font-weight: bold;
+
     letter-spacing: 1px;
 
     color: white;
+
     text-decoration: none;
 
     transition: 0.3s;
@@ -51,14 +61,16 @@ header{
 
 .nav-menu{
     display: flex;
-}
 
-ul{
-    display: flex;
+    align-items: center;
 
-    gap: 20px;
+    justify-content: center;
+
+    gap: 10px;
 
     list-style: none;
+
+    margin: 0 auto;
 }
 
 li{
@@ -74,11 +86,11 @@ li{
 a{
     display: block;
 
+    padding: 10px 18px;
+
     text-decoration: none;
 
     color: white;
-
-    padding: 10px 18px;
 
     font-size: 20px;
 }
@@ -96,6 +108,21 @@ li:hover a{
 main{
     flex: 1;
 
+    display: flex;
+
+    flex-direction: column;
+}
+
+.content{
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.app-output{
+    flex: 1;
 }
 
 .login-container{
@@ -103,13 +130,10 @@ main{
 
     max-width: 700px;
 
-    min-height: 80vh;
-
-    margin: 0 auto;
+margin: 60px auto;
+    padding: 40px;
 
     background-color: rgb(92, 94, 94);
-
-    padding: 40px;
 
     display: flex;
 
@@ -143,6 +167,8 @@ input{
 
     border-radius: 8px;
 
+    background-color: rgb(235, 235, 235);
+
     font-size: 16px;
 }
 
@@ -150,6 +176,7 @@ input{
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     gap: 20px;
@@ -181,8 +208,6 @@ button{
 
 .submit:hover{
     background-color: rgb(110, 201, 133);
-
-    color: white;
 }
 
 .reset{
@@ -191,8 +216,6 @@ button{
 
 .reset:hover{
     background-color: rgb(236, 17, 17);
-
-    color: white;
 }
 
 .register-text{
@@ -226,6 +249,7 @@ button{
 
     transition: 0.3s;
 }
+
 .register-text a:hover{
     background-color: white;
 
@@ -234,16 +258,21 @@ button{
     transform: scale(1.05);
 }
 
-footer{
+  footer{
     background-color: rgb(84, 85, 85);
+        flex-direction: column;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        gap: 10px;
+    }
 
+    .footer-left{
+        position: static;
+    }
+
+.footer-center{
     text-align: center;
-
-    padding: 20px;
-
-    width: 100%;
-
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
 }
 
 @media (max-width: 768px){
@@ -254,10 +283,16 @@ footer{
         gap: 20px;
     }
 
-    ul{
+    .nav-container{
         flex-direction: column;
 
-        width: 100%;
+        gap: 20px;
+    }
+
+    .nav-menu{
+        flex-direction: column;
+
+        gap: 20px;
     }
 
     li{
@@ -283,4 +318,6 @@ footer{
     button{
         width: 100%;
     }
+
+  
 }

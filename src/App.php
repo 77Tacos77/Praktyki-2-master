@@ -8,9 +8,10 @@ use Doctrine\ORM\EntityManager;
 class App {
 
     private string $content;
+    private EntityManager $entityManager;
 
     public function __construct(EntityManager $entityManager) {
-
+        $this->entityManager = $entityManager;
         try {
 
             $result = $entityManager
@@ -38,12 +39,12 @@ class App {
 
         if($page === 'login'){
 
-            $controller = new LoginController();
+            $controller = new LoginController($this->entityManager);
 
             return $controller->index();
         }
 
-        $controller = new IndexController();
+        $controller = new IndexController($this->entityManager);
 
         return $controller->index();
     }
