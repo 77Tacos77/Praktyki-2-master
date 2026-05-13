@@ -1,0 +1,20 @@
+{ 
+    "name": "praktyka/src",
+    "description": "To jest projekt testowy",
+    "type": "project",
+    "autoload": {
+        "psr-4":{
+            "src\\": "src/"
+        }
+    },
+
+    "require": {
+        "doctrine/orm": "^3.6",
+        "symfony/cache": "^7.4",
+        "doctrine/annotations": "^2.0",
+        "symfony/console": "^7.4",
+        "doctrine/doctrine-bundle": "^2.18",
+        "smarty/smarty": "^5.8"
+    }
+
+}

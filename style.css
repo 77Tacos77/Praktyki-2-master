@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(146, 137, 137);
+    font-family: serif;
+    color: white;
+}
+
+/* HEADER */
+
+header{
+    background-color: rgb(92, 94, 94);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 20px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-menu{
+    text-align: center;
+    display: flex;
+    gap: 20%;
+}
+
+.nav-logo{
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    color: white;
+
+    transition: 0.3s;
+}
+
+.logo:hover{
+    color: rgb(220,220,220);
+
+    transform: scale(1.03);
+}
+
+
+ul{
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: 20px;
+
+    list-style: none;
+}
+
+
+li{
+    border: 1px solid white;
+
+    border-radius: 12px;
+
+    background-color: rgb(57, 77, 77);
+
+    transition: 0.3s;
+}
+
+
+a{
+    display: block;
+
+    text-decoration: none;
+    color: white;
+
+    padding: 10px 18px;
+
+    font-size: 20px;
+}
+
+
+li:hover{
+    background-color: white;
+
+    transform: scale(1.05);
+}
+
+li:hover a{
+    color: rgb(57, 77, 77);
+}
+
+
+main,
+.content,
+.app-output{
+    margin: 0;
+    padding: 0;
+}
+
+
+h1{
+    text-align: center;
+
+    padding: 20px;
+
+    margin: 0;
+
+    border-bottom: 1px solid white;
+
+    background-color: rgb(100, 97, 97);
+}
+
+
+p{
+    font-size: 20px;
+
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+
+@media (max-width: 768px){
+
+    header{
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    ul{
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    li{
+        width: 100%;
+
+        text-align: center;
+    }
+
+    a{
+        width: 100%;
+    }
+
+
+}
