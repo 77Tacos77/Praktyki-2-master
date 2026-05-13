@@ -11,7 +11,7 @@
     <header>
         <nav class="navbar">
             <div class="nav-container">
-                <a class="nav-logo" href="#">Projekt Mirjan</a>
+                <a class="nav-logo" href="/Praktyki-2-master/index.php">Projekt Mirjan</a>
                 <ul class="nav-menu" id="navMenu">
                     <li><a class="nav-link" href="#">Home</a></li>
                     <li><a class="nav-link" href="#">About</a></li>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-13 08:55:56
+/* Smarty version 5.8.0, created on 2026-05-13 09:35:53
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a04207c433f73_28765504',
+  'unifunc' => 'content_6a0429d99117d8_57613217',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1778655356,
+      1 => 1778657745,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a04207c433f73_28765504 (\Smarty\Template $_smarty_tpl) {
+function content_6a0429d99117d8_57613217 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -37,7 +37,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <header>
         <nav class="navbar">
             <div class="nav-container">
-                <a class="nav-logo" href="#">Projekt Mirjan</a>
+                <a class="nav-logo" href="/Praktyki-2-master/index.php">Projekt Mirjan</a>
                 <ul class="nav-menu" id="navMenu">
                     <li><a class="nav-link" href="#">Home</a></li>
                     <li><a class="nav-link" href="#">About</a></li>
@@ -52,7 +52,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_385320826a04207c42f689_65988367', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_268508376a0429d990c9d6_66387380', "content");
 ?>
 
             </div>
@@ -80,7 +80,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_385320826a042
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_385320826a04207c42f689_65988367 extends \Smarty\Runtime\Block
+class Block_268508376a0429d990c9d6_66387380 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
