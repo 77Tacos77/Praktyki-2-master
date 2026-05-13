@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-13 09:35:53
+/* Smarty version 5.8.0, created on 2026-05-13 10:47:41
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0429d99117d8_57613217',
+  'unifunc' => 'content_6a043aad388f27_29501743',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1778657745,
+      1 => 1778662059,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0429d99117d8_57613217 (\Smarty\Template $_smarty_tpl) {
+function content_6a043aad388f27_29501743 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -43,6 +43,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
                     <li><a class="nav-link" href="#">About</a></li>
                     <li><a class="nav-link" href="#">Services</a></li>
                     <li><a class="nav-link" href="#">Contact</a></li>
+                    <li><a class="nav-link" href="/Praktyki-2-master/index.php?page=login">Login</a></li>
                 </ul>
             </div>
         </nav>
@@ -52,7 +53,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_268508376a0429d990c9d6_66387380', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18622328306a043aad3880d4_30761396', "content");
 ?>
 
             </div>
@@ -77,10 +78,13 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_268508376a042
         });
     <?php echo '</script'; ?>
 >
+    <footer>
+    <p>Projekt Mirjan © 2025</p>
+</footer>
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_268508376a0429d990c9d6_66387380 extends \Smarty\Runtime\Block
+class Block_18622328306a043aad3880d4_30761396 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';

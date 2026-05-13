@@ -17,6 +17,7 @@
                     <li><a class="nav-link" href="#">About</a></li>
                     <li><a class="nav-link" href="#">Services</a></li>
                     <li><a class="nav-link" href="#">Contact</a></li>
+                    <li><a class="nav-link" href="/Praktyki-2-master/index.php?page=login">Login</a></li>
                 </ul>
             </div>
         </nav>
@@ -46,5 +47,8 @@
             });
         });
     </script>
+    <footer>
+    <p>Projekt Mirjan © 2025</p>
+</footer>
 </body>
 </html>
