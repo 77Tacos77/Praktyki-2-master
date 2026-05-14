@@ -22,11 +22,12 @@ class LoginController extends FrontController
         if ($user && password_verify($password, $user->getPassword())) {
             $_SESSION['login'] = $user->getLogin();
             $user->setActive(true);
+            $_SESSION['success'] = 'Zalogowano pomyślnie';
             $this->entityManager->flush();
             header('Location: index.php');
             exit();
         }else{
-            $this->smarty->assign('error', 'Nieprawidłowy login lub hasło');
+            $_SESSION['error'] = 'Nieprawidłowy login lub hasło';
         }
     }
         $this->setTemplate('pages/login.tpl');

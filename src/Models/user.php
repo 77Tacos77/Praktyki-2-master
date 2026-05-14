@@ -3,6 +3,8 @@
 namespace src\Models;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
@@ -17,6 +19,9 @@ class User extends Model
     #[ORM\Column(type: 'string', length: 255)]
     private string $password;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+private Collection $addresses;
+
     public function __construct(
         string $login,
         string $email,
@@ -25,6 +30,7 @@ class User extends Model
         $this->login = $login;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->addresses = new ArrayCollection();
     }
 
     public function getLogin(): string
@@ -59,5 +65,5 @@ class User extends Model
         $this->password = password_hash($password, PASSWORD_DEFAULT);
         return $this;
     }
-    
+    public function getAddresses(): Collection { return $this->addresses; }
 }

@@ -12,8 +12,9 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
 );
 
 $conn = [
+    'port' => 3306,
     'driver' => 'pdo_mysql',
-    'host' => 'localhost',
+    'host' => '127.0.0.1',
     'dbname' => 'praktyka',
     'user' => 'root',
     'password' => '',

@@ -16,16 +16,16 @@
     <nav class="navbar">
         <div class="nav-container">
 
-            <a class="nav-logo" href="/Praktyki-2-master/index.php">
+            <a class="nav-logo" href="/Praktyki-2-master/"">
                 Projekt Mirjan
             </a>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a class="nav-link" href="#">Home</a></li>
+                <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
                 <li><a class="nav-link" href="#">About</a></li>
-                <li><a class="nav-link" href="#">Services</a></li>
+                <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
                 <li><a class="nav-link" href="#">Contact</a></li>
-                <li><a class="nav-link" href="/Praktyki-2-master/index.php?page=login">Login</a></li>
+                <li><a class="nav-link" href="/Praktyki-2-master/login">Login</a></li>
             </ul>
 
         </div>
@@ -49,11 +49,11 @@
             Niezalogowany
         {/if}
 
-        <a href="index.php?page=logout" id="out">Wyloguj się</a>
+        <a href="/Praktyki-2-master/logout" id="out">Wyloguj się</a>
     </div>
 
     <div class="footer-center">
-        Projekt Mirjan © 2025
+        Projekt Mirjan  2026
     </div>
 
 </footer>

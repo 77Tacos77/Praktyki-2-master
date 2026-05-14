@@ -6,7 +6,7 @@
 
     <h1 class="tytul">Logowanie</h1>
 
-    <form method="POST">
+<form action="/Praktyki-2-master/login" method="POST">
 
         <input type="text" name="login" placeholder="Login">
 
@@ -23,7 +23,7 @@
     <div class="register-text">
         <p>Nie masz konta?</p>
 
-        <a href="/Praktyki-2-master/index.php?page=register" class="reg">
+        <a href="/Praktyki-2-master/register" class="reg">
             Zarejestruj się
         </a>
     </div>

@@ -1,13 +1,30 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-p{
-    margin: 0;
+
+.containermain {
+    width: 50%;
+
+    max-width: 700px;
+
+    margin: 60px auto;
+    padding: 40px;
+
+    background-color: rgb(92, 94, 94);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+
 }
 
-body{
+body {
     min-height: 100vh;
 
     background-color: rgb(146, 137, 137);
@@ -21,15 +38,15 @@ body{
     flex-direction: column;
 }
 
-header{
+header {
     background-color: rgb(84, 85, 85);
 
     padding: 20px;
 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.nav-container{
+.nav-container {
     width: 100%;
 
     display: flex;
@@ -39,7 +56,7 @@ header{
     align-items: center;
 }
 
-.nav-logo{
+.nav-logo {
     font-size: 32px;
 
     font-weight: bold;
@@ -53,13 +70,13 @@ header{
     transition: 0.3s;
 }
 
-.nav-logo:hover{
-    color: rgb(220,220,220);
+.nav-logo:hover {
+    color: rgb(220, 220, 220);
 
     transform: scale(1.03);
 }
 
-.nav-menu{
+.nav-menu {
     display: flex;
 
     align-items: center;
@@ -73,7 +90,7 @@ header{
     margin: 0 auto;
 }
 
-li{
+li {
     border: 1px solid white;
 
     border-radius: 12px;
@@ -83,7 +100,7 @@ li{
     transition: 0.3s;
 }
 
-a{
+a {
     display: block;
 
     padding: 10px 18px;
@@ -95,30 +112,32 @@ a{
     font-size: 20px;
 }
 
-li:hover{
+li:hover {
     background-color: white;
 
     transform: scale(1.05);
 }
 
-li:hover a{
+li:hover a {
     color: rgb(57, 77, 77);
 }
 
-main{
+main {
     flex: 1;
 
     display: flex;
 
     flex-direction: column;
 }
-#out{
+
+#out {
     background-color: rgba(197, 192, 192, 0.35);
     border: 1px solid rgb(197, 192, 192);
     text-align: center;
     width: 25%;
 }
-.content{
+
+.content {
     flex: 1;
 
     display: flex;
@@ -126,16 +145,16 @@ main{
     flex-direction: column;
 }
 
-.app-output{
+.app-output {
     flex: 1;
 }
 
-.login-container{
+.login-container {
     width: 50%;
 
     max-width: 700px;
 
-margin: 60px auto;
+    margin: 60px auto;
     padding: 40px;
 
     background-color: rgb(92, 94, 94);
@@ -146,24 +165,152 @@ margin: 60px auto;
 
     justify-content: center;
 
-    box-shadow: 0 0 15px rgba(0,0,0,0.35);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
 }
 
-.login-container h1{
+.login-container h1 {
     text-align: center;
 
     margin-bottom: 30px;
 }
 
-form{
+form {
     display: flex;
 
     flex-direction: column;
 
     gap: 20px;
 }
+textarea {
+    width: 100%;
+    min-height: 120px;
 
-input{
+    padding: 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: rgb(235, 235, 235);
+
+    font-size: 16px;
+
+    resize: vertical;
+}
+.address-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background-color: rgb(143, 141, 141);
+}
+
+.edit-btn:hover {
+    background-color: rgb(110, 201, 133);
+
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background-color: rgb(143, 141, 141);
+}
+
+.delete-btn:hover {
+    background-color: rgb(236, 17, 17);
+
+    transform: scale(1.05);
+}
+.address-container {
+    width: 700px;
+    margin: 50px auto;
+    background: #5b5454;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.address-container h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.address-container > a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.address-box {
+    background: #4f4949;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.address-box h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.address-box .link {
+    color: #0fefff;
+    text-decoration: underline;
+    font-size: 24px;
+}
+
+.address-box p {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.address-box .actions {
+    margin-top: 20px;
+}
+
+.address-box .actions a {
+    margin-right: 15px;
+}
+
+
+.actions {
+    margin-top: 20px;
+}
+
+.actions a {
+    display: inline-block;
+    margin-right: 15px;
+    color: white;
+    background-color: rgb(57, 77, 77);
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.actions a:hover {
+    background-color: white;
+    color: rgb(57, 77, 77);
+}
+
+input {
     width: 100%;
 
     padding: 14px;
@@ -177,7 +324,7 @@ input{
     font-size: 16px;
 }
 
-.button-group{
+.button-group {
     display: flex;
 
     justify-content: center;
@@ -189,7 +336,7 @@ input{
     margin-top: 20px;
 }
 
-button{
+button {
     width: 180px;
 
     padding: 14px;
@@ -207,35 +354,35 @@ button{
     transition: 0.3s;
 }
 
-.submit{
+.submit {
     background-color: rgb(143, 141, 141);
 }
 
-.submit:hover{
+.submit:hover {
     background-color: rgb(110, 201, 133);
 }
 
-.reset{
+.reset {
     background-color: rgb(143, 141, 141);
 }
 
-.reset:hover{
+.reset:hover {
     background-color: rgb(236, 17, 17);
 }
 
-.register-text{
+.register-text {
     margin-top: 30px;
 
     text-align: center;
 }
 
-.register-text p{
+.register-text p {
     margin-bottom: 10px;
 
     font-size: 18px;
 }
 
-.register-text a{
+.register-text a {
     display: inline-block;
 
     margin-top: 10px;
@@ -255,7 +402,7 @@ button{
     transition: 0.3s;
 }
 
-.register-text a:hover{
+.register-text a:hover {
     background-color: white;
 
     color: rgb(57, 77, 77);
@@ -263,66 +410,66 @@ button{
     transform: scale(1.05);
 }
 
-  footer{
+footer {
     background-color: rgb(84, 85, 85);
-        flex-direction: column;
-        position: fixed;
-        bottom: 0px;
-        width: 100%;
-        gap: 10px;
-    }
+    flex-direction: column;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    gap: 10px;
+}
 
-    .footer-left{
-        position: static;
-    }
+.footer-left {
+    position: static;
+}
 
-.footer-center{
+.footer-center {
     text-align: center;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-    header{
+    header {
         flex-direction: column;
 
         gap: 20px;
     }
 
-    .nav-container{
+    .nav-container {
         flex-direction: column;
 
         gap: 20px;
     }
 
-    .nav-menu{
+    .nav-menu {
         flex-direction: column;
 
         gap: 20px;
     }
 
-    li{
+    li {
         width: 100%;
 
         text-align: center;
     }
 
-    a{
+    a {
         width: 100%;
     }
 
-    .login-container{
+    .login-container {
         width: 100%;
 
         padding: 25px;
     }
 
-    .button-group{
+    .button-group {
         flex-direction: column;
     }
 
-    button{
+    button {
         width: 100%;
     }
 
-  
+
 }
