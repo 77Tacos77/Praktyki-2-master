@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-14 12:09:40
+/* Smarty version 5.8.0, created on 2026-05-14 13:27:54
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a059f64954888_34388230',
+  'unifunc' => 'content_6a05b1ba5a32e2_03971081',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1778753379,
+      1 => 1778758072,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a059f64954888_34388230 (\Smarty\Template $_smarty_tpl) {
+function content_6a05b1ba5a32e2_03971081 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -62,28 +62,35 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <section class="content">
         <div class="app-output">
             <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18532263066a059f6494cda0_56998830', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5148736606a05b1ba59bdf3_18011375', "content");
 ?>
 
         </div>
     </section>
 </main>
 
-<footer>
+<footer class="footer">
 
-    <div class="footer-left">
-        <?php if ((true && (true && null !== ($_SESSION['login'] ?? null)))) {?>
-            Zalogowany jako <?php echo $_SESSION['login'];?>
+    <div class="footer-content">
 
-        <?php } else { ?>
-            Niezalogowany
-        <?php }?>
+        <div class="footer-left">
 
-        <a href="/Praktyki-2-master/logout" id="out">Wyloguj się</a>
-    </div>
+            Zalogowany jako:
+            <span>
+                <?php echo $_SESSION['login'] ?? 'Gość';?>
 
-    <div class="footer-center">
-        Projekt Mirjan  2026
+            </span>
+
+        </div>
+
+        <div class="footer-right">
+
+            <a href="/Praktyki-2-master/?page=logout">
+                Wyloguj
+            </a>
+
+        </div>
+
     </div>
 
 </footer>
@@ -110,7 +117,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18532263066a0
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_18532263066a059f6494cda0_56998830 extends \Smarty\Runtime\Block
+class Block_5148736606a05b1ba59bdf3_18011375 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';

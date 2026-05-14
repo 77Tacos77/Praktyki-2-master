@@ -40,20 +40,27 @@
     </section>
 </main>
 
-<footer>
+<footer class="footer">
 
-    <div class="footer-left">
-        {if isset($smarty.session.login)}
-            Zalogowany jako {$smarty.session.login}
-        {else}
-            Niezalogowany
-        {/if}
+    <div class="footer-content">
 
-        <a href="/Praktyki-2-master/logout" id="out">Wyloguj się</a>
-    </div>
+        <div class="footer-left">
 
-    <div class="footer-center">
-        Projekt Mirjan  2026
+            Zalogowany jako:
+            <span>
+                {$smarty.session.login ?? 'Gość'}
+            </span>
+
+        </div>
+
+        <div class="footer-right">
+
+            <a href="/Praktyki-2-master/?page=logout">
+                Wyloguj
+            </a>
+
+        </div>
+
     </div>
 
 </footer>

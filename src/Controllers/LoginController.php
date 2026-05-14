@@ -21,9 +21,9 @@ class LoginController extends FrontController
             ->findOneBy(['login' => $login]);
         if ($user && password_verify($password, $user->getPassword())) {
             $_SESSION['login'] = $user->getLogin();
-            $user->setActive(true);
+            $_SESSION['user_id'] = $user->getId();
+
             $_SESSION['success'] = 'Zalogowano pomyślnie';
-            $this->entityManager->flush();
             header('Location: index.php');
             exit();
         }else{

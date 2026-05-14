@@ -27,7 +27,7 @@
 body {
     min-height: 100vh;
 
-    background-color: rgb(146, 137, 137);
+    background-color: rgb(117, 116, 116);
 
     font-family: serif;
 
@@ -250,6 +250,7 @@ textarea {
 .address-container h1 {
     font-size: 60px;
     margin-bottom: 20px;
+    background-color: #635e5e;
 }
 
 .address-container > a {
@@ -410,23 +411,53 @@ button {
     transform: scale(1.05);
 }
 
-footer {
+.footer {
+    margin-top: auto;
+
     background-color: rgb(84, 85, 85);
-    flex-direction: column;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    gap: 10px;
+
+    border-top: 2px solid rgba(255,255,255,0.15);
+
+    padding: 20px 40px;
+}
+
+.footer-content {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
 }
 
 .footer-left {
-    position: static;
+    font-size: 26px;
+
+    font-weight: bold;
 }
 
-.footer-center {
-    text-align: center;
+.footer-left span {
+    color: #8cc6ff;
 }
 
+.footer-right a {
+    background-color: rgb(57, 77, 77);
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: white;
+
+    transition: 0.3s;
+}
+
+.footer-right a:hover {
+    background-color: rgb(236, 17, 17);
+
+    transform: scale(1.05);
+}
 @media (max-width: 768px) {
 
     header {

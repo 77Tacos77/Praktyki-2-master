@@ -8,6 +8,7 @@ class IndexController extends FrontController
     {
         $this->setTemplate('pages/index.tpl');
 
+
         return $this->render();
     }
 }

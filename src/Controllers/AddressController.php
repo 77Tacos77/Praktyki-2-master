@@ -7,12 +7,10 @@ use src\Models\Address;
 
 class AddressController extends FrontController
 {
+    public bool $shouldBeAuthenticated = true;
+
     public function index(): string
     {
-        if (!isset($_SESSION['login'])) {
-            header('Location: /Praktyki-2-master/?page=login');
-            exit();
-        }
         $userRepository = $this->entityManager->getRepository(User::class);
         $user = $userRepository->findOneBy(['login' => $_SESSION['login']]);
         $addressRepository = $this->entityManager->getRepository(Address::class);

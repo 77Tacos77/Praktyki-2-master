@@ -4,6 +4,8 @@ namespace src\Controllers;
 
 class UserController extends FrontController
 {
+    public bool $shouldBeAuthenticated = true;
+
     public function index(): string
     {
         if (!isset($_SESSION['login'])) {
