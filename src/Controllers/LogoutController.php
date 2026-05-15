@@ -15,7 +15,9 @@ class LogoutController extends FrontController
             $this->entityManager->flush();
         }
         session_destroy();
-        header('Location: index.php');
+        session_start();
+        $_SESSION['flash'] = 'Wylogowano pomyślnie';
+        header('Location: http://localhost/Praktyki-2-master/');
         exit();
     }
 }

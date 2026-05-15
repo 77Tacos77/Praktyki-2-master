@@ -23,11 +23,14 @@ class LoginController extends FrontController
             $_SESSION['login'] = $user->getLogin();
             $_SESSION['user_id'] = $user->getId();
 
-            $_SESSION['success'] = 'Zalogowano pomyślnie';
-            header('Location: index.php');
+            $_SESSION['flash'] = 'Zalogowano pomyślnie';
+            $user->setActive(true);
+            $this->entityManager->flush();
+
+            header('Location: http://localhost/Praktyki-2-master/');
             exit();
         }else{
-            $_SESSION['error'] = 'Nieprawidłowy login lub hasło';
+            $_SESSION['flash'] = 'Nieprawidłowy login lub hasło';
         }
     }
         $this->setTemplate('pages/login.tpl');

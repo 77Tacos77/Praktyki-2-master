@@ -1,5 +1,7 @@
 <?php
+
 namespace src\Controllers;
+
 use Doctrine\ORM\EntityManager;
 use Smarty\Smarty;
 use src\Models\User;
@@ -29,7 +31,7 @@ class FrontController
             $userRepository = $this->entityManager->getRepository(User::class);
             $this->user = $userRepository->find($userId);
         } else {
-            if($this->shouldBeAuthenticated) {
+            if ($this->shouldBeAuthenticated) {
                 header('Location: /Praktyki-2-master/login');
                 exit();
             }
@@ -43,6 +45,10 @@ class FrontController
 
     public function render(): string
     {
+        if (isset($_SESSION['flash'])) {
+            $this->smarty->assign('flash', $_SESSION['flash']);
+            unset($_SESSION['flash']);
+        }
         return $this->smarty->fetch($this->template);
     }
 }

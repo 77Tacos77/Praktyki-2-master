@@ -8,6 +8,7 @@ use src\Controllers\LogoutController;
 use src\Controllers\RegisterController;
 use src\Controllers\UserController;
 use src\Controllers\AddressController;
+use src\Controllers\ProfileController;
 
 use Doctrine\ORM\EntityManager;
 
@@ -44,8 +45,10 @@ class App
     {
         $page = $_GET['page'] ?? 'home';
         // dd($_GET['page']);
+       
 
         $routes = [
+            'profile' =>  ProfileController::class,
             'user' => UserController::class,
             'home' => IndexController::class,
             'login' => LoginController::class,
@@ -59,19 +62,36 @@ class App
         ];
 
         if (!array_key_exists($page, $routes)) {
-            return '<h1>404 Not Found</h1>';
-        }
-        $controllerClass = $routes[$page];
-        $controller = new $controllerClass($this->entityManager);
-        if ($page === 'address-create') {
-            return $controller->create();
-        }
-        if ($page === 'address-edit') {
-            return $controller->edit();
-        }
-        if ($page === 'address-delete') {
-            return $controller->delete();
-        }
-        return $controller->index();
-    }
+    return '<h1>404 Not Found</h1>';
+}
+
+$controllerClass = $routes[$page];
+$controller = new $controllerClass($this->entityManager);
+
+// Adresy
+if ($page === 'address-create') {
+    return $controller->create();
+}
+
+if ($page === 'address-edit') {
+    return $controller->edit();
+}
+
+if ($page === 'address-delete') {
+    return $controller->delete();
+}
+
+// Profil – edycja
+if ($page === 'profile' && isset($_GET['edit']) && $_GET['edit'] == '1') {
+    return $controller->edit();
+}
+
+// Profil – widok
+if ($page === 'profile') {
+    return $controller->index();
+}
+return $controller->index();
+
+
+}
 }

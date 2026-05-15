@@ -4,24 +4,8 @@
     box-sizing: border-box;
 }
 
-.containermain {
-    width: 50%;
-
-    max-width: 700px;
-
-    margin: 60px auto;
-    padding: 40px;
-
-    background-color: rgb(92, 94, 94);
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
-
+html {
+    height: 100%;
 }
 
 body {
@@ -37,6 +21,31 @@ body {
 
     flex-direction: column;
 }
+
+main {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.app-output {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+}
+label { font-size: 18px; margin-bottom: -10px; font-weight: bold; }
 
 header {
     background-color: rgb(84, 85, 85);
@@ -122,39 +131,15 @@ li:hover a {
     color: rgb(57, 77, 77);
 }
 
-main {
-    flex: 1;
 
-    display: flex;
-
-    flex-direction: column;
-}
-
-#out {
-    background-color: rgba(197, 192, 192, 0.35);
-    border: 1px solid rgb(197, 192, 192);
-    text-align: center;
-    width: 25%;
-}
-
-.content {
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: column;
-}
-
-.app-output {
-    flex: 1;
-}
-
-.login-container {
+.login-container,
+.containermain {
     width: 50%;
 
     max-width: 700px;
 
     margin: 60px auto;
+
     padding: 40px;
 
     background-color: rgb(92, 94, 94);
@@ -166,6 +151,8 @@ main {
     justify-content: center;
 
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+
+    border-radius: 20px;
 }
 
 .login-container h1 {
@@ -181,148 +168,26 @@ form {
 
     gap: 20px;
 }
+
+input,
 textarea {
     width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: rgb(235, 235, 235);
+
+    font-size: 16px;
+}
+
+textarea {
     min-height: 120px;
 
-    padding: 14px;
-
-    border: none;
-    border-radius: 8px;
-
-    background-color: rgb(235, 235, 235);
-
-    font-size: 16px;
-
     resize: vertical;
-}
-.address-buttons {
-    display: flex;
-
-    gap: 15px;
-
-    margin-top: 20px;
-}
-
-.edit-btn,
-.delete-btn {
-    padding: 10px 20px;
-
-    border-radius: 8px;
-
-    color: white;
-
-    text-decoration: none;
-
-    font-weight: bold;
-
-    transition: 0.3s;
-}
-
-.edit-btn {
-    background-color: rgb(143, 141, 141);
-}
-
-.edit-btn:hover {
-    background-color: rgb(110, 201, 133);
-
-    transform: scale(1.05);
-}
-
-.delete-btn {
-    background-color: rgb(143, 141, 141);
-}
-
-.delete-btn:hover {
-    background-color: rgb(236, 17, 17);
-
-    transform: scale(1.05);
-}
-.address-container {
-    width: 700px;
-    margin: 50px auto;
-    background: #5b5454;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-}
-
-.address-container h1 {
-    font-size: 60px;
-    margin-bottom: 20px;
-    background-color: #635e5e;
-}
-
-.address-container > a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 28px;
-}
-
-.address-box {
-    background: #4f4949;
-    padding: 30px;
-    margin-top: 30px;
-    border-radius: 20px;
-    text-align: left;
-}
-
-.address-box h2 {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-
-.address-box .link {
-    color: #0fefff;
-    text-decoration: underline;
-    font-size: 24px;
-}
-
-.address-box p {
-    margin-top: 20px;
-    font-size: 24px;
-}
-
-.address-box .actions {
-    margin-top: 20px;
-}
-
-.address-box .actions a {
-    margin-right: 15px;
-}
-
-
-.actions {
-    margin-top: 20px;
-}
-
-.actions a {
-    display: inline-block;
-    margin-right: 15px;
-    color: white;
-    background-color: rgb(57, 77, 77);
-    padding: 10px 15px;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-.actions a:hover {
-    background-color: white;
-    color: rgb(57, 77, 77);
-}
-
-input {
-    width: 100%;
-
-    padding: 14px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background-color: rgb(235, 235, 235);
-
-    font-size: 16px;
 }
 
 .button-group {
@@ -382,6 +247,9 @@ button {
 
     font-size: 18px;
 }
+.profile-view{
+    text-decoration: dotted;
+}
 
 .register-text a {
     display: inline-block;
@@ -407,6 +275,113 @@ button {
     background-color: white;
 
     color: rgb(57, 77, 77);
+
+    transform: scale(1.05);
+}
+
+.address-container {
+    width: 700px;
+
+    margin: 50px auto;
+
+    background: #5b5454;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+}
+
+.address-container h1 {
+    font-size: 60px;
+
+    margin-bottom: 20px;
+}
+
+.address-container > a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 28px;
+}
+
+.address-box {
+    background: #4f4949;
+
+    padding: 30px;
+
+    margin-top: 30px;
+
+    border-radius: 20px;
+
+    text-align: left;
+}
+
+.address-box h2 {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+.address-box .link {
+    color: #0fefff;
+
+    text-decoration: underline;
+
+    font-size: 24px;
+
+    word-break: break-word;
+}
+
+.address-box p {
+    margin-top: 20px;
+
+    font-size: 24px;
+}
+
+.address-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background-color: rgb(143, 141, 141);
+}
+
+.edit-btn:hover {
+    background-color: rgb(110, 201, 133);
+
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background-color: rgb(143, 141, 141);
+}
+
+.delete-btn:hover {
+    background-color: rgb(236, 17, 17);
 
     transform: scale(1.05);
 }
@@ -458,13 +433,8 @@ button {
 
     transform: scale(1.05);
 }
+
 @media (max-width: 768px) {
-
-    header {
-        flex-direction: column;
-
-        gap: 20px;
-    }
 
     .nav-container {
         flex-direction: column;
@@ -488,8 +458,10 @@ button {
         width: 100%;
     }
 
-    .login-container {
-        width: 100%;
+    .login-container,
+    .containermain,
+    .address-container {
+        width: 95%;
 
         padding: 25px;
     }
@@ -502,5 +474,49 @@ button {
         width: 100%;
     }
 
+    .footer-content {
+        flex-direction: column;
 
+        gap: 20px;
+
+        text-align: center;
+    }
+
+    .address-buttons {
+        flex-direction: column;
+    }
 }
+.nav-menu a {
+    padding: 16px 38px; /* większe przyciski */
+    font-size: 22px;    /* większa czcionka */
+}
+.nav-menu li {
+    border: 2px solid white; /* grubsza ramka */
+    border-radius: 15px;      /* bardziej zaokrąglone rogi */
+    background-color: rgb(57, 77, 77);
+    transition: 0.3s;
+}
+.nav-menu li:hover {
+    color: rgb(57, 77, 77);
+    background-color: white;
+    transform: scale(1.1); /* większe powiększenie */
+}               
+.flash-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity .4s ease, transform .4s ease;
+    z-index: 9999;
+}
+.flash-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
