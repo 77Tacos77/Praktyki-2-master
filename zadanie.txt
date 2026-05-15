@@ -1,0 +1,16 @@
+W modelu User trzymaj takie informacje jak
+
+email, firstname, lastname, password, active
+
+ 
+
+Natomiast w modelu Address trzymaj dane adresowe (tj. alis. firstname, lastname, street, postcode, city, country, phone) – dane do wysyłki – będziemy robić ecommerce.
+
+ 
+
+Tworzymy model z relację jeden do wielu (Jeden User może mieć wiele adresów).  
+
+ 
+
+Przykład:
+Masz konto na sklepie, ale kupujesz coś dla kogoś z rodziny, przez to musisz wybrać inny adres dostawy.

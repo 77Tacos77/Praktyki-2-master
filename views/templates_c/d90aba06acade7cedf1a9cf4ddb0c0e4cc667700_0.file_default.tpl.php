@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-15 12:59:08
+/* Smarty version 5.8.0, created on 2026-05-15 13:37:09
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a06fc7ca0a856_27675698',
+  'unifunc' => 'content_6a070565608191_34809998',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1778842745,
+      1 => 1778845027,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a06fc7ca0a856_27675698 (\Smarty\Template $_smarty_tpl) {
+function content_6a070565608191_34809998 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -44,9 +44,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <nav class="navbar">
             <div class="nav-container">
 
-                <a class="nav-logo" href="/Praktyki-2-master/">
-                    Projekt Mirjan
-                </a>
+                <img class="nav-logo" src="/Praktyki-2-master/logo.png" alt="Logo">
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
@@ -57,7 +55,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 
                         <li>
                             <a class="nav-link" href="/Praktyki-2-master/profile">
-                                Mój profil
+                                Moje konto
                             </a>
                         </li>
 
@@ -79,7 +77,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2423094686a06fc7ca02379_39130034', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20936045836a070565603a44_93045891', "content");
 ?>
 
             </div>
@@ -151,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_2423094686a06fc7ca02379_39130034 extends \Smarty\Runtime\Block
+class Block_20936045836a070565603a44_93045891 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';

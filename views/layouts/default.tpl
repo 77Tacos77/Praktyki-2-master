@@ -18,9 +18,7 @@
         <nav class="navbar">
             <div class="nav-container">
 
-                <a class="nav-logo" href="/Praktyki-2-master/">
-                    Projekt Mirjan
-                </a>
+                <img class="nav-logo" src="/Praktyki-2-master/logo.png" alt="Logo">
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
@@ -31,7 +29,7 @@
 
                         <li>
                             <a class="nav-link" href="/Praktyki-2-master/profile">
-                                Mój profil
+                                Moje konto
                             </a>
                         </li>
 
