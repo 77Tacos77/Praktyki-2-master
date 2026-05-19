@@ -1,49 +1,45 @@
-{extends file="layouts/default.tpl"}
-
-{block name="content"}
+{extends file="layouts/default.tpl"} {block name="content"}
+    {if isset($error)}
+        <div class="error-alert"> {$error} </div>
+    {/if}
+    {if isset($success)}
+        <div class="success-alert"> {$success} </div>
+    {/if}
 
     <div class="address-container">
-
-        <h1>Moje adresy</h1>
-
-        <a href="/Praktyki-2-master/?page=address-create">
-            Dodaj adres
-        </a>
-
-        <hr>
-
+        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/?page=address-create"> Dodaj adres </a>
         {foreach $addresses as $address}
-
             <div class="address-box">
-
-                <h2>{$address->getTitle()}</h2>
-
-                <a href="{$address->getUrl()}" target="_blank" class="link">
-                    {$address->getUrl()}
-                </a>
-
-                <p>
-                    {$address->getDescription()}
-                </p>
-
+                <h2>Imię i Nazwisko: {$address->getFirstName()} {$address->getLastName()} </h2>
+                <p>Adres: {$address->getStreet()} </p>
+                <p>Kod pocztowy i Miasto: {$address->getPostcode()} {$address->getCity()} </p>
+                <p>Kraj: {$address->getCountry()} </p>
+                <p>Telefon: {$address->getPhone()} </p>
                 <div class="address-buttons">
-
-                    <a class="edit-btn" href="/Praktyki-2-master/?page=address-edit&id={$address->getId()}">
-                        Edytuj
-                    </a>
-
-                    <a class="delete-btn" href="/Praktyki-2-master/?page=address-delete&id={$address->getId()}">
-                        Usuń
-                    </a>
-
+                    <a class="choose-btn" href="/Praktyki-2-master/?page=address-select&id={$address->getId()}"> Wybierz </a>
+                    <a class="edit-btn" href="/Praktyki-2-master/?page=address-edit&id={$address->getId()}"> Edytuj </a>
+                    <a class="delete-btn" href="/Praktyki-2-master/?page=address-delete&id={$address->getId()}"> Usuń </a>
                 </div>
-
             </div>
-
-            <hr>
-
         {/foreach}
-
     </div>
-
 {/block}
+<script>
+    const chooseButtons = document.querySelectorAll('.choose-btn');
+
+    chooseButtons.forEach(button => {
+
+        button.addEventListener('click', function(e) {
+
+            e.preventDefault();
+
+            document.querySelectorAll('.address-box').forEach(box => {
+                box.classList.remove('selected');
+            });
+
+            this.closest('.address-box').classList.add('selected');
+
+        });
+
+    });
+</script>

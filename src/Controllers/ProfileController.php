@@ -8,21 +8,34 @@ use src\Models\Profile;
 class ProfileController extends FrontController
 {
     public function index(): string
-    {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=login");
-            exit();
-        }
-
-        $user = $this->entityManager->find(User::class, $_SESSION['user_id']);
-        $profile = $user->getProfile();
-
-        $this->smarty->assign('profile', $profile);
-        $this->smarty->assign('edit', false);
-
-        $this->setTemplate('pages/profile.tpl');
-        return $this->render();
+{
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: index.php?page=login");
+        exit();
     }
+
+    $user = $this->entityManager->find(User::class, $_SESSION['user_id']);
+
+    $profile = $user->getProfile();
+
+     if (!$profile) {
+        $profile = new Profile($user);
+        $user->setProfile($profile);
+        $profile->setUser($user);
+
+        $this->entityManager->persist($profile);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+    }
+
+    // 4. Przekazujemy do Smarty
+    $this->smarty->assign('profile', $profile);
+    $this->smarty->assign('edit', false);
+
+    $this->setTemplate('pages/profile.tpl');
+    return $this->render();
+}
+
 
     public function edit(): string
     {

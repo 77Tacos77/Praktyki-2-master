@@ -18,7 +18,9 @@
         <nav class="navbar">
             <div class="nav-container">
 
-                <img class="nav-logo" src="/Praktyki-2-master/logo.png" alt="Logo">
+                <a href="/Praktyki-2-master/">
+                    <img class="nav-logo" src="/Praktyki-2-master/logo.png" alt="Logo">
+                </a>
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>

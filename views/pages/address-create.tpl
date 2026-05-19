@@ -1,3 +1,4 @@
+```smarty
 {extends file="layouts/default.tpl"}
 
 {block name="content"}
@@ -8,16 +9,37 @@
 
     <form method="POST">
 
-        <input type="text" name="title" placeholder="Nazwa">
+        <label>Imię</label>
+        <input type="text" name="firstName" required>
 
-        <input type="text" name="url" placeholder="Link">
+        <label>Nazwisko</label>
+        <input type="text" name="lastName" required>
 
-        <textarea name="description" placeholder="Opis"></textarea>
+        <label>Ulica</label>
+        <input type="text" name="street" required>
+
+        <label>Kod pocztowy</label>
+        <input type="text" name="postcode" required>
+
+        <label>Miasto</label>
+        <input type="text" name="city" required>
+
+        <label>Kraj</label>
+        <input type="text" name="country" required>
+
+        <label>Numer telefonu</label>
+        <input type="text" name="phone" required>
 
         <div class="button-group">
-            <button type="submit" class="submit">
-                Dodaj
+
+            <button class="submit" type="submit">
+                Zapisz
             </button>
+
+            <button class="reset" type="reset">
+                Reset
+            </button>
+
         </div>
 
     </form>
@@ -25,3 +47,4 @@
 </div>
 
 {/block}
+```

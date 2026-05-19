@@ -13,66 +13,110 @@ class Address
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $title;
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private ?string $firstName = null;
 
-    #[ORM\Column(type: 'string', length: 500)]
-    private string $url;
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private ?string $lastName = null;
 
-    #[ORM\Column(type: 'text')]
-    private string $description;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $street = null;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private ?string $postcode = null;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private ?string $city = null;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private ?string $country = null;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private ?string $phone = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'addresses')]
-    #[ORM\JoinColumn(name: "user_id", nullable: false)]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
     private User $user;
-
-    public function __construct(
-        string $title,
-        string $url,
-        string $description,
-        User $user
-    ) {
-        $this->title = $title;
-        $this->url = $url;
-        $this->description = $description;
-        $this->user = $user;
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getFirstName(): ?string
     {
-        return $this->title;
+        return $this->firstName;
     }
 
-    public function setTitle(string $title): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->title = $title;
+        $this->firstName = $firstName;
         return $this;
     }
 
-    public function getUrl(): string
+    public function getLastName(): ?string
     {
-        return $this->url;
+        return $this->lastName;
     }
 
-    public function setUrl(string $url): self
+    public function setLastName(?string $lastName): self
     {
-        $this->url = $url;
+        $this->lastName = $lastName;
         return $this;
     }
 
-    public function getDescription(): string
+    public function getStreet(): ?string
     {
-        return $this->description;
+        return $this->street;
     }
 
-    public function setDescription(string $description): self
+    public function setStreet(?string $street): self
     {
-        $this->description = $description;
+        $this->street = $street;
+        return $this;
+    }
+
+    public function getPostcode(): ?string
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode(?string $postcode): self
+    {
+        $this->postcode = $postcode;
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
         return $this;
     }
 

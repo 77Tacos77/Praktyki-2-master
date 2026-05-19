@@ -60,6 +60,7 @@ class ProfileController extends FrontController
         $this->smarty->assign('edit', true);
 
         $this->setTemplate('pages/profile_edit.tpl');
+        $this->smarty->assign('flash', 'Dane zostały zapisane!');
         return $this->render();
     }
 }

@@ -22,19 +22,24 @@ class AddressController extends FrontController
     public function create(): string
     {
         if (!isset($_SESSION['login'])) {
-            header('Location: /Praktyki-2-master/?page=login');
+            header('Location: /Praktyki-2-master/login');
             exit();
         }
+        $userRepository = $this->entityManager->getRepository(User::class);
+        $user = $userRepository->findOneBy(['login' => $_SESSION['login']]);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $title = $_POST['title'];
-            $url = $_POST['url'];
-            $description = $_POST['description'];
-            $userRepository = $this->entityManager->getRepository(User::class);
-            $user = $userRepository->findOneBy(['login' => $_SESSION['login']]);
-            $address = new Address($title, $url, $description, $user);
+            $address = new Address();
+            $address->setFirstName($_POST['firstName']);
+            $address->setLastName($_POST['lastName']);
+            $address->setStreet($_POST['street']);
+            $address->setPostcode($_POST['postcode']);
+            $address->setCity($_POST['city']);
+            $address->setCountry($_POST['country']);
+            $address->setPhone($_POST['phone']);
+            $address->setUser($user);
             $this->entityManager->persist($address);
             $this->entityManager->flush();
-            header('Location: /Praktyki-2-master/?page=addresses');
+            header('Location: /Praktyki-2-master/addresses');
             exit();
         }
         $this->setTemplate('pages/address-create.tpl');
@@ -46,11 +51,15 @@ class AddressController extends FrontController
         $addressRepository = $this->entityManager->getRepository(Address::class);
         $address = $addressRepository->find($id);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $address->setTitle($_POST['title']);
-            $address->setUrl($_POST['url']);
-            $address->setDescription($_POST['description']);
+            $address->setFirstName($_POST['firstName']);
+            $address->setLastName($_POST['lastName']);
+            $address->setStreet($_POST['street']);
+            $address->setPostcode($_POST['postcode']);
+            $address->setCity($_POST['city']);
+            $address->setCountry($_POST['country']);
+            $address->setPhone($_POST['phone']);
             $this->entityManager->flush();
-            header('Location: /Praktyki-2-master/?page=addresses');
+            header('Location: /Praktyki-2-master/addresses');
             exit();
         }
         $this->smarty->assign('address', $address);
@@ -67,4 +76,14 @@ class AddressController extends FrontController
         header('Location: /Praktyki-2-master/?page=addresses');
         exit();
     }
+    public function select(): void
+{
+    $id = $_GET['id'];
+
+    $_SESSION['selected_address'] = $id;
+
+    header('Location: /Praktyki-2-master/?page=addresses');
+    exit();
+}
+
 }

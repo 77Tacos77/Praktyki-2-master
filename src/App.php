@@ -9,7 +9,8 @@ use src\Controllers\RegisterController;
 use src\Controllers\UserController;
 use src\Controllers\AddressController;
 use src\Controllers\ProfileController;
-
+use src\Controllers\ChangePasswordController;
+use src\Controllers\AddressImportController;
 use Doctrine\ORM\EntityManager;
 
 class App
@@ -45,10 +46,14 @@ class App
     {
         $page = $_GET['page'] ?? 'home';
         // dd($_GET['page']);
-       
+
 
         $routes = [
+            'address-select' => AddressController::class,
             'profile' =>  ProfileController::class,
+            'profile-edit' => ProfileController::class,
+            'change-password' => ChangePasswordController::class,
+            'address-import' => AddressImportController::class,
             'user' => UserController::class,
             'home' => IndexController::class,
             'login' => LoginController::class,
@@ -62,36 +67,47 @@ class App
         ];
 
         if (!array_key_exists($page, $routes)) {
-    return '<h1>404 Not Found</h1>';
-}
+            return '<h1>404 Not Found</h1>';
+        }
 
-$controllerClass = $routes[$page];
-$controller = new $controllerClass($this->entityManager);
+        $controllerClass = $routes[$page];
+        $controller = new $controllerClass($this->entityManager);
 
-// Adresy
-if ($page === 'address-create') {
-    return $controller->create();
-}
+        // Adresy
+        if ($page === 'address-create') {
+            return $controller->create();
+        }
 
-if ($page === 'address-edit') {
+        if ($page === 'address-edit') {
+            return $controller->edit();
+        }
+
+        if ($page === 'address-delete') {
+            return $controller->delete();
+        }
+
+        if ($page === 'profile' && isset($_GET['edit']) && $_GET['edit'] == '1') {
+            return $controller->edit();
+        }
+
+        if ($page === 'profile') {
+            return $controller->index();
+        }
+        if ($page === 'address-select') {
+            return $controller->select();
+        }
+    
+if ($page === 'profile-edit') {
     return $controller->edit();
 }
-
-if ($page === 'address-delete') {
-    return $controller->delete();
-}
-
-// Profil – edycja
-if ($page === 'profile' && isset($_GET['edit']) && $_GET['edit'] == '1') {
-    return $controller->edit();
-}
-
-// Profil – widok
-if ($page === 'profile') {
+if ($page === 'change-password') {
     return $controller->index();
 }
+if ($page === 'address-import') {
+    return $controller->index();
+}
+if ($page === 'address-select') {
+    return $controller->select();
+}
 return $controller->index();
-
-
-}
-}
+}}

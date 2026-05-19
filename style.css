@@ -45,7 +45,12 @@ main {
 
     flex-direction: column;
 }
-label { font-size: 18px; margin-bottom: -10px; font-weight: bold; }
+
+label {
+    font-size: 18px;
+    margin-bottom: -10px;
+    font-weight: bold;
+}
 
 header {
     background-color: rgb(84, 85, 85);
@@ -246,7 +251,8 @@ button {
 
     font-size: 18px;
 }
-.profile-view{
+
+.profile-view {
     text-decoration: dotted;
 }
 
@@ -300,7 +306,7 @@ button {
     margin-bottom: 20px;
 }
 
-.address-container > a {
+.address-container>a {
     color: #ffffff;
 
     text-decoration: none;
@@ -390,7 +396,7 @@ button {
 
     background-color: rgb(84, 85, 85);
 
-    border-top: 2px solid rgba(255,255,255,0.15);
+    border-top: 2px solid rgba(255, 255, 255, 0.15);
 
     padding: 20px 40px;
 }
@@ -485,21 +491,30 @@ button {
         flex-direction: column;
     }
 }
+
 .nav-menu a {
-    padding: 16px 38px; /* większe przyciski */
-    font-size: 22px;    /* większa czcionka */
+    padding: 16px 38px;
+    /* większe przyciski */
+    font-size: 22px;
+    /* większa czcionka */
 }
+
 .nav-menu li {
-    border: 2px solid white; /* grubsza ramka */
-    border-radius: 15px;      /* bardziej zaokrąglone rogi */
+    border: 2px solid white;
+    /* grubsza ramka */
+    border-radius: 15px;
+    /* bardziej zaokrąglone rogi */
     background-color: rgb(57, 77, 77);
     transition: 0.3s;
 }
+
 .nav-menu li:hover {
     color: rgb(57, 77, 77);
     background-color: white;
-    transform: scale(1.1); /* większe powiększenie */
-}               
+    transform: scale(1.1);
+    /* większe powiększenie */
+}
+
 .flash-toast {
     position: fixed;
     top: 20px;
@@ -508,14 +523,96 @@ button {
     color: white;
     padding: 12px 20px;
     border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     opacity: 0;
     transform: translateY(-20px);
     transition: opacity .4s ease, transform .4s ease;
     z-index: 9999;
 }
+
 .flash-toast.show {
     opacity: 1;
     transform: translateY(0);
 }
 
+.choose-btn {
+    background-color: rgb(114, 131, 134);
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border: 2px solid transparent;
+
+    transition: 0.3s;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.error-alert {
+    background: #ff4d4d;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.success-alert {
+    background: #42c96f;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.choose-btn:hover {
+    background-color: white;
+
+    color: rgb(132, 150, 150);
+
+    transform: scale(1.05);
+}
+
+.choose-btn:focus,
+.choose-btn:active {
+    outline: none;
+
+    border: 2px solid #4da3ff;
+
+    box-shadow: 0 0 8px rgba(77, 163, 255, 0.7);
+}
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    z-index: 9999;
+    transition: 0.5s;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.toast-error {
+    background: #ff4d4d;
+}
+
+.toast-success {
+    background: #42c96f;
+}
