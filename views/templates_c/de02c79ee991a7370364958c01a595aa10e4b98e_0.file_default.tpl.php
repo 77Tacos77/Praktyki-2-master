@@ -1,3 +1,29 @@
+<?php
+/* Smarty version 5.8.0, created on 2026-05-19 13:16:09
+  from 'file:layouts/default.tpl' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.8.0',
+  'unifunc' => 'content_6a0c4679d63ed7_75754052',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'de02c79ee991a7370364958c01a595aa10e4b98e' => 
+    array (
+      0 => 'layouts/default.tpl',
+      1 => 1779186172,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6a0c4679d63ed7_75754052 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
+$_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -13,11 +39,13 @@
 </head>
 
 <body>
-{if isset($flash)}
-<div id="flash-toast" class="toast toast-{$flash.type}">
-    {$flash.message}
+<?php if ((true && ($_smarty_tpl->hasVariable('flash') && null !== ($_smarty_tpl->getValue('flash') ?? null)))) {?>
+<div id="flash-toast" class="toast toast-<?php echo $_smarty_tpl->getValue('flash')['type'];?>
+">
+    <?php echo $_smarty_tpl->getValue('flash')['message'];?>
+
 </div>
-{/if}
+<?php }?>
 
 
     <header>
@@ -33,7 +61,7 @@
                     <li><a class="nav-link" href="#">About</a></li>
                     <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
                     <li><a class="nav-link" href="/Praktyki-2-master/products">Produkty</a></li>
-                    {if isset($smarty.session.login)}
+                    <?php if ((true && (true && null !== ($_SESSION['login'] ?? null)))) {?>
 
                         <li>
                             <a class="nav-link" href="/Praktyki-2-master/profile">
@@ -41,7 +69,7 @@
                             </a>
                         </li>
 
-                    {else}
+                    <?php } else { ?>
 
                         <li>
                             <a class="nav-link" href="/Praktyki-2-master/login">
@@ -49,7 +77,7 @@
                             </a>
                         </li>
 
-                    {/if}
+                    <?php }?>
 
             </div>
         </nav>
@@ -58,7 +86,10 @@
     <main>
         <section class="content">
             <div class="app-output">
-                {block name="content"}{/block}
+                <?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13595520516a0c4679d62f38_14005769', "content");
+?>
+
             </div>
         </section>
     </main>
@@ -71,7 +102,8 @@
 
                 Zalogowany jako:
                 <span>
-                    {$smarty.session.login ?? 'Gość'}
+                    <?php echo $_SESSION['login'] ?? 'Gość';?>
+
                 </span>
 
             </div>
@@ -88,7 +120,8 @@
 
     </footer>
 
-    <script>
+    <?php echo '<script'; ?>
+>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 
@@ -103,8 +136,10 @@
                 hamburger.classList.remove('active');
             });
         });
-    </script>
-<script>
+    <?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
 document.addEventListener("DOMContentLoaded", function() {
     const toast = document.getElementById("flash-toast");
     if (toast) {
@@ -112,7 +147,17 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => toast.classList.remove("show"), 3000);
     }
 });
-</script>
+<?php echo '</script'; ?>
+>
 
 </body>
-</html>
+</html><?php }
+/* {block "content"} */
+class Block_13595520516a0c4679d62f38_14005769 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
+}
+}
+/* {/block "content"} */
+}

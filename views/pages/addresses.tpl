@@ -9,7 +9,7 @@
     <div class="address-container">
         <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create"> Dodaj adres </a>
         {foreach $addresses as $address}
-<div class="address-box {if $address->getId() == $smarty.session.selected_address}selected{/if}">                <h2>Imię i Nazwisko: {$address->getFirstName()} {$address->getLastName()} </h2>
+<div class="address-box {if $address->getId() == $smarty.session.selected_address}selected{/if}"><h2>Imię i Nazwisko: {$address->getFirstName()} {$address->getLastName()} </h2>
                 <p>Adres: {$address->getStreet()} </p>
                 <p>Kod pocztowy i Miasto: {$address->getPostcode()} {$address->getCity()} </p>
                 <p>Kraj: {$address->getCountry()} </p>

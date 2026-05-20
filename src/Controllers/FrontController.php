@@ -21,7 +21,10 @@ class FrontController
         $this->entityManager = $entityManager;
         $this->smarty = new Smarty();
 
-        $this->smarty->setTemplateDir(__DIR__ . '/../../views/');
+        $this->smarty->setTemplateDir([
+    __DIR__ . '/../../views/',
+    __DIR__ . '/../../views/pages/',
+]);
         $this->smarty->setCompileDir(__DIR__ . '/../../views/templates_c/');
         $this->smarty->setCacheDir(__DIR__ . '/../../views/cache/');
         $this->smarty->setConfigDir(__DIR__ . '/../../views/configs/');
@@ -45,6 +48,7 @@ class FrontController
 
     public function render(): string
 {
+    // Odbiór flash message — tylko raz!
     if (isset($_SESSION['flash'])) {
         $this->smarty->assign('flash', $_SESSION['flash']);
         unset($_SESSION['flash']);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-19 10:04:34
+/* Smarty version 5.8.0, created on 2026-05-19 12:22:56
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0c1992405643_75443272',
+  'unifunc' => 'content_6a0c3a005168f4_62587320',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1779177872,
+      1 => 1779186172,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0c1992405643_75443272 (\Smarty\Template $_smarty_tpl) {
+function content_6a0c3a005168f4_62587320 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -60,7 +60,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
                     <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
                     <li><a class="nav-link" href="#">About</a></li>
                     <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
-                    <li><a class="nav-link" href="#">Contact</a></li>
+                    <li><a class="nav-link" href="/Praktyki-2-master/products">Produkty</a></li>
                     <?php if ((true && (true && null !== ($_SESSION['login'] ?? null)))) {?>
 
                         <li>
@@ -87,7 +87,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21203844946a0c19923fffa4_00783134', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14802891136a0c3a0050ee02_42819541', "content");
 ?>
 
             </div>
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_21203844946a0c19923fffa4_00783134 extends \Smarty\Runtime\Block
+class Block_14802891136a0c3a0050ee02_42819541 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
