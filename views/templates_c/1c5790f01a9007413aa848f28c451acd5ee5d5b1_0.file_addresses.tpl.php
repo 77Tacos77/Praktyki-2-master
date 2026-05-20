@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-19 08:58:35
+/* Smarty version 5.8.0, created on 2026-05-19 11:25:15
   from 'file:pages/addresses.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0c0a1b5db871_99429680',
+  'unifunc' => 'content_6a0c2c7be29993_55131249',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c5790f01a9007413aa848f28c451acd5ee5d5b1' => 
     array (
       0 => 'pages/addresses.tpl',
-      1 => 1779173872,
+      1 => 1779182686,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0c0a1b5db871_99429680 (\Smarty\Template $_smarty_tpl) {
+function content_6a0c2c7be29993_55131249 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4054669046a0c0a1b5d0ae8_64481191', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16017135886a0c2c7be0f001_98121566', "content");
 ?>
 
 <?php echo '<script'; ?>
@@ -51,7 +51,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4054669046a0c
 ><?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_4054669046a0c0a1b5d0ae8_64481191 extends \Smarty\Runtime\Block
+class Block_16017135886a0c2c7be0f001_98121566 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
@@ -67,15 +67,14 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
     <?php }?>
 
     <div class="address-container">
-        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/?page=address-create"> Dodaj adres </a>
+        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create"> Dodaj adres </a>
         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('addresses'), 'address');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('address')->value) {
 $foreach0DoElse = false;
 ?>
-            <div class="address-box">
-                <h2>Imię i Nazwisko: <?php echo $_smarty_tpl->getValue('address')->getFirstName();?>
+<div class="address-box <?php if ($_smarty_tpl->getValue('address')->getId() == $_SESSION['selected_address']) {?>selected<?php }?>">                <h2>Imię i Nazwisko: <?php echo $_smarty_tpl->getValue('address')->getFirstName();?>
  <?php echo $_smarty_tpl->getValue('address')->getLastName();?>
  </h2>
                 <p>Adres: <?php echo $_smarty_tpl->getValue('address')->getStreet();?>
@@ -88,11 +87,11 @@ $foreach0DoElse = false;
                 <p>Telefon: <?php echo $_smarty_tpl->getValue('address')->getPhone();?>
  </p>
                 <div class="address-buttons">
-                    <a class="choose-btn" href="/Praktyki-2-master/?page=address-select&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
+                    <a class="choose-btn" href="/Praktyki-2-master/address-select&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
 "> Wybierz </a>
-                    <a class="edit-btn" href="/Praktyki-2-master/?page=address-edit&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
+                    <a class="edit-btn" href="/Praktyki-2-master/address-edit&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
 "> Edytuj </a>
-                    <a class="delete-btn" href="/Praktyki-2-master/?page=address-delete&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
+                    <a class="delete-btn" href="/Praktyki-2-master/address-delete&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
 "> Usuń </a>
                 </div>
             </div>

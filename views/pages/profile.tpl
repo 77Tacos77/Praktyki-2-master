@@ -17,9 +17,9 @@
                 <p><strong>Kraj:</strong> {$profile->getKraj()}</p>
                 <p><strong>Telefon:</strong> {$profile->getNumerTelefonu()}</p>
 
-                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/?page=profile-edit"> Edytuj profil </a>
-                 <a class="edit-btn" href="/Praktyki-2-master/?page=change-password"> Zmień hasło </a>
-                  <a class="choose-btn" href="/Praktyki-2-master/?page=address-import"> Importuj dane do adresu </a> </div>
+                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/profile-edit"> Edytuj profil </a>
+                 <a class="edit-btn" href="/Praktyki-2-master/change-password"> Zmień hasło </a>
+                  <a class="choose-btn" href="/Praktyki-2-master/address-import"> Importuj dane do adresu </a> </div>
 
             </div>
         {/if}

@@ -13,6 +13,12 @@
 </head>
 
 <body>
+{if isset($flash)}
+<div id="flash-toast" class="toast toast-{$flash.type}">
+    {$flash.message}
+</div>
+{/if}
+
 
     <header>
         <nav class="navbar">
@@ -79,11 +85,6 @@
             </div>
 
         </div>
-{if isset($flash)}
-<div id="flash-toast" class="flash-toast">
-    {$flash}
-</div>
-{/if}
 
     </footer>
 

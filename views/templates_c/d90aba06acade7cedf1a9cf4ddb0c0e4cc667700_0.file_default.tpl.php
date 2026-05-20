@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-19 08:27:05
+/* Smarty version 5.8.0, created on 2026-05-19 10:04:34
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0c02b93a9b24_97583787',
+  'unifunc' => 'content_6a0c1992405643_75443272',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd90aba06acade7cedf1a9cf4ddb0c0e4cc667700' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1779172024,
+      1 => 1779177872,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0c02b93a9b24_97583787 (\Smarty\Template $_smarty_tpl) {
+function content_6a0c1992405643_75443272 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -39,6 +39,14 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 </head>
 
 <body>
+<?php if ((true && ($_smarty_tpl->hasVariable('flash') && null !== ($_smarty_tpl->getValue('flash') ?? null)))) {?>
+<div id="flash-toast" class="toast toast-<?php echo $_smarty_tpl->getValue('flash')['type'];?>
+">
+    <?php echo $_smarty_tpl->getValue('flash')['message'];?>
+
+</div>
+<?php }?>
+
 
     <header>
         <nav class="navbar">
@@ -79,7 +87,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7338911306a0c02b93a34e8_09701935', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21203844946a0c19923fffa4_00783134', "content");
 ?>
 
             </div>
@@ -109,12 +117,6 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7338911306a0c
             </div>
 
         </div>
-<?php if ((true && ($_smarty_tpl->hasVariable('flash') && null !== ($_smarty_tpl->getValue('flash') ?? null)))) {?>
-<div id="flash-toast" class="flash-toast">
-    <?php echo $_smarty_tpl->getValue('flash');?>
-
-</div>
-<?php }?>
 
     </footer>
 
@@ -151,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 </html><?php }
 /* {block "content"} */
-class Block_7338911306a0c02b93a34e8_09701935 extends \Smarty\Runtime\Block
+class Block_21203844946a0c19923fffa4_00783134 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';

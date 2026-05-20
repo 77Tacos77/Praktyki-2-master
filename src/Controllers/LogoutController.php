@@ -16,7 +16,11 @@ class LogoutController extends FrontController
         }
         session_destroy();
         session_start();
-        $_SESSION['flash'] = 'Wylogowano pomyślnie';
+        $_SESSION['flash'] = [
+    'type' => 'success',
+    'message' => 'Wylogowano pomyślnie'
+];
+
         header('Location: http://localhost/Praktyki-2-master/login');
         exit();
     }

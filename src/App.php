@@ -8,6 +8,7 @@ use src\Controllers\LogoutController;
 use src\Controllers\RegisterController;
 use src\Controllers\UserController;
 use src\Controllers\AddressController;
+use src\Controllers\ProfileEditController;
 use src\Controllers\ProfileController;
 use src\Controllers\ChangePasswordController;
 use src\Controllers\AddressImportController;
@@ -51,7 +52,7 @@ class App
         $routes = [
             'address-select' => AddressController::class,
             'profile' =>  ProfileController::class,
-            'profile-edit' => ProfileController::class,
+            'profile-edit' => ProfileEditController::class,
             'change-password' => ChangePasswordController::class,
             'address-import' => AddressImportController::class,
             'user' => UserController::class,

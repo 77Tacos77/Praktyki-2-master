@@ -1,27 +1,15 @@
 <?php
-
 namespace src\Controllers;
 
 use src\Models\User;
 use src\Models\Profile;
 
-class ProfileController extends FrontController
+class ProfileEditController extends FrontController
 {
-    public function index(): string
+    public function __construct($em)
     {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=login");
-            exit();
-        }
-
-        $user = $this->entityManager->find(User::class, $_SESSION['user_id']);
-        $profile = $user->getProfile();
-
-        $this->smarty->assign('profile', $profile);
-        $this->smarty->assign('edit', false);
-
-        $this->setTemplate('pages/profile_edit.tpl');
-        return $this->render();
+        parent::__construct($em);
+        $this->shouldBeAuthenticated = true;
     }
 
     public function edit(): string
@@ -52,6 +40,11 @@ class ProfileController extends FrontController
 
             $this->entityManager->flush();
 
+            $_SESSION['flash'] = [
+                'type' => 'success',
+                'message' => 'Dane zostały zapisane!'
+            ];
+
             header("Location: index.php?page=profile");
             exit();
         }
@@ -60,7 +53,6 @@ class ProfileController extends FrontController
         $this->smarty->assign('edit', true);
 
         $this->setTemplate('pages/profile_edit.tpl');
-        $this->smarty->assign('flash', 'Dane zostały zapisane!');
         return $this->render();
     }
 }

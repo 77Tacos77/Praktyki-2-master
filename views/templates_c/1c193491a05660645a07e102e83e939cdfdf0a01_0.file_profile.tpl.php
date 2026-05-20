@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-19 08:47:42
+/* Smarty version 5.8.0, created on 2026-05-19 10:34:41
   from 'file:pages/profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0c078edf1eb7_37549053',
+  'unifunc' => 'content_6a0c20a1e73db5_04663342',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c193491a05660645a07e102e83e939cdfdf0a01' => 
     array (
       0 => 'pages/profile.tpl',
-      1 => 1779173012,
+      1 => 1779179612,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0c078edf1eb7_37549053 (\Smarty\Template $_smarty_tpl) {
+function content_6a0c20a1e73db5_04663342 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7789383426a0c078ede9f81_75645808', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11554903406a0c20a1e661b2_42047041', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_7789383426a0c078ede9f81_75645808 extends \Smarty\Runtime\Block
+class Block_11554903406a0c20a1e661b2_42047041 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
@@ -60,9 +60,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
                 <p><strong>Telefon:</strong> <?php echo $_smarty_tpl->getValue('profile')->getNumerTelefonu();?>
 </p>
 
-                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/?page=profile-edit"> Edytuj profil </a>
-                 <a class="edit-btn" href="/Praktyki-2-master/?page=change-password"> Zmień hasło </a>
-                  <a class="choose-btn" href="/Praktyki-2-master/?page=address-import"> Importuj dane do adresu </a> </div>
+                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/profile-edit"> Edytuj profil </a>
+                 <a class="edit-btn" href="/Praktyki-2-master/change-password"> Zmień hasło </a>
+                  <a class="choose-btn" href="/Praktyki-2-master/address-import"> Importuj dane do adresu </a> </div>
 
             </div>
         <?php }?>

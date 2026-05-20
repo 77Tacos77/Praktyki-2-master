@@ -515,25 +515,9 @@ button {
     /* większe powiększenie */
 }
 
-.flash-toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #28a745;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity .4s ease, transform .4s ease;
-    z-index: 9999;
-}
 
-.flash-toast.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+
+
 
 .choose-btn {
     background-color: rgb(114, 131, 134);
@@ -599,20 +583,31 @@ button {
 .toast {
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: -300px; /* ukryty poza ekranem */
     padding: 15px 25px;
     border-radius: 12px;
     color: white;
     font-weight: bold;
     z-index: 9999;
-    transition: 0.5s;
+    transition: right 0.5s ease;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+.address-box.selected {
+    background-color: #86898d;
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+}
+
+
+.toast.show {
+    right: 20px; 
+}
+
+
+.toast-success {
+    background: #42c96f;
 }
 
 .toast-error {
     background: #ff4d4d;
-}
-
-.toast-success {
-    background: #42c96f;
 }
