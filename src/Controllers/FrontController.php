@@ -22,14 +22,14 @@ class FrontController
         $this->smarty = new Smarty();
 
         $this->smarty->setTemplateDir([
-    __DIR__ . '/../../views/',
-    __DIR__ . '/../../views/pages/',
-]);
+            __DIR__ . '/../../views/',
+            __DIR__ . '/../../views/pages/',
+        ]);
         $this->smarty->setCompileDir(__DIR__ . '/../../views/templates_c/');
         $this->smarty->setCacheDir(__DIR__ . '/../../views/cache/');
         $this->smarty->setConfigDir(__DIR__ . '/../../views/configs/');
 
-        $userId =  $_SESSION['user_id'] ?? null;
+        $userId = $_SESSION['user_id'] ?? null;
         if ($userId) {
             $userRepository = $this->entityManager->getRepository(User::class);
             $this->user = $userRepository->find($userId);
@@ -47,14 +47,13 @@ class FrontController
     }
 
     public function render(): string
-{
-    // Odbiór flash message — tylko raz!
-    if (isset($_SESSION['flash'])) {
-        $this->smarty->assign('flash', $_SESSION['flash']);
-        unset($_SESSION['flash']);
+    {
+        echo "<pre>Smarty ładuje szablon: " . $this->template . "</pre>";
+        if (isset($_SESSION['flash'])) {
+            $this->smarty->assign('flash', $_SESSION['flash']);
+            unset($_SESSION['flash']);
+        }
+
+        return $this->smarty->fetch($this->template);
     }
-
-    return $this->smarty->fetch($this->template);
-}
-
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-20 12:39:40
+/* Smarty version 5.8.0, created on 2026-05-21 09:55:07
   from 'file:pages/addresses.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0d8f6c2c15d0_20288731',
+  'unifunc' => 'content_6a0eba5b16fe49_41072213',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f011a26cbd120b3fcb750ed1708167fb736548f' => 
     array (
       0 => 'pages/addresses.tpl',
-      1 => 1779273576,
+      1 => 1779349884,
       2 => 'file',
     ),
   ),
@@ -20,38 +20,16 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0d8f6c2c15d0_20288731 (\Smarty\Template $_smarty_tpl) {
+function content_6a0eba5b16fe49_41072213 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13516310956a0d8f6c2b5b67_16642723', "content");
-?>
-
-<?php echo '<script'; ?>
->
-    const chooseButtons = document.querySelectorAll('.choose-btn');
-
-    chooseButtons.forEach(button => {
-
-        button.addEventListener('click', function(e) {
-
-            e.preventDefault();
-
-            document.querySelectorAll('.address-box').forEach(box => {
-                box.classList.remove('selected');
-            });
-
-            this.closest('.address-box').classList.add('selected');
-
-        });
-
-    });
-<?php echo '</script'; ?>
-><?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19979037436a0eba5b159928_35652798', "content");
+$_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_13516310956a0d8f6c2b5b67_16642723 extends \Smarty\Runtime\Block
+class Block_19979037436a0eba5b159928_35652798 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
@@ -74,7 +52,8 @@ $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('address')->value) {
 $foreach0DoElse = false;
 ?>
-<div class="address-box <?php if ($_smarty_tpl->getValue('address')->getId() == $_SESSION['selected_address']) {?>selected<?php }?>"><h2>Imię i Nazwisko: <?php echo $_smarty_tpl->getValue('address')->getFirstName();?>
+            <div class="address-box<?php if ((true && (true && null !== ($_SESSION['selected_address'] ?? null))) && $_smarty_tpl->getValue('address')->getId() == $_SESSION['selected_address']) {?> selected<?php }?>">
+                <h2>Imię i Nazwisko: <?php echo $_smarty_tpl->getValue('address')->getFirstName();?>
  <?php echo $_smarty_tpl->getValue('address')->getLastName();?>
  </h2>
                 <p>Adres: <?php echo $_smarty_tpl->getValue('address')->getStreet();?>
@@ -99,6 +78,22 @@ $foreach0DoElse = false;
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
+    <?php echo '<script'; ?>
+>
+        const chooseButtons = document.querySelectorAll('.choose-btn');
+
+        chooseButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.address-box').forEach(box => {
+                    box.classList.remove('selected');
+                });
+                this.closest('.address-box').classList.add('selected');
+            });
+        });
+    <?php echo '</script'; ?>
+>
+
 <?php
 }
 }

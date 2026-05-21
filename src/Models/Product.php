@@ -10,7 +10,6 @@ use Doctrine\Common\Collections\Collection;
 #[ORM\Table(name: "products")]
 class Product
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
@@ -22,12 +21,21 @@ class Product
     #[ORM\Column(type: "text")]
     private string $description;
 
+    #[ORM\Column(type: "string", length: 255)]
+    private string $category;
+
+    #[ORM\OneToMany(mappedBy: "product", targetEntity: ProductImage::class, cascade: ["persist", "remove"])]
+private Collection $images;
+
+
     #[ORM\OneToMany(mappedBy: "product", targetEntity: ProductVariant::class)]
     private Collection $variants;
 
-
-    #[ORM\Column(type: "string", length: 255)]
-    private string $category;
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->variants = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -64,13 +72,27 @@ class Product
         $this->category = $category;
     }
 
-    public function __construct()
+    public function getImages(): Collection
     {
-        $this->variants = new ArrayCollection();
+        return $this->images;
+    }
+
+    public function addImage(ProductImage $image): void
+    {
+        $this->images->add($image);
+        $image->setProduct($this);
     }
 
     public function getVariants(): Collection
     {
         return $this->variants;
     }
+    public function addVariant(ProductVariant $variant): void
+{
+    if (!$this->variants->contains($variant)) {
+        $this->variants->add($variant);
+        $variant->setProduct($this);
+    }
+}
+
 }

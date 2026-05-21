@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-19 13:16:09
+/* Smarty version 5.8.0, created on 2026-05-21 11:03:51
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0c4679d63ed7_75754052',
+  'unifunc' => 'content_6a0eca7747d126_73942500',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de02c79ee991a7370364958c01a595aa10e4b98e' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1779186172,
+      1 => 1779354228,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0c4679d63ed7_75754052 (\Smarty\Template $_smarty_tpl) {
+function content_6a0eca7747d126_73942500 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -35,18 +35,16 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Praktyki-2-master/style.css?v=1">
     <link rel="icon" type="image/svg+xml" href="icon.svg">
-    
 </head>
 
 <body>
-<?php if ((true && ($_smarty_tpl->hasVariable('flash') && null !== ($_smarty_tpl->getValue('flash') ?? null)))) {?>
-<div id="flash-toast" class="toast toast-<?php echo $_smarty_tpl->getValue('flash')['type'];?>
-">
-    <?php echo $_smarty_tpl->getValue('flash')['message'];?>
 
-</div>
-<?php }?>
+    <?php if ((true && ($_smarty_tpl->hasVariable('flash') && null !== ($_smarty_tpl->getValue('flash') ?? null)))) {?>
+        <div id="flash-toast" class="toast toast-info">
+            <?php echo $_smarty_tpl->getValue('flash');?>
 
+        </div>
+    <?php }?>
 
     <header>
         <nav class="navbar">
@@ -60,24 +58,23 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
                     <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
                     <li><a class="nav-link" href="#">About</a></li>
                     <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
-                    <li><a class="nav-link" href="/Praktyki-2-master/products">Produkty</a></li>
-                    <?php if ((true && (true && null !== ($_SESSION['login'] ?? null)))) {?>
+                    <li><a class="nav-link" href="/Praktyki-2-master/?page=products">Produkty</a></li>
 
+                    <?php if ((true && (true && null !== ($_SESSION['login'] ?? null)))) {?>
                         <li>
                             <a class="nav-link" href="/Praktyki-2-master/profile">
                                 Moje konto
                             </a>
                         </li>
-
                     <?php } else { ?>
-
                         <li>
                             <a class="nav-link" href="/Praktyki-2-master/login">
                                 Login
                             </a>
                         </li>
-
                     <?php }?>
+
+                </ul>
 
             </div>
         </nav>
@@ -87,7 +84,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13595520516a0c4679d62f38_14005769', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8294425316a0eca7747a022_28855459', "content");
 ?>
 
             </div>
@@ -95,29 +92,23 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13595520516a0
     </main>
 
     <footer class="footer">
-
         <div class="footer-content">
 
             <div class="footer-left">
-
                 Zalogowany jako:
                 <span>
                     <?php echo $_SESSION['login'] ?? 'Gość';?>
 
                 </span>
-
             </div>
 
             <div class="footer-right">
-
                 <a href="/Praktyki-2-master/?page=logout">
                     Wyloguj
                 </a>
-
             </div>
 
         </div>
-
     </footer>
 
     <?php echo '<script'; ?>
@@ -125,35 +116,39 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13595520516a0
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
+                hamburger?.classList.remove('active');
             });
         });
     <?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+
+    <?php echo '<script'; ?>
 >
-document.addEventListener("DOMContentLoaded", function() {
-    const toast = document.getElementById("flash-toast");
-    if (toast) {
-        setTimeout(() => toast.classList.add("show"), 100);
-        setTimeout(() => toast.classList.remove("show"), 3000);
-    }
-});
-<?php echo '</script'; ?>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toast = document.getElementById("flash-toast");
+            if (toast) {
+                setTimeout(() => toast.classList.add("show"), 100);
+                setTimeout(() => toast.classList.remove("show"), 3000);
+            }
+        });
+    <?php echo '</script'; ?>
 >
 
 </body>
+
 </html><?php }
 /* {block "content"} */
-class Block_13595520516a0c4679d62f38_14005769 extends \Smarty\Runtime\Block
+class Block_8294425316a0eca7747a022_28855459 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';

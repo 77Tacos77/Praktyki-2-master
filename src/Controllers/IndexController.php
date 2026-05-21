@@ -9,6 +9,6 @@ class IndexController extends FrontController
         $this->setTemplate('pages/index.tpl');
 
 
-        return $this->render();
+        return $this->render('pages/index.tpl');
     }
 }

@@ -5,7 +5,7 @@ use src\Models\User;
 
 class LogoutController extends FrontController
 {
-    public function index(): void{
+    public function logout(): void{
         $login = $_SESSION['login'];
         $user = $this->entityManager
             ->getRepository(User::class)

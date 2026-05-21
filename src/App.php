@@ -2,6 +2,7 @@
 
 namespace src;
 
+
 use src\Controllers\IndexController;
 use src\Controllers\LoginController;
 use src\Controllers\AdminProductController;
@@ -14,7 +15,6 @@ use src\Controllers\ProfileController;
 use src\Controllers\ChangePasswordController;
 use Doctrine\ORM\EntityManager;
 use src\Controllers\ProductDeleteController;
-use src\Models\Product;
 
 class App
 {
@@ -37,6 +37,7 @@ class App
             'products/store' => AdminProductController::class,
             'products/edit' => AdminProductController::class,
             'products/delete' => ProductDeleteController::class,
+            'products-delete-multiple' => AdminProductController::class,
 
             'address-select' => AddressController::class,
             'address-create' => AddressController::class,
@@ -62,28 +63,35 @@ class App
         $controllerClass = $routes[$page];
         $controller = new $controllerClass($this->entityManager);
 
+        // HOME
         if ($page === 'home') return $controller->index();
 
+        // PRODUCTS
         if ($page === 'products') return $controller->index();
         if ($page === 'products/create') return $controller->create();
         if ($page === 'products/store') return $controller->store();
         if ($page === 'products/edit') return $controller->edit();
         if ($page === 'products/delete') return $controller->delete();
-        if ($page === 'products/delete-multiple') return $controller->deleteMultiple();
+        if ($page === 'products-delete-multiple') return $controller->deleteMultiple();
 
+        // ADDRESSES
         if ($page === 'address-select') return $controller->select();
         if ($page === 'address-create') return $controller->create();
         if ($page === 'address-edit') return $controller->edit();
         if ($page === 'address-delete') return $controller->delete();
+        if ($page === 'addresses') return $controller->index();
 
+        // PROFILE
         if ($page === 'profile') return $controller->index();
         if ($page === 'profile-edit') return $controller->edit();
         if ($page === 'change-password') return $controller->index();
 
+        // AUTH
         if ($page === 'login') return $controller->index();
         if ($page === 'register') return $controller->index();
         if ($page === 'logout') return $controller->logout();
 
+        // USER
         if ($page === 'user') return $controller->index();
 
         return $controller->index();

@@ -1,116 +1,131 @@
 <?php
 
+
 namespace src\Controllers;
 
-use src\Models\Product;
-use src\Models\ProductImage;
-use src\Models\ProductVariant;
 use Doctrine\ORM\EntityManager;
+use src\Models\Product;
+use src\Models\ProductVariant;
+use src\Models\ProductImage;
+
 
 class AdminProductController extends FrontController
 {
-    protected EntityManager $entityManager;
-
     public function __construct(EntityManager $entityManager)
     {
         parent::__construct($entityManager);
-
-        $this->entityManager = $entityManager;
     }
 
-    // LISTA PRODUKTÓW
-    public function index(): string
+    public function index()
     {
         $products = $this->entityManager
             ->getRepository(Product::class)
             ->findAll();
 
         $this->smarty->assign('products', $products);
-
         $this->setTemplate('pages/products/index.tpl');
-
         return $this->render();
     }
-
-    // FORMULARZ DODAWANIA
-    public function create(): string
+    public function edit()
     {
-$this->setTemplate('pages/products/create.tpl');
+        $id = $_GET['id'] ?? null;
+        if (!$id) die("Brak ID produktu");
+
+        $product = $this->entityManager
+            ->getRepository(Product::class)
+            ->find($id);
+
+        if (!$product) die("Produkt nie istnieje");
+
+        $this->smarty->assign('product', $product);
+        $this->setTemplate('pages/products/edit.tpl');
         return $this->render();
     }
-
-    // ZAPIS PRODUKTU
-    public function store(): string
+    public function create()
     {
-        $name = $_POST['name'] ?? '';
-        $category = $_POST['category'] ?? '';
-        $description = $_POST['description'] ?? '';
-        $price = $_POST['price'] ?? 0;
+        $this->setTemplate('pages/products/create.tpl');
+        return $this->render();
+    }
+    public function deleteMultiple()
+    {
+        if (!isset($_POST['ids']) || empty($_POST['ids'])) {
+            $_SESSION['flash'] = "Nie wybrano żadnych produktów do usunięcia.";
+            header("Location: /Praktyki-2-master/?page=products");
+            exit;
+        }
+
+        $ids = $_POST['ids'];
+
+        foreach ($ids as $id) {
+            $product = $this->entityManager->getRepository(Product::class)->find($id);
+
+            if ($product) {
+                $this->entityManager->remove($product);
+            }
+        }
+
+        $this->entityManager->flush();
+
+        $_SESSION['flash'] = "Wybrane produkty zostały usunięte.";
+        header("Location: /Praktyki-2-master/?page=products");
+        exit;
+    }
+    
+
+
+
+
+    public function store()
+    {
+        $name = $_POST['name'] ?? null;
+        $category = $_POST['category'] ?? null;
+        $description = $_POST['description'] ?? null;
+        $price = $_POST['price'] ?? null;
+
+        if (!$name || !$category || !$description || !$price) {
+            $_SESSION['flash'] = 'Wypełnij wszystkie pola!';
+            header('Location: /Praktyki-2-master/?page=products/create');
+            exit;
+        }
 
         $product = new Product();
-
         $product->setName($name);
         $product->setCategory($category);
         $product->setDescription($description);
 
-        $this->entityManager->persist($product);
-
-        if (!empty($_FILES['image']['name'])) {
-
-            $image = $_FILES['image'];
-
-            $imageName = time() . '_' . $image['name'];
-
-            $uploadPath = __DIR__ . '/../../uploads/' . $imageName;
-
-            move_uploaded_file(
-                $image['tmp_name'],
-                $uploadPath
-            );
-
-            $imageEntity = new ProductImage();
-
-            $imageEntity->setProduct($product);
-            $imageEntity->setAlt($imageName);
-
-            $this->entityManager->persist($imageEntity);
-        }
-        
-
+        // --- WARIANT ---
         $variant = new ProductVariant();
-
+        $variant->setVariantName("Domyślny");
+        $variant->setPrice((float)$price);
+        $variant->setEan13("0000000000000");
         $variant->setProduct($product);
-        $variant->setVariantName('Domyślny wariant');
-        $variant->setPrice($price);
-        $variant->setEan13('0000000000000');
 
+        $product->addVariant($variant);
         $this->entityManager->persist($variant);
 
+        // --- PRODUKT ---
+        $this->entityManager->persist($product);
+
+        // --- ZDJĘCIE ---
+        if (!empty($_FILES['image']['name'])) {
+
+            $fileName = time() . '_' . $_FILES['image']['name'];
+            $uploadPath = __DIR__ . '/../../uploads/' . $fileName; // POPRAWIONE
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+
+                $image = new ProductImage();
+                $image->setAlt($fileName);
+                $image->setProduct($product);
+
+                $product->addImage($image);
+                $this->entityManager->persist($image);
+            }
+        }
         $this->entityManager->flush();
 
+        $_SESSION['flash'] = 'Produkt został dodany!';
         header('Location: /Praktyki-2-master/?page=products');
-
-        exit();
+        exit;
     }
-    public function deleteMultiple()
-{
-    $ids = $_POST['ids'] ?? [];
-
-    if (empty($ids)) {
-        return 'Nie wybrano żadnych produktów';
-    }
-
-    foreach ($ids as $id) {
-        $product = $this->entityManager->getRepository(Product::class)->find($id);
-        if ($product) {
-            $this->entityManager->remove($product);
-        }
-    }
-
-    $this->entityManager->flush();
-
-    header('Location: /Praktyki-2-master/?page=products');
-    exit;
-}
-
 }

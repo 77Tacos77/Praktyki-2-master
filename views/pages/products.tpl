@@ -6,13 +6,26 @@
         <div class="products-grid">
             {foreach $products as $product}
                 <div class="product-card">
-                    <div class="product-image"> <img src="/Praktyki-2-master/uploads/default.jpg"> </div>
+                    <a href="/Praktyki-2-master/?page=products/edit&id={$product->getId()}" class="card-link"></a>
+
+                    <div class="product-image">
+                        <img src="/Praktyki-2-master/uploads/default.jpg">
+                    </div>
+
                     <div class="product-content">
                         <h2>{$product->getName()}</h2>
                         <p>{$product->getDescription()}</p>
                     </div>
                 </div>
+
+
             {/foreach}
         </div>
     </div>
+    <script>
+        document.querySelector('.delete-selected-btn')?.addEventListener('click', () => {
+            document.querySelectorAll('.delete-checkbox').forEach(cb => cb.checked = false);
+        });
+    </script>
+
 {/block}

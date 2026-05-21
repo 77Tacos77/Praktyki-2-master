@@ -47,7 +47,7 @@
             <label>Telefon</label>
             <input class="form-control" type="text" name="numer_telefonu" value="{$profile->getNumerTelefonu()}">
 
-            <button class="btn mt-4" type="submit" style="background:#8f8d8d; color:white;">
+            <button class="btn mt-4" type="submit" class="save-product-btn">
                 Zapisz
             </button>
         </form>
