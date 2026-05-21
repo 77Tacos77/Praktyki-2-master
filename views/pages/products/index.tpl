@@ -43,10 +43,6 @@
                             <div class="product-content">
                                 <h2>{$product->getName()}</h2>
                                 <p>{$product->getDescription()}</p>
-                            </div>
-                            <div class="product-content">
-                                <h2>{$product->getName()}</h2>
-                                <p>{$product->getDescription()}</p>
 
                                 {assign var=variant value=$product->getVariants()->first()}
                                 {if $variant}

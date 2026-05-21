@@ -128,4 +128,61 @@ class AdminProductController extends FrontController
         header('Location: /Praktyki-2-master/?page=products');
         exit;
     }
+    public function update()
+{
+    $id = $_GET['id'] ?? null;
+    if (!$id) die("Brak ID produktu");
+
+    $product = $this->entityManager
+        ->getRepository(Product::class)
+        ->find($id);
+
+    if (!$product) die("Produkt nie istnieje");
+
+    $name = $_POST['name'] ?? null;
+    $category = $_POST['category'] ?? null;
+    $description = $_POST['description'] ?? null;
+    $price = $_POST['price'] ?? null;
+
+    $product->setName($name);
+    $product->setCategory($category);
+    $product->setDescription($description);
+
+    // --- WARIANT ---
+    $variant = $product->getVariants()->first();
+    if ($variant) {
+        $variant->setPrice((float)$price);
+    }
+
+    // --- ZDJĘCIE ---
+    if (!empty($_FILES['image']['name'])) {
+
+        $fileName = time() . '_' . $_FILES['image']['name'];
+        $uploadPath = __DIR__ . '/../../uploads/' . $fileName;
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+
+            // usuń stare zdjęcie
+            $oldImage = $product->getImages()->first();
+            if ($oldImage) {
+                $this->entityManager->remove($oldImage);
+            }
+
+            // dodaj nowe zdjęcie
+            $image = new ProductImage();
+            $image->setAlt($fileName);
+            $image->setProduct($product);
+
+            $product->addImage($image);
+            $this->entityManager->persist($image);
+        }
+    }
+
+    $this->entityManager->flush();
+
+    $_SESSION['flash'] = 'Produkt został zaktualizowany!';
+    header('Location: /Praktyki-2-master/?page=products');
+    exit;
+}
+
 }

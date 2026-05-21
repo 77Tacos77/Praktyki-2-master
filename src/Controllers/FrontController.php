@@ -48,7 +48,6 @@ class FrontController
 
     public function render(): string
     {
-        echo "<pre>Smarty ładuje szablon: " . $this->template . "</pre>";
         if (isset($_SESSION['flash'])) {
             $this->smarty->assign('flash', $_SESSION['flash']);
             unset($_SESSION['flash']);

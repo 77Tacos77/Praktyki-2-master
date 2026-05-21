@@ -31,7 +31,7 @@ class App
 
         $routes = [
             'home' => IndexController::class,
-
+            'products/update' => AdminProductController::class,
             'products' => AdminProductController::class,
             'products/create' => AdminProductController::class,
             'products/store' => AdminProductController::class,
@@ -71,6 +71,7 @@ class App
         if ($page === 'products/create') return $controller->create();
         if ($page === 'products/store') return $controller->store();
         if ($page === 'products/edit') return $controller->edit();
+        if ($page === 'products/update') return $controller->update();
         if ($page === 'products/delete') return $controller->delete();
         if ($page === 'products-delete-multiple') return $controller->deleteMultiple();
 
