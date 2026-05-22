@@ -30,6 +30,7 @@ class App
         $page = $_GET['page'] ?? 'home';
 
         $routes = [
+            'products/addVariantImage' => AdminProductController::class,
             'home' => IndexController::class,
             'products/update' => AdminProductController::class,
             'products' => AdminProductController::class,
@@ -38,6 +39,7 @@ class App
             'products/edit' => AdminProductController::class,
             'products/delete' => ProductDeleteController::class,
             'products-delete-multiple' => AdminProductController::class,
+            'product/view' => AdminProductController::class,
 
             'address-select' => AddressController::class,
             'address-create' => AddressController::class,
@@ -74,6 +76,7 @@ class App
         if ($page === 'products/update') return $controller->update();
         if ($page === 'products/delete') return $controller->delete();
         if ($page === 'products-delete-multiple') return $controller->deleteMultiple();
+        if ($page === 'products/addVariantImage') return $controller->addVariantImage();
 
         // ADDRESSES
         if ($page === 'address-select') return $controller->select();
@@ -94,7 +97,7 @@ class App
 
         // USER
         if ($page === 'user') return $controller->index();
-
+        if ($page === 'product/view') return $controller->view();
         return $controller->index();
     }
 }

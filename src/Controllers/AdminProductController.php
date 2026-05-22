@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManager;
 use src\Models\Product;
 use src\Models\ProductVariant;
 use src\Models\ProductImage;
+use src\Models\VariantImage;
+
 
 
 class AdminProductController extends FrontController
@@ -27,20 +29,28 @@ class AdminProductController extends FrontController
         return $this->render();
     }
     public function edit()
-    {
-        $id = $_GET['id'] ?? null;
-        if (!$id) die("Brak ID produktu");
+{
+    $id = $_GET['id'] ?? null;
+    if (!$id) die("Brak ID produktu");
 
-        $product = $this->entityManager
-            ->getRepository(Product::class)
-            ->find($id);
+    $product = $this->entityManager
+        ->getRepository(Product::class)
+        ->find($id);
 
-        if (!$product) die("Produkt nie istnieje");
+    if (!$product) die("Produkt nie istnieje");
 
-        $this->smarty->assign('product', $product);
-        $this->setTemplate('pages/products/edit.tpl');
-        return $this->render();
-    }
+    // POBRANIE ZDJĘĆ WARIANTÓW
+    $variantImages = $this->entityManager
+        ->getRepository(VariantImage::class)
+        ->findBy(['product' => $product]);
+
+    $this->smarty->assign('product', $product);
+    $this->smarty->assign('variantImages', $variantImages);
+
+    $this->setTemplate('pages/products/edit.tpl');
+    return $this->render();
+}
+
     public function create()
     {
         $this->setTemplate('pages/products/create.tpl');
@@ -70,6 +80,33 @@ class AdminProductController extends FrontController
         header("Location: /Praktyki-2-master/?page=products");
         exit;
     }
+    public function view()
+{
+    $id = $_GET['id'] ?? null;
+
+    if (!$id) {
+        die("Brak ID produktu");
+    }
+
+
+$product = $this->entityManager->find(\src\Models\Product::class, $id);
+
+    if (!$product) {
+        die("Produkt nie istnieje");
+    }
+
+    $variantImages = $this->entityManager
+        ->getRepository(\src\Models\VariantImage::class)
+        ->findBy(['product' => $product]);
+
+    $this->smarty->assign('product', $product);
+    $this->smarty->assign('variantImages', $variantImages);
+
+    $this->setTemplate('products/view.tpl');
+
+    return $this->render();
+}
+
     
 
 
@@ -184,5 +221,37 @@ class AdminProductController extends FrontController
     header('Location: /Praktyki-2-master/?page=products');
     exit;
 }
+public function addVariantImage()
+{
+    $productId = $_GET['id'] ?? null;
+    if (!$productId) die("Brak ID produktu");
+
+    $product = $this->entityManager->find(Product::class, $productId);
+    if (!$product) die("Produkt nie istnieje");
+
+    $color = $_POST['color'] ?? null;
+
+    if (!empty($_FILES['image']['name']) && $color) {
+
+        $fileName = uniqid() . "_" . $_FILES['image']['name'];
+        $uploadPath = __DIR__ . '/../../uploads/' . $fileName;
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+
+            $variantImage = new VariantImage();
+            $variantImage->setProduct($product);
+            $variantImage->setColor($color);
+            $variantImage->setImage($fileName);
+
+            $this->entityManager->persist($variantImage);
+            $this->entityManager->flush();
+        }
+    }
+
+    header("Location: /Praktyki-2-master/?page=products/edit&id=" . $productId);
+    exit;
+}
+
+
 
 }

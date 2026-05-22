@@ -29,6 +29,7 @@ class ProductVariant
     {
         return $this->id;
     }
+    
 
     public function getProduct(): Product
     {
@@ -65,4 +66,5 @@ class ProductVariant
     {
         $this->ean13 = $ean;
     }
+    
 }

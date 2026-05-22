@@ -48,7 +48,8 @@ class FrontController
 
     public function render(): string
     {
-        if (isset($_SESSION['flash'])) {
+        // dd($_GET['page'] ?? null);       
+         if (isset($_SESSION['flash'])) {
             $this->smarty->assign('flash', $_SESSION['flash']);
             unset($_SESSION['flash']);
         }

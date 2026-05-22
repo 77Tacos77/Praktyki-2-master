@@ -26,7 +26,6 @@ class LoginController extends FrontController
                 $_SESSION['login'] = $user->getLogin();
                 $_SESSION['user_id'] = $user->getId();
 
-                // ⭐ POPRAWNY FLASH
                 $_SESSION['flash'] = [
                     'type' => 'success',
                     'message' => 'Zalogowano pomyślnie'
@@ -40,7 +39,6 @@ class LoginController extends FrontController
 
             } else {
 
-                // ⭐ POPRAWNY FLASH DLA BŁĘDU
                 $_SESSION['flash'] = [
                     'type' => 'error',
                     'message' => 'Nieprawidłowy login lub hasło'

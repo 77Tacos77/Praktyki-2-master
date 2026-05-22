@@ -1,7 +1,7 @@
 <?php
 
 namespace src\Models;
-
+use src\Models\VariantImage;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,6 +24,11 @@ class Product
     #[ORM\Column(type: "string", length: 255)]
     private string $category;
 
+ #[ORM\OneToMany(targetEntity: VariantImage::class, mappedBy: "product", cascade: ["persist", "remove"])]
+private Collection $variantImages;
+
+
+
     #[ORM\OneToMany(mappedBy: "product", targetEntity: ProductImage::class, cascade: ["persist", "remove"])]
 private Collection $images;
 
@@ -33,6 +38,7 @@ private Collection $images;
 
     public function __construct()
     {
+        $this->variantImages = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
     }

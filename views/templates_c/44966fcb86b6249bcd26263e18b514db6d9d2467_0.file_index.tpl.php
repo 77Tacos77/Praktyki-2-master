@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-22 13:16:30
-  from 'file:pages/index.tpl' */
+/* Smarty version 5.8.0, created on 2026-05-22 13:39:02
+  from 'file:index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a103b0ed15dc4_41977428',
+  'unifunc' => 'content_6a1040567802b0_34688525',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'c6628de9c11c7d1048efaca7aee751c9d1aaf620' => 
+    '44966fcb86b6249bcd26263e18b514db6d9d2467' => 
     array (
-      0 => 'pages/index.tpl',
-      1 => 1779448587,
+      0 => 'index.tpl',
+      1 => 1779449461,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a103b0ed15dc4_41977428 (\Smarty\Template $_smarty_tpl) {
+function content_6a1040567802b0_34688525 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20331768436a103b0ed08cc0_67857515', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5860942066a104056772f73_93346172', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_20331768436a103b0ed08cc0_67857515 extends \Smarty\Runtime\Block
+class Block_5860942066a104056772f73_93346172 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
@@ -50,16 +50,18 @@ $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('p')->value) {
 $foreach0DoElse = false;
 ?>
-                <div class="product-card">
 
-                    getId()}">
+                <a href="/Praktyki-2-master/?page=product/view&id=<?php echo $_smarty_tpl->getValue('p')->getId();?>
+" class="product-card">
 
                     <div class="product-image">
                         <?php $_smarty_tpl->assign('image', $_smarty_tpl->getValue('p')->getImages()->first(), false, NULL);?>
+
                         <?php if ($_smarty_tpl->getValue('image')) {?>
-                            Alt()}">
+                            <img src="/Praktyki-2-master/uploads/<?php echo $_smarty_tpl->getValue('image')->getAlt();?>
+" alt="Produkt">
                         <?php } else { ?>
-                            <img src="/Praktyki-2-master/uploads/default.jpg">
+                            <img src="/Praktyki-2-master/uploads/default.jpg" alt="Brak zdjęcia">
                         <?php }?>
                     </div>
 
@@ -72,9 +74,8 @@ $foreach0DoElse = false;
  zł</p>
                     </div>
 
-                    </a>
+                </a>
 
-                </div>
             <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>

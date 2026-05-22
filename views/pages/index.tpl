@@ -1,28 +1,40 @@
 {extends file="layouts/default.tpl"}
 
 {block name="content"}
-<div class="containermain">
-<p>⭐ Zabawna historia o Mirjan24
-Mirjan24 – człowiek, który kliknął „Zaloguj” zanim strona zdążyła się załadować
 
-W odległych zakątkach internetu, gdzie ciasteczka są zawsze akceptowane, a regulaminy nikt nigdy nie czyta, narodziła się legenda.
+    <div class="products-page">
 
-Nazywano go Mirjan24.
+        <h1 class="products-title">Nasze produkty</h1>
 
-Nie dlatego, że miał 24 lata.
-Nie dlatego, że logował się 24 razy dziennie.
+        <div class="products-grid">
 
-Po prostu… tak wyszło.
+            {foreach $products as $p}
 
-Mirjan24 był znany z tego, że potrafił zrobić rzeczy, które normalnym użytkownikom nawet się nie śniły.
+                <a href="/Praktyki-2-master/?page=product/view&id={$p->getId()}" class="product-card">
 
-Kiedy inni walczyli z formularzem rejestracji, on już miał konto.
-Kiedy komuś wyskakiwał błąd 500, Mirjan24 widział w nim tylko „mały foch serwera”.
+                    <div class="product-image">
+                        {assign var=image value=$p->getImages()->first()}
 
-Podobno raz kliknął „Odśwież” tak szybko, że przeglądarka sama poprosiła o przerwę.
+                        {if $image}
+                            <img src="/Praktyki-2-master/uploads/{$image->getAlt()}" alt="Produkt">
+                        {else}
+                            <img src="/Praktyki-2-master/uploads/default.jpg" alt="Brak zdjęcia">
+                        {/if}
+                    </div>
 
-A kiedyś, według legendy, naprawił CSS jednym spojrzeniem.
+                    <div class="product-content">
+                        <h2>{$p->getName()}</h2>
 
-Do dziś mówi się, że jeśli w nocy usłyszysz ciche „działa”, to znaczy, że Mirjan24 właśnie przeszedł obok Twojej strony i poprawił coś, o czym nawet nie wiedziałeś, że było zepsute. - Copilot</p>
-</div>
+                        {assign var=variant value=$p->getVariants()->first()}
+                        <p class="price">{$variant->getPrice()} zł</p>
+                    </div>
+
+                </a>
+
+            {/foreach}
+
+        </div>
+
+    </div>
+
 {/block}

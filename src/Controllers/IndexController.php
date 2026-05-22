@@ -2,13 +2,20 @@
 
 namespace src\Controllers;
 
+use src\Models\Product;
+
 class IndexController extends FrontController
 {
-    public function index(): string
+    public function index()
     {
-        $this->setTemplate('pages/index.tpl');
+        $products = $this->entityManager
+            ->getRepository(Product::class)
+            ->findAll();
 
+        $this->smarty->assign('products', $products);
 
-        return $this->render('pages/index.tpl');
+        $this->setTemplate('index.tpl');
+
+        return $this->render();
     }
 }
