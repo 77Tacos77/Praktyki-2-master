@@ -14,11 +14,26 @@
 <body>
 
     {if isset($flash)}
-        <div id="flash-toast" class="toast toast-info">
-            {$flash}
-        </div>
-    {/if}
 
+        {if is_array($flash)}
+
+            <div id="flash-toast" class="toast toast-{$flash.type}">
+
+                {$flash.message}
+
+            </div>
+
+        {else}
+
+            <div id="flash-toast" class="toast toast-info">
+
+                {$flash}
+
+            </div>
+
+        {/if}
+
+    {/if}
     <header>
         <nav class="navbar">
             <div class="nav-container">
@@ -32,6 +47,13 @@
                     <li><a class="nav-link" href="#">About</a></li>
                     <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
                     <li><a class="nav-link" href="/Praktyki-2-master/?page=products">Produkty</a></li>
+                    <li>
+                        <a href="/Praktyki-2-master/?page=cart">
+                            Koszyk
+                            (
+                            <?php echo count($_SESSION['cart'] ?? []); ?>)
+                        </a>
+                    </li>
 
                     {if isset($smarty.session.login)}
                         <li>

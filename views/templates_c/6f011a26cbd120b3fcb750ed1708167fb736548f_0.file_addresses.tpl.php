@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-21 09:55:07
+/* Smarty version 5.8.0, created on 2026-05-25 10:26:34
   from 'file:pages/addresses.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0eba5b16fe49_41072213',
+  'unifunc' => 'content_6a1407ba04d942_12685066',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f011a26cbd120b3fcb750ed1708167fb736548f' => 
     array (
       0 => 'pages/addresses.tpl',
-      1 => 1779349884,
+      1 => 1779697582,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,16 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0eba5b16fe49_41072213 (\Smarty\Template $_smarty_tpl) {
+function content_6a1407ba04d942_12685066 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19979037436a0eba5b159928_35652798', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10582051886a1407ba040d70_33100205', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_19979037436a0eba5b159928_35652798 extends \Smarty\Runtime\Block
+class Block_10582051886a1407ba040d70_33100205 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
@@ -66,8 +66,9 @@ $foreach0DoElse = false;
                 <p>Telefon: <?php echo $_smarty_tpl->getValue('address')->getPhone();?>
  </p>
                 <div class="address-buttons">
-                    <a class="choose-btn" href="/Praktyki-2-master/address-select&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
-"> Wybierz </a>
+<a href="/Praktyki-2-master/?page=address-select&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
+" class="choose-btn"
+>Wybierz</a>
                     <a class="edit-btn" href="/Praktyki-2-master/address-edit&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
 "> Edytuj </a>
                     <a class="delete-btn" href="/Praktyki-2-master/address-delete&id=<?php echo $_smarty_tpl->getValue('address')->getId();?>
@@ -84,7 +85,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
         chooseButtons.forEach(button => {
             button.addEventListener('click', function(e) {
-                e.preventDefault();
+                
                 document.querySelectorAll('.address-box').forEach(box => {
                     box.classList.remove('selected');
                 });

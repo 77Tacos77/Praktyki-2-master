@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-22 13:43:34
+/* Smarty version 5.8.0, created on 2026-05-25 11:27:27
   from 'file:products/view.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a104166b51067_09937871',
+  'unifunc' => 'content_6a1415ffe9bd16_60468152',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6250e0ac44f5e4ce67a78059385414b16525cee8' => 
     array (
       0 => 'products/view.tpl',
-      1 => 1779450202,
+      1 => 1779701246,
       2 => 'file',
     ),
   ),
@@ -20,60 +20,100 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a104166b51067_09937871 (\Smarty\Template $_smarty_tpl) {
+function content_6a1415ffe9bd16_60468152 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages\\products';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13229057836a104166b43e68_51761369', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19132418056a1415ffe8f2e3_89970322', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_13229057836a104166b43e68_51761369 extends \Smarty\Runtime\Block
+class Block_19132418056a1415ffe8f2e3_89970322 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages\\products';
 ?>
 
 
-    <div class="product-page">
+    <div class="product-wrapper">
 
-                <?php $_smarty_tpl->assign('image', $_smarty_tpl->getValue('product')->getImages()->first(), false, NULL);?>
+        <div class="left-side">
 
-        <?php if ($_smarty_tpl->getValue('image')) {?>
-            <img id="mainImage" src="/Praktyki-2-master/uploads/<?php echo $_smarty_tpl->getValue('image')->getAlt();?>
+                        <?php $_smarty_tpl->assign('image', $_smarty_tpl->getValue('product')->getImages()->first(), false, NULL);?>
+
+            <?php if ($_smarty_tpl->getValue('image')) {?>
+                <img id="mainImage" src="/Praktyki-2-master/uploads/<?php echo $_smarty_tpl->getValue('image')->getAlt();?>
 " class="main-product-image">
-        <?php } else { ?>
-            <img id="mainImage" src="/Praktyki-2-master/uploads/default.jpg" class="main-product-image">
-        <?php }?>
+            <?php } else { ?>
+                <img id="mainImage" src="/Praktyki-2-master/uploads/default.jpg" class="main-product-image">
+            <?php }?>
+        </div>
+        
 
-                <h1><?php echo $_smarty_tpl->getValue('product')->getName();?>
-</h1>
+        <div class="right-side">
 
-                <p><?php echo $_smarty_tpl->getValue('product')->getDescription();?>
-</p>
+            <h1 class="product-title">
+                <?php echo $_smarty_tpl->getValue('product')->getName();?>
 
-                <?php $_smarty_tpl->assign('variant', $_smarty_tpl->getValue('product')->getVariants()->first(), false, NULL);?>
-        <p id="price">Cena: <?php echo $_smarty_tpl->getValue('variant')->getPrice();?>
- zł</p>
+            </h1>
 
-        <h3>Wybierz kolor</h3>
+            <p class="product-description">
+                <?php echo $_smarty_tpl->getValue('product')->getDescription();?>
+
+            </p>
+
+            <?php $_smarty_tpl->assign('variant', $_smarty_tpl->getValue('product')->getVariants()->first(), false, NULL);?>
+
+            <div class="price-box">
+                <?php echo $_smarty_tpl->getValue('variant')->getPrice();?>
+ zł
+            </div>
+
+            <div class="variant-section">
+
+                <h3>Wybierz kolor</h3>
 
                 <div class="variant-gallery">
-            <?php
+
+                    <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('variantImages'), 'v');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('v')->value) {
 $foreach0DoElse = false;
 ?>
-                <img src="/Praktyki-2-master/uploads/<?php echo $_smarty_tpl->getValue('v')->getImage();?>
+
+                        <img src="/Praktyki-2-master/uploads/<?php echo $_smarty_tpl->getValue('v')->getImage();?>
 " class="variant-thumb" data-image="<?php echo $_smarty_tpl->getValue('v')->getImage();?>
+" data-variant="<?php echo $_smarty_tpl->getValue('v')->getId();?>
 ">
-            <?php
+
+                    <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+
+                </div>
+
+            </div>
+
+            <form method="POST" action="/Praktyki-2-master/?page=cart/add">
+
+                <input type="hidden" name="product_id" value="<?php echo $_smarty_tpl->getValue('product')->getId();?>
+">
+
+                <input type="hidden" id="selectedVariant" name="variant_id" value="<?php echo $_smarty_tpl->getValue('variant')->getId();?>
+">
+
+                <button type="submit" class="buy-btn">
+
+                    Dodaj do koszyka
+
+                </button>
+
+            </form>
+
         </div>
 
     </div>
@@ -81,15 +121,24 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <?php echo '<script'; ?>
 >
         const mainImage = document.getElementById("mainImage");
+        const variantInput = document.getElementById("selectedVariant");
 
         document.querySelectorAll(".variant-thumb").forEach(img => {
+
             img.addEventListener("click", function() {
+
                 const newImage = this.dataset.image;
+                const variantId = this.dataset.variant;
+
                 mainImage.src = "/Praktyki-2-master/uploads/" + newImage;
+                variantInput.value = variantId;
+
             });
+
         });
     <?php echo '</script'; ?>
 >
+
 
 <?php
 }

@@ -16,7 +16,8 @@
                 <p>Kraj: {$address->getCountry()} </p>
                 <p>Telefon: {$address->getPhone()} </p>
                 <div class="address-buttons">
-                    <a class="choose-btn" href="/Praktyki-2-master/address-select&id={$address->getId()}"> Wybierz </a>
+<a href="/Praktyki-2-master/?page=address-select&id={$address->getId()}" class="choose-btn"
+>Wybierz</a>
                     <a class="edit-btn" href="/Praktyki-2-master/address-edit&id={$address->getId()}"> Edytuj </a>
                     <a class="delete-btn" href="/Praktyki-2-master/address-delete&id={$address->getId()}"> Usuń </a>
                 </div>
@@ -28,7 +29,7 @@
 
         chooseButtons.forEach(button => {
             button.addEventListener('click', function(e) {
-                e.preventDefault();
+                
                 document.querySelectorAll('.address-box').forEach(box => {
                     box.classList.remove('selected');
                 });

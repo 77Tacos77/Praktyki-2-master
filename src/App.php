@@ -15,6 +15,8 @@ use src\Controllers\ProfileController;
 use src\Controllers\ChangePasswordController;
 use Doctrine\ORM\EntityManager;
 use src\Controllers\ProductDeleteController;
+use src\Controllers\CartController;
+
 
 class App
 {
@@ -40,21 +42,21 @@ class App
             'products/delete' => ProductDeleteController::class,
             'products-delete-multiple' => AdminProductController::class,
             'product/view' => AdminProductController::class,
-
+            'cart' => CartController::class,
             'address-select' => AddressController::class,
             'address-create' => AddressController::class,
             'address-edit' => AddressController::class,
             'address-delete' => AddressController::class,
             'addresses' => AddressController::class,
-
+            'cart/add' => CartController::class,
             'profile' => ProfileController::class,
             'profile-edit' => ProfileEditController::class,
             'change-password' => ChangePasswordController::class,
-
+            'address-select' => AddressController::class,
             'login' => LoginController::class,
             'logout' => LogoutController::class,
             'register' => RegisterController::class,
-
+            'cart/delete' => CartController::class,
             'user' => UserController::class,
         ];
 
@@ -66,8 +68,9 @@ class App
         $controller = new $controllerClass($this->entityManager);
 
         // HOME
+        if ($page === 'address-select') return $controller->select();
         if ($page === 'home') return $controller->index();
-
+        if ($page === 'cart/add') return $controller->add();
         // PRODUCTS
         if ($page === 'products') return $controller->index();
         if ($page === 'products/create') return $controller->create();
@@ -77,14 +80,13 @@ class App
         if ($page === 'products/delete') return $controller->delete();
         if ($page === 'products-delete-multiple') return $controller->deleteMultiple();
         if ($page === 'products/addVariantImage') return $controller->addVariantImage();
-
-        // ADDRESSES
+        if ($page === 'cart') return $controller->index();        // ADDRESSES
         if ($page === 'address-select') return $controller->select();
         if ($page === 'address-create') return $controller->create();
         if ($page === 'address-edit') return $controller->edit();
         if ($page === 'address-delete') return $controller->delete();
         if ($page === 'addresses') return $controller->index();
-
+        if ($page === 'cart/delete') return $controller->delete();
         // PROFILE
         if ($page === 'profile') return $controller->index();
         if ($page === 'profile-edit') return $controller->edit();

@@ -40,69 +40,69 @@ class AddressController extends FrontController
             $this->entityManager->persist($address);
             $this->entityManager->flush();
             $_SESSION['flash'] = [
-    'type' => 'success',
-    'message' => 'Adres został dodany!'
-];
-            header('Location: index.php?page=addresses');
+                'type' => 'success',
+                'message' => 'Adres został dodany!'
+            ];
+            header('Location: index.php?page=cart');
             exit();
         }
         $this->setTemplate('pages/address-create.tpl');
         return $this->render();
     }
     public function edit(): string
-{
-    if (!isset($_SESSION['login'])) {
-        header('Location: index.php?page=login');
-        exit();
+    {
+        if (!isset($_SESSION['login'])) {
+            header('Location: index.php?page=login');
+            exit();
+        }
+
+        $addressId = $_GET['id'] ?? null;
+
+        if (!$addressId) {
+            $_SESSION['flash'] = [
+                'type' => 'error',
+                'message' => 'Nie znaleziono adresu!'
+            ];
+            header('Location: index.php?page=addresses');
+            exit();
+        }
+
+        $address = $this->entityManager->find(Address::class, $addressId);
+
+        if (!$address) {
+            $_SESSION['flash'] = [
+                'type' => 'error',
+                'message' => 'Adres nie istnieje!'
+            ];
+            header('Location: index.php?page=addresses');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $address->setFirstName($_POST['firstName']);
+            $address->setLastName($_POST['lastName']);
+            $address->setStreet($_POST['street']);
+            $address->setPostcode($_POST['postcode']);
+            $address->setCity($_POST['city']);
+            $address->setCountry($_POST['country']);
+            $address->setPhone($_POST['phone']);
+
+            $this->entityManager->flush();
+
+            $_SESSION['flash'] = [
+                'type' => 'success',
+                'message' => 'Adres został zaktualizowany!'
+            ];
+
+            header('Location: index.php?page=addresses');
+            exit();
+        }
+
+        $this->smarty->assign('address', $address);
+        $this->setTemplate('pages/address-edit.tpl');
+        return $this->render();
     }
-
-    $addressId = $_GET['id'] ?? null;
-
-    if (!$addressId) {
-        $_SESSION['flash'] = [
-            'type' => 'error',
-            'message' => 'Nie znaleziono adresu!'
-        ];
-        header('Location: index.php?page=addresses');
-        exit();
-    }
-
-    $address = $this->entityManager->find(Address::class, $addressId);
-
-    if (!$address) {
-        $_SESSION['flash'] = [
-            'type' => 'error',
-            'message' => 'Adres nie istnieje!'
-        ];
-        header('Location: index.php?page=addresses');
-        exit();
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        $address->setFirstName($_POST['firstName']);
-        $address->setLastName($_POST['lastName']);
-        $address->setStreet($_POST['street']);
-        $address->setPostcode($_POST['postcode']);
-        $address->setCity($_POST['city']);
-        $address->setCountry($_POST['country']);
-        $address->setPhone($_POST['phone']);
-
-        $this->entityManager->flush();
-
-        $_SESSION['flash'] = [
-            'type' => 'success',
-            'message' => 'Adres został zaktualizowany!'
-        ];
-
-        header('Location: index.php?page=addresses');
-        exit();
-    }
-
-    $this->smarty->assign('address', $address);
-    $this->setTemplate('pages/address-edit.tpl');
-    return $this->render();
-}
 
     public function delete(): void
     {
@@ -111,21 +111,26 @@ class AddressController extends FrontController
         $address = $addressRepository->find($id);
         $this->entityManager->remove($address);
         $this->entityManager->flush();
-            $_SESSION['flash'] = [
-    'type' => 'success',
-    'message' => 'Adres został usunięty!'   
-            ];
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Adres został usunięty!'
+        ];
         header('Location: /Praktyki-2-master/addresses');
         exit();
     }
-    public function select(): void
-{
-    $id = $_GET['id'];
+    public function select()
+    {
+        $addressId = $_GET['id'];
 
-    $_SESSION['selected_address'] = $id;
+        $_SESSION['selected_address'] = $addressId;
 
-    header('Location: /Praktyki-2-master/?page=addresses');
-    exit();
-}
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Pomyślnie wybrano adres dostawy!'
+        ];
 
+        header('Location: index.php?page=cart');
+
+        exit();
+    }
 }
