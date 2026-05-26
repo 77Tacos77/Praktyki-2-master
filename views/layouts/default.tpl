@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projekt Mirjan</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Praktyki-2-master/style.css?v=1">
+
     <link rel="icon" type="image/svg+xml" href="icon.svg">
 </head>
 
@@ -15,25 +17,12 @@
 
     {if isset($flash)}
 
-        {if is_array($flash)}
-
-            <div id="flash-toast" class="toast toast-{$flash.type}">
-
-                {$flash.message}
-
-            </div>
-
-        {else}
-
-            <div id="flash-toast" class="toast toast-info">
-
-                {$flash}
-
-            </div>
-
-        {/if}
+        <div id="flash-toast" class="toast toast-{$flash.type|default:'info'}">
+            {$flash.message|default:$flash}
+        </div>
 
     {/if}
+
     <header>
         <nav class="navbar">
             <div class="nav-container">
@@ -43,21 +32,48 @@
                 </a>
 
                 <ul class="nav-menu" id="navMenu">
-                    <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
-                    <li><a class="nav-link" href="#">About</a></li>
-                    <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
-                    <li><a class="nav-link" href="/Praktyki-2-master/?page=products">Produkty</a></li>
+
                     <li>
-                        <a href="/Praktyki-2-master/?page=cart">
+                        <a class="nav-link {if $currentPage == 'home'}active{/if}" href="/Praktyki-2-master/">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="#">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link {if $currentPage == 'addresses'}active{/if}" href="/Praktyki-2-master/addresses">
+                            Moje adresy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link {if $currentPage == 'products'}active{/if}" href="/Praktyki-2-master/?page=products">
+                            Produkty
+                        </a>
+                    </li>
+
+                    <li class="nav-cart">
+                        <a class="nav-link {if $currentPage == 'cart'}active{/if}" href="/Praktyki-2-master/?page=cart">
+
                             Koszyk
-                            (
-                            <?php echo count($_SESSION['cart'] ?? []); ?>)
+
+                            {if isset($smarty.session.cart) && $smarty.session.cart|@count > 0}
+                                <span class="nav-cart-count">
+                                    {$smarty.session.cart|@count}
+                                </span>
+                            {/if}
+
                         </a>
                     </li>
 
                     {if isset($smarty.session.login)}
                         <li>
-                            <a class="nav-link" href="/Praktyki-2-master/profile">
+                            <a class="nav-link {if $currentPage == 'profile'}active{/if}" href="/Praktyki-2-master/profile">
                                 Moje konto
                             </a>
                         </li>
@@ -103,20 +119,11 @@
     </footer>
 
     <script>
-        const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-        }
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                hamburger?.classList.remove('active');
             });
         });
     </script>
@@ -129,6 +136,15 @@
                 setTimeout(() => toast.classList.remove("show"), 3000);
             }
         });
+        
+setTimeout(() => {
+        const toast = document.querySelector(".toast");
+        if (toast) {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(-50px)";
+        }
+    }, 2500);
+
     </script>
 
 </body>

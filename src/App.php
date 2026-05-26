@@ -46,6 +46,7 @@ class App
             'address-select' => AddressController::class,
             'address-create' => AddressController::class,
             'address-edit' => AddressController::class,
+            'cart/checkout' => CartController::class,
             'address-delete' => AddressController::class,
             'addresses' => AddressController::class,
             'cart/add' => CartController::class,
@@ -57,7 +58,13 @@ class App
             'logout' => LogoutController::class,
             'register' => RegisterController::class,
             'cart/delete' => CartController::class,
+            
+'cart/clear' => CartController::class,
+
             'user' => UserController::class,
+            'cart/increase' => CartController::class,
+            'cart/decrease' => CartController::class,
+
         ];
 
         if (!isset($routes[$page])) {
@@ -72,6 +79,7 @@ class App
         if ($page === 'home') return $controller->index();
         if ($page === 'cart/add') return $controller->add();
         // PRODUCTS
+        
         if ($page === 'products') return $controller->index();
         if ($page === 'products/create') return $controller->create();
         if ($page === 'products/store') return $controller->store();
@@ -84,9 +92,11 @@ class App
         if ($page === 'address-select') return $controller->select();
         if ($page === 'address-create') return $controller->create();
         if ($page === 'address-edit') return $controller->edit();
+        if ($page === 'cart/checkout') return $controller->checkout();
         if ($page === 'address-delete') return $controller->delete();
         if ($page === 'addresses') return $controller->index();
         if ($page === 'cart/delete') return $controller->delete();
+        if ($page === 'cart/clear') return $controller->clear();
         // PROFILE
         if ($page === 'profile') return $controller->index();
         if ($page === 'profile-edit') return $controller->edit();
@@ -96,6 +106,8 @@ class App
         if ($page === 'login') return $controller->index();
         if ($page === 'register') return $controller->index();
         if ($page === 'logout') return $controller->logout();
+        if ($page === 'cart/increase') return $controller->increase();
+        if ($page === 'cart/decrease') return $controller->decrease();
 
         // USER
         if ($page === 'user') return $controller->index();

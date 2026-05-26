@@ -7,7 +7,8 @@
     {/if}
 
     <div class="address-container">
-        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create"> Dodaj adres </a>
+        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create" class="create-btn"> Dodaj adres </a>
+        <hr>
         {foreach $addresses as $address}
             <div class="address-box{if isset($smarty.session.selected_address) && $address->getId() == $smarty.session.selected_address} selected{/if}">
                 <h2>Imię i Nazwisko: {$address->getFirstName()} {$address->getLastName()} </h2>

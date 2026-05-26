@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-25 10:26:34
+/* Smarty version 5.8.0, created on 2026-05-25 12:02:20
   from 'file:pages/addresses.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1407ba04d942_12685066',
+  'unifunc' => 'content_6a141e2c872e69_71114021',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f011a26cbd120b3fcb750ed1708167fb736548f' => 
     array (
       0 => 'pages/addresses.tpl',
-      1 => 1779697582,
+      1 => 1779703340,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,16 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1407ba04d942_12685066 (\Smarty\Template $_smarty_tpl) {
+function content_6a141e2c872e69_71114021 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10582051886a1407ba040d70_33100205', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19982489536a141e2c865a45_97344261', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_10582051886a1407ba040d70_33100205 extends \Smarty\Runtime\Block
+class Block_19982489536a141e2c865a45_97344261 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
@@ -45,7 +45,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages';
     <?php }?>
 
     <div class="address-container">
-        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create"> Dodaj adres </a>
+        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create" class="create-btn"> Dodaj adres </a>
+        <hr>
         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('addresses'), 'address');
 $foreach0DoElse = true;

@@ -80,7 +80,7 @@ class AdminProductController extends FrontController
         header("Location: /Praktyki-2-master/?page=products");
         exit;
     }
-    public function view()
+   public function view()
 {
     $id = $_GET['id'] ?? null;
 
@@ -88,8 +88,7 @@ class AdminProductController extends FrontController
         die("Brak ID produktu");
     }
 
-
-$product = $this->entityManager->find(\src\Models\Product::class, $id);
+    $product = $this->entityManager->find(\src\Models\Product::class, $id);
 
     if (!$product) {
         die("Produkt nie istnieje");
@@ -99,8 +98,13 @@ $product = $this->entityManager->find(\src\Models\Product::class, $id);
         ->getRepository(\src\Models\VariantImage::class)
         ->findBy(['product' => $product]);
 
+    $productVariant = $this->entityManager
+        ->getRepository(ProductVariant::class)
+        ->findOneBy(['product' => $product]);
+
     $this->smarty->assign('product', $product);
     $this->smarty->assign('variantImages', $variantImages);
+    $this->smarty->assign('productVariant', $productVariant);
 
     $this->setTemplate('products/view.tpl');
 

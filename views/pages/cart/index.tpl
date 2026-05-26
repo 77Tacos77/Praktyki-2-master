@@ -1,189 +1,218 @@
 {extends file="layouts/default.tpl"}
 
 {block name="content"}
-    {if isset($smarty.session.flash)}
+    {if $products|@count == 0}
+        <div class="empty-cart">
 
-        <div class="toast toast-{$smarty.session.flash.type} show">
+            <h1>Twój koszyk</h1>
 
-            {$smarty.session.flash.message}
+            <h2>Koszyk jest pusty 🛒</h2>
+
+            <p>Dodaj produkty, aby przejść do płatności</p>
+
+            <a href="/Praktyki-2-master/" class="empty-btn">
+                Przejdź do produktów
+            </a>{else}
 
         </div>
+        {if isset($smarty.session.flash)}
 
-        {assign var=flash value=$smarty.session.flash}
+            <div class="toast toast-{$smarty.session.flash.type} show">
 
-        {$smarty.session.flash = null}
+                {$smarty.session.flash.message}
 
-    {/if}
-    <div class="cart-container">
+            </div>
 
-        <h1 class="cart-title">
-            Twój koszyk
-        </h1>
+            {assign var=flash value=$smarty.session.flash}
 
-        <div class="cart-layout">
+            {$smarty.session.flash = null}
 
-            {* LEWA STRONA *}
-            <div class="cart-products">
+        {/if}
+        <div class="cart-container">
 
-                <table class="cart-table">
+            <h1 class="cart-title">
+                Twój koszyk
+            </h1>
 
-                    <thead>
+            <div class="cart-layout">
 
-                        <tr>
-                            <th>Produkt</th>
-                            <th>Cena</th>
-                            <th>Ilość</th>
-                            <th>Razem</th>
-                            <th></th>
+                {* LEWA STRONA *}
+                <div class="cart-products">
+                    <a href="/Praktyki-2-master/?page=cart/clear" class="clear-cart-btn">
+                        Wyczyść koszyk
+                    </a>
 
-                        </tr>
+                    <table class="cart-table">
 
-                    </thead>
-
-                    <tbody>
-
-                        {assign var=total value=0}
-
-{foreach $products as $item name=products}
-                            {assign var=product value=$item.product}
-                            {assign var=variant value=$item.variant}
-                            {assign var=productVariant value=$product->getVariants()->first()}
-                            {assign var=price value=$productVariant->getPrice()}
-
-                            {assign
-                                var=lineTotal
-                                value=$price
-                                *
-                                $item.quantity
-                            }
-                            {assign
-                                var=total
-                                value=$total
-                                +
-                                $lineTotal
-                            }
+                        <thead>
 
                             <tr>
-
-                                <td>
-                                    <div class="cart-product-info">
-
-                                        {assign var=image value=$variant}
-
-                                        {if $image}
-                                            <img src="/Praktyki-2-master/uploads/{$image->getImage()}" class="cart-image">
-                                        {/if}
-
-                                        <span>
-                                            {$product->getName()}
-                                            <br>
-                                            <small>Kolor: {$variant->getColor()}</small>
-                                        </span>
-
-                                    </div>
-                                </td>
-
-                                <td>
-                                    {$price} zł
-                                </td>
-
-                                <td>
-                                    {$item.quantity}
-                                </td>
-
-                                <td>
-                                    {$lineTotal} zł
-                                </td>
-                                
-                                
-<td>
-    <a href="/Praktyki-2-master/?page=cart/delete&index={$smarty.foreach.products.index}" 
-       class="delete-btn">✖</a>
-</td>
+                                <th>Produkt</th>
+                                <th>Cena</th>
+                                <th>Ilość</th>
+                                <th>Razem</th>
+                                <th></th>
 
                             </tr>
 
-                        {/foreach}
+                        </thead>
 
-                    </tbody>
+                        <tbody>
 
-                </table>
-                <div class="cart-total-box">
+                            {assign var=total value=0}
 
-                    <div class="cart-total-row">
+                            {foreach $products as $item name=products}
 
-                        <span>
-                            Łącznie:
-                        </span>
 
-                        <strong>
-                            {$total} zł
-                        </strong>
+                                {assign var=product value=$item.product}
+                                {assign var=variant value=$item.variant}
+                                {assign var=productVariant value=$product->getVariants()->first()}
+                                {assign var=price value=$productVariant->getPrice()}
+
+                                {assign
+                                    var=lineTotal
+                                    value=$price
+                                    *
+                                    $item.quantity
+                                }
+                                {assign
+                                    var=total
+                                    value=$total
+                                    +
+                                    $lineTotal
+                                }
+
+                                <tr>
+
+                                    <td>
+                                        <div class="cart-product-info">
+
+                                            {assign var=image value=$variant}
+
+                                            {if $image}
+                                                <img src="/Praktyki-2-master/uploads/{$image->getImage()}" class="cart-image">
+                                            {/if}
+
+                                            <span>
+                                                {$product->getName()}
+                                                <br>
+                                                <small>Kolor: {$variant->getColor()}</small>
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        {$price} zł
+                                    </td>
+
+                                    <td class="qty-box">
+
+                                        <a href="/Praktyki-2-master/?page=cart/decrease&index={$smarty.foreach.products.index}" class="qty-btn">-</a>
+
+                                        <span>{$item.quantity}</span>
+
+                                        <a href="/Praktyki-2-master/?page=cart/increase&index={$smarty.foreach.products.index}" class="qty-btn">+</a>
+
+                                    </td>
+
+
+
+                                    <td>
+                                        {$lineTotal} zł
+                                    </td>
+
+                                </tr>
+
+                            {/foreach}
+
+                        </tbody>
+
+                    </table>
+                    <div class="cart-total-box">
+
+                        <div class="cart-total-row">
+
+                            <span>
+                                Łącznie:
+                            </span>
+
+                            <strong>
+                                {$total} zł
+                            </strong>
+
+                        </div>
+
 
                     </div>
 
                 </div>
 
-            </div>
+                {* PRAWA STRONA *}
+                <div class="cart-summary">
 
-            {* PRAWA STRONA *}
-            <div class="cart-summary">
+                    <h2>
+                        Podsumowanie
+                    </h2>
+                    <div class="summary-box">
 
-                <h2>
-                    Podsumowanie
-                </h2>
-                <div class="summary-box">
+                        {if $address}
 
-                    {if $address}
+                            <p>
+                                Imię i nazwisko:
+                                {$address->getFirstName()}
+                                {$address->getLastName()}
+                            </p>
 
-                        <p>
-                            Imię i nazwisko:
-                            {$address->getFirstName()}
-                            {$address->getLastName()}
-                        </p>
+                            <p>
+                                Ulica:
+                                {$address->getStreet()}
+                            </p>
 
-                        <p>
-                            Ulica:
-                            {$address->getStreet()}
-                        </p>
+                            <p>
+                                Miasto:
+                                {$address->getCity()}
+                            </p>
 
-                        <p>
-                            Miasto:
-                            {$address->getCity()}
-                        </p>
+                            <p>
+                                Kod pocztowy:
+                                {$address->getPostcode()}
+                            </p>
 
-                        <p>
-                            Kod pocztowy:
-                            {$address->getPostcode()}
-                        </p>
+                            <p>
+                                Kraj:
+                                {$address->getCountry()}
+                            </p>
 
-                        <p>
-                            Kraj:
-                            {$address->getCountry()}
-                        </p>
+                            <p>
+                                Nr tel:
+                                {$address->getPhone()}
+                            </p>
 
-                        <p>
-                            Nr tel:
-                            {$address->getPhone()}
-                        </p>
+                        {else}
 
-                    {else}
+                            <p>
+                                Brak adresu dostawy
+                            </p>
 
-                        <p>
-                            Brak adresu dostawy
-                        </p>
+                        {/if}
+                    </div>
+                    <hr>
 
-                    {/if}
+                    <form method="POST" action="/Praktyki-2-master/?page=cart/checkout">
+                        <button class="buy-btn">
+                            {if $products|@count == 0}
+                                Koszyk pusty
+                            {else}
+                                Przejdź do płatności
+                            {/if}
+                        </button>
+                    </form>
+
                 </div>
-                <hr>
-                <button class="buy-btn checkout-btn">
-                    Przejdź do płatności
-                </button>
 
             </div>
 
         </div>
-
-    </div>
-
+    {/if}
 {/block}

@@ -5,8 +5,6 @@
     <div class="product-wrapper">
 
         <div class="left-side">
-
-            {* GŁÓWNE ZDJĘCIE *}
             {assign var=image value=$product->getImages()->first()}
 
             {if $image}
@@ -15,8 +13,6 @@
                 <img id="mainImage" src="/Praktyki-2-master/uploads/default.jpg" class="main-product-image">
             {/if}
         </div>
-        {* MINIATURKI *}
-
 
         <div class="right-side">
 
@@ -28,40 +24,29 @@
                 {$product->getDescription()}
             </p>
 
-            {assign var=variant value=$product->getVariants()->first()}
-
             <div class="price-box">
-                {$variant->getPrice()} zł
+                {$productVariant->getPrice()} zł
             </div>
 
             <div class="variant-section">
-
-                <h3>Wybierz kolor</h3>
+                <h3>Wybierz kolor: </h3>
 
                 <div class="variant-gallery">
-
                     {foreach $variantImages as $v}
-
                         <img src="/Praktyki-2-master/uploads/{$v->getImage()}" class="variant-thumb" data-image="{$v->getImage()}" data-variant="{$v->getId()}">
-
                     {/foreach}
-
                 </div>
-
             </div>
 
             <form method="POST" action="/Praktyki-2-master/?page=cart/add">
-
                 <input type="hidden" name="product_id" value="{$product->getId()}">
+                {assign var=firstVariant value=$variantImages[0]}
+                <input type="hidden" id="selectedVariant" name="variant_id" value="{$firstVariant->getId()}">
 
-                <input type="hidden" id="selectedVariant" name="variant_id" value="{$variant->getId()}">
 
                 <button type="submit" class="buy-btn">
-
                     Dodaj do koszyka
-
                 </button>
-
             </form>
 
         </div>
@@ -71,21 +56,32 @@
     <script>
         const mainImage = document.getElementById("mainImage");
         const variantInput = document.getElementById("selectedVariant");
+        const thumbs = document.querySelectorAll(".variant-thumb");
 
-        document.querySelectorAll(".variant-thumb").forEach(img => {
+        if (thumbs.length > 0) {
+            const first = thumbs[0];
+            variantInput.value = first.dataset.variant;
+            first.classList.add("active");
+        }
 
-            img.addEventListener("click", function() {
+        thumbs.forEach(img => {
+            img.addEventListener("click", function(e) {
+
+                e.preventDefault();
+
+                thumbs.forEach(el => el.classList.remove("active"));
+                this.classList.add("active");
 
                 const newImage = this.dataset.image;
                 const variantId = this.dataset.variant;
 
                 mainImage.src = "/Praktyki-2-master/uploads/" + newImage;
+
                 variantInput.value = variantId;
 
+                console.log("Wybrany variant:", variantId); // debug
             });
-
         });
     </script>
-
 
 {/block}

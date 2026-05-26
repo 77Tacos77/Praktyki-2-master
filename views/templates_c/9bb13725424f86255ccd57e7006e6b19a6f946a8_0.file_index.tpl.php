@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-21 13:34:13
+/* Smarty version 5.8.0, created on 2026-05-25 11:51:14
   from 'file:pages/products/index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a0eedb5ae6524_46575699',
+  'unifunc' => 'content_6a141b92c9a021_62114619',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9bb13725424f86255ccd57e7006e6b19a6f946a8' => 
     array (
       0 => 'pages/products/index.tpl',
-      1 => 1779363253,
+      1 => 1779439102,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a0eedb5ae6524_46575699 (\Smarty\Template $_smarty_tpl) {
+function content_6a141b92c9a021_62114619 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages\\products';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5179704616a0eedb5ad18b4_67877725', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13756692856a141b92c8c950_48942434', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_5179704616a0eedb5ad18b4_67877725 extends \Smarty\Runtime\Block
+class Block_13756692856a141b92c8c950_48942434 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\pages\\products';

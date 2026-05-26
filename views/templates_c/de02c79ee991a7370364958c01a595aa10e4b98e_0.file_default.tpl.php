@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-25 10:35:50
+/* Smarty version 5.8.0, created on 2026-05-26 09:08:09
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1409e6773a03_91925557',
+  'unifunc' => 'content_6a1546d95c6a82_92645309',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de02c79ee991a7370364958c01a595aa10e4b98e' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1779698149,
+      1 => 1779779284,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1409e6773a03_91925557 (\Smarty\Template $_smarty_tpl) {
+function content_6a1546d95c6a82_92645309 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -32,8 +32,10 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projekt Mirjan</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Praktyki-2-master/style.css?v=1">
+
     <link rel="icon" type="image/svg+xml" href="icon.svg">
 </head>
 
@@ -41,28 +43,14 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 
     <?php if ((true && ($_smarty_tpl->hasVariable('flash') && null !== ($_smarty_tpl->getValue('flash') ?? null)))) {?>
 
-        <?php if (is_array($_smarty_tpl->getValue('flash'))) {?>
-
-            <div id="flash-toast" class="toast toast-<?php echo $_smarty_tpl->getValue('flash')['type'];?>
+        <div id="flash-toast" class="toast toast-<?php echo (($tmp = $_smarty_tpl->getValue('flash')['type'] ?? null)===null||$tmp==='' ? 'info' ?? null : $tmp);?>
 ">
+            <?php echo (($tmp = $_smarty_tpl->getValue('flash')['message'] ?? null)===null||$tmp==='' ? $_smarty_tpl->getValue('flash') ?? null : $tmp);?>
 
-                <?php echo $_smarty_tpl->getValue('flash')['message'];?>
-
-
-            </div>
-
-        <?php } else { ?>
-
-            <div id="flash-toast" class="toast toast-info">
-
-                <?php echo $_smarty_tpl->getValue('flash');?>
-
-
-            </div>
-
-        <?php }?>
+        </div>
 
     <?php }?>
+
     <header>
         <nav class="navbar">
             <div class="nav-container">
@@ -72,23 +60,49 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
                 </a>
 
                 <ul class="nav-menu" id="navMenu">
-                    <li><a class="nav-link" href="/Praktyki-2-master/">Home</a></li>
-                    <li><a class="nav-link" href="#">About</a></li>
-                    <li><a class="nav-link" href="/Praktyki-2-master/addresses">Moje adresy</a></li>
-                    <li><a class="nav-link" href="/Praktyki-2-master/?page=products">Produkty</a></li>
+
                     <li>
-                        <a href="/Praktyki-2-master/?page=cart">
+                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'home') {?>active<?php }?>" href="/Praktyki-2-master/">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="#">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'addresses') {?>active<?php }?>" href="/Praktyki-2-master/addresses">
+                            Moje adresy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'products') {?>active<?php }?>" href="/Praktyki-2-master/?page=products">
+                            Produkty
+                        </a>
+                    </li>
+
+                    <li class="nav-cart">
+                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'cart') {?>active<?php }?>" href="/Praktyki-2-master/?page=cart">
+
                             Koszyk
-                            (
-                            <?php echo '<?php'; ?>
- echo count($_SESSION['cart'] ?? []); <?php echo '?>'; ?>
-)
+
+                            <?php if ((true && (true && null !== ($_SESSION['cart'] ?? null))) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_SESSION['cart']) > 0) {?>
+                                <span class="nav-cart-count">
+                                    <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_SESSION['cart']);?>
+
+                                </span>
+                            <?php }?>
+
                         </a>
                     </li>
 
                     <?php if ((true && (true && null !== ($_SESSION['login'] ?? null)))) {?>
                         <li>
-                            <a class="nav-link" href="/Praktyki-2-master/profile">
+                            <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'profile') {?>active<?php }?>" href="/Praktyki-2-master/profile">
                                 Moje konto
                             </a>
                         </li>
@@ -110,7 +124,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18589647326a1409e6770925_33379885', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19288214466a1546d95c3480_79156762', "content");
 ?>
 
             </div>
@@ -139,20 +153,11 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18589647326a1
 
     <?php echo '<script'; ?>
 >
-        const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-        }
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                hamburger?.classList.remove('active');
             });
         });
     <?php echo '</script'; ?>
@@ -167,6 +172,15 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18589647326a1
                 setTimeout(() => toast.classList.remove("show"), 3000);
             }
         });
+        
+setTimeout(() => {
+        const toast = document.querySelector(".toast");
+        if (toast) {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(-50px)";
+        }
+    }, 2500);
+
     <?php echo '</script'; ?>
 >
 
@@ -174,7 +188,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18589647326a1
 
 </html><?php }
 /* {block "content"} */
-class Block_18589647326a1409e6770925_33379885 extends \Smarty\Runtime\Block
+class Block_19288214466a1546d95c3480_79156762 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-master\\views\\layouts';
