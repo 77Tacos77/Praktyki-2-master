@@ -198,16 +198,15 @@
                         {/if}
                     </div>
                     <hr>
-
-                    <form method="POST" action="/Praktyki-2-master/?page=cart/checkout">
-                        <button class="buy-btn">
-                            {if $products|@count == 0}
-                                Koszyk pusty
-                            {else}
-                                Przejdź do płatności
-                            {/if}
-                        </button>
-                    </form>
+                   {if !$address}
+    <button class="buy-btn" disabled style="opacity:0.5;">
+        Dodaj adres aby kontynuować
+    </button>
+{else}
+    <a href="/Praktyki-2-master/?page=cart/checkout" class="buy-btn">
+        Przejdź do podsumowania
+    </a>
+{/if}
 
                 </div>
 

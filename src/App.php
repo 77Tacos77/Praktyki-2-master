@@ -32,6 +32,9 @@ class App
         $page = $_GET['page'] ?? 'home';
 
         $routes = [
+            'cart/checkout' => CartController::class,
+'cart/payment' => CartController::class,
+'cart/thankyou' => CartController::class,
             'products/addVariantImage' => AdminProductController::class,
             'home' => IndexController::class,
             'products/update' => AdminProductController::class,
@@ -79,7 +82,9 @@ class App
         if ($page === 'home') return $controller->index();
         if ($page === 'cart/add') return $controller->add();
         // PRODUCTS
-        
+        if ($page === 'cart/checkout') return $controller->checkoutPage();
+if ($page === 'cart/payment') return $controller->payment();
+if ($page === 'cart/thankyou') return $controller->thankyou();
         if ($page === 'products') return $controller->index();
         if ($page === 'products/create') return $controller->create();
         if ($page === 'products/store') return $controller->store();
