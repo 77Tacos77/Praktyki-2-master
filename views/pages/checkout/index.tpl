@@ -9,6 +9,7 @@
         <div class="checkout-products">
 
             <h3>Twoje produkty</h3>
+            <hr>
 
             {assign var=total value=0}
 
@@ -61,6 +62,7 @@
                 </div>
 
             {/foreach}
+            <hr>
             <div class="checkout-total">
                 <strong>Łącznie: {$total} zł</strong>
             </div>
@@ -93,6 +95,31 @@
             </table>
 
             <form method="POST" action="/Praktyki-2-master/?page=cart/payment">
+                <h3>Wybierz metodę płatności:</h3>
+
+                <div class="payment-dropdown">
+
+                    <div class="dropdown-selected" id="selectedPayment">
+                        Wybierz metodę płatności ▼
+                    </div>
+
+                    <div class="dropdown-options" id="paymentOptions">
+
+                        <div class="dropdown-item" data-value="card">
+                            <img src="/Praktyki-2-master/assets/cards/visa.svg">
+                            <span>Karta</span>
+                        </div>
+
+                        <div class="dropdown-item" data-value="blik">
+                            <img src="/Praktyki-2-master/assets/apm/blik.svg">
+                            <span>BLIK</span>
+                        </div>
+
+                    </div>
+
+                    <input type="hidden" name="payment_method" id="paymentMethodInput">
+
+                </div>
                 <button class="buy-btn">Zapłać</button>
             </form>
             <div class="payment-box">
@@ -122,5 +149,33 @@
         </div>
 
     </div>
+    <script>
+        const dropdown = document.getElementById('selectedPayment');
+        const options = document.getElementById('paymentOptions');
+        const hiddenInput = document.getElementById('paymentMethodInput');
 
+        dropdown.addEventListener('click', () => {
+            options.classList.toggle('show');
+        });
+
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+
+                const value = item.dataset.value;
+                const text = item.innerText;
+
+                dropdown.innerHTML = text + " ▼";
+                hiddenInput.value = value;
+
+                options.classList.remove('show');
+            });
+        });
+
+        // klik poza = zamyka
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target) && !options.contains(e.target)) {
+                options.classList.remove('show');
+            }
+        });
+    </script>
 {/block}

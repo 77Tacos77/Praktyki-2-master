@@ -249,8 +249,10 @@ class CartController extends FrontController
 
         unset($_SESSION['cart']);
 
-        header('Location: /Praktyki-2-master/?page=cart/thankyou');
-        exit;
+
+$this->setTemplate('pages/payment/index.tpl');
+
+return $this->render();
     }
 
     public function thankyou()

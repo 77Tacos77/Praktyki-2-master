@@ -38,4 +38,17 @@ class Order
     {
         return $this->id;
     }
+   #[ORM\Column(name: "address_id", nullable: true)]
+private ?int $addressId = null;
+
+public function getAddressId(): ?int
+{
+    return $this->addressId;
+}
+
+public function setAddressId(?int $addressId): void
+{
+    $this->addressId = $addressId;
+}
+    
 }

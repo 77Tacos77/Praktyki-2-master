@@ -85,31 +85,44 @@ class AdminProductController extends FrontController
     $id = $_GET['id'] ?? null;
 
     if (!$id) {
-        die("Brak ID produktu");
+        header('Location: /Praktyki-2-master/?page=home');
+        exit;
     }
 
-    $product = $this->entityManager->find(\src\Models\Product::class, $id);
+    $productRepository = $this->entityManager->getRepository(\src\Models\Product::class);
+    $variantRepository = $this->entityManager->getRepository(\src\Models\VariantImage::class);
+
+    // ✅ główny produkt
+    $product = $productRepository->find($id);
 
     if (!$product) {
-        die("Produkt nie istnieje");
+        header('Location: /Praktyki-2-master/?page=home');
+        exit;
     }
 
-    $variantImages = $this->entityManager
-        ->getRepository(\src\Models\VariantImage::class)
-        ->findBy(['product' => $product]);
+    // ✅ warianty (kolory)
+    $variantImages = $variantRepository->findBy([
+        'product' => $product
+    ]);
 
-    $productVariant = $this->entityManager
-        ->getRepository(ProductVariant::class)
-        ->findOneBy(['product' => $product]);
+    // ✅ inne produkty (sidebar)
+    $allProducts = $productRepository->findAll();
 
+    $otherProducts = array_filter(
+        $allProducts,
+        fn($p) => $p->getId() != $product->getId()
+    );
+
+    // ✅ przypisanie do Smarty
     $this->smarty->assign('product', $product);
     $this->smarty->assign('variantImages', $variantImages);
-    $this->smarty->assign('productVariant', $productVariant);
+    $this->smarty->assign('otherProducts', $otherProducts);
 
-    $this->setTemplate('products/view.tpl');
-
+    // ✅ template
+    $this->setTemplate('pages/products/view.tpl');
     return $this->render();
 }
+
 
     
 
