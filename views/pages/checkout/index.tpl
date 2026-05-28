@@ -2,58 +2,125 @@
 
 {block name="content"}
 
-    <h1>Checkout</h1>
 
-    <h3>Adres dostawy</h3>
+    <div class="checkout-container">
 
-    {if $address}
+        <!-- LEWA STRONA -->
+        <div class="checkout-products">
 
-        <table class="address-table">
+            <h3>Twoje produkty</h3>
 
-            <tr>
-                <td>Imię i nazwisko</td>
-                <td>{$address->getFirstName()} {$address->getLastName()}</td>
-            </tr>
+            {assign var=total value=0}
 
-            <tr>
-                <td>Ulica</td>
-                <td>{$address->getStreet()}</td>
-            </tr>
+            {foreach $products as $item}
 
-            <tr>
-                <td>Miasto</td>
-                <td>{$address->getCity()}</td>
-            </tr>
+                {assign var=product value=$item.product}
+                {assign var=variant value=$item.variant}
+                {assign var=price value=$product->getVariants()->first()->getPrice()}
 
-            <tr>
-                <td>Kod pocztowy</td>
-                <td>{$address->getPostcode()}</td>
-            </tr>
+                {assign
+                    var=lineTotal
+                    value=$price
+                    *
+                    $item.quantity
+                }
+                {assign
+                    var=total
+                    value=$total
+                    +
+                    $lineTotal
+                }
 
-            <tr>
-                <td>Kraj</td>
-                <td>{$address->getCountry()}</td>
-            </tr>
+                <div class="checkout-item">
 
-            <tr>
-                <td>Telefon</td>
-                <td>{$address->getPhone()}</td>
-            </tr>
+                    <div class="item-left">
 
-        </table>
 
-        <a href="/Praktyki-2-master/?page=cart/payment" class="buy-btn">
-            Przejdź do płatności
-        </a>
+                        {if $variant && $variant->getImage()}
+                            <img src="/Praktyki-2-master/uploads/{$variant->getImage()}" width="70">
+                        {/if}
 
-    {else}
 
-        <p style="color:red;">Brak adresu!</p>
-        <a href="/Praktyki-2-master/?page=address" class="buy-btn">
-            Dodaj adres
-        </a>
 
-    {/if}
+                        <div>
+                            <div class="item-title">
+                                {$product->getName()}
+                            </div>
+                            <small>{$variant->getColor()}</small>
+                        </div>
+
+                    </div>
+
+                    <div class="item-right">
+                        {$item.quantity} × {$price} zł
+                        <br>
+                        <strong>{$lineTotal} zł</strong>
+                    </div>
+
+
+                </div>
+
+            {/foreach}
+            <div class="checkout-total">
+                <strong>Łącznie: {$total} zł</strong>
+            </div>
+
+        </div>
+
+
+        <!-- PRAWA STRONA -->
+        <div class="checkout-summary">
+
+            <h3>Adres dostawy</h3>
+
+            <table class="address-table">
+                <tr>
+                    <td>Imię</td>
+                    <td>{$address->getFirstName()}</td>
+                </tr>
+                <tr>
+                    <td>Nazwisko</td>
+                    <td>{$address->getLastName()}</td>
+                </tr>
+                <tr>
+                    <td>Ulica</td>
+                    <td>{$address->getStreet()}</td>
+                </tr>
+                <tr>
+                    <td>Miasto</td>
+                    <td>{$address->getCity()}</td>
+                </tr>
+            </table>
+
+            <form method="POST" action="/Praktyki-2-master/?page=cart/payment">
+                <button class="buy-btn">Zapłać</button>
+            </form>
+            <div class="payment-box">
+                <br>
+
+                <h4>Akceptujemy płatności</h4>
+
+                <div class="payment-icons">
+
+                    <div class="payment-icons">
+
+                        <img src="/Praktyki-2-master/assets/cards/mastercard-alt.svg">
+                        <img src="/Praktyki-2-master/assets/cards/visa.svg">
+                        <img src="/Praktyki-2-master/assets\wallets\google-pay.svg">
+                        <img src="/Praktyki-2-master/assets/apm/blik.svg">
+
+                    </div>
+
+
+                </div>
+
+                <p class="secure-text">
+                    🔒 Bezpieczna płatność SSL
+                </p>
+
+            </div>
+        </div>
+
+    </div>
 
 {/block}
-``

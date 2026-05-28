@@ -64,7 +64,8 @@ class CartController extends FrontController
         $variantId = (int)($_POST['variant_id'] ?? 0);
 
         if ($productId <= 0 || $variantId <= 0) {
-            die("Nieprawidłowe dane");
+            header('Location: /Praktyki-2-master/');
+            exit;
         }
 
         $productRepository = $this->entityManager->getRepository(Product::class);
@@ -73,10 +74,14 @@ class CartController extends FrontController
         $product = $productRepository->find($productId);
         $variant = $variantRepository->find($variantId);
 
-        if (!$product || !$variant) die("Błąd danych");
+        if (!$product || !$variant) {
+            header('Location: /Praktyki-2-master/');
+            exit;
+        }
 
         if ($variant->getProduct()->getId() != $product->getId()) {
-            die("Variant nie pasuje");
+            header('Location: /Praktyki-2-master/');
+            exit;
         }
 
         if (!isset($_SESSION['cart'])) {
@@ -84,7 +89,7 @@ class CartController extends FrontController
         }
 
         foreach ($_SESSION['cart'] as &$item) {
-            if ((int)$item['product_id'] === $productId && (int)$item['variant_id'] === $variantId) {
+            if ($item['product_id'] == $productId && $item['variant_id'] == $variantId) {
                 $item['quantity']++;
                 header('Location: /Praktyki-2-master/?page=cart');
                 exit;
@@ -96,6 +101,36 @@ class CartController extends FrontController
             'variant_id' => $variantId,
             'quantity' => 1
         ];
+
+        header('Location: /Praktyki-2-master/?page=cart');
+        exit;
+    }
+
+    public function increase()
+    {
+        $index = $_GET['index'] ?? null;
+
+        if (isset($_SESSION['cart'][$index])) {
+            $_SESSION['cart'][$index]['quantity']++;
+        }
+
+        header('Location: /Praktyki-2-master/?page=cart');
+        exit;
+    }
+
+    public function decrease()
+    {
+        $index = $_GET['index'] ?? null;
+
+        if (isset($_SESSION['cart'][$index])) {
+
+            $_SESSION['cart'][$index]['quantity']--;
+
+            if ($_SESSION['cart'][$index]['quantity'] <= 0) {
+                unset($_SESSION['cart'][$index]);
+                $_SESSION['cart'] = array_values($_SESSION['cart']);
+            }
+        }
 
         header('Location: /Praktyki-2-master/?page=cart');
         exit;
@@ -117,9 +152,26 @@ class CartController extends FrontController
             exit;
         }
 
+        $products = [];
+
+        $productRepository = $this->entityManager->getRepository(Product::class);
+        $variantRepository = $this->entityManager->getRepository(VariantImage::class);
+
+        foreach ($cart as $item) {
+            $product = $productRepository->find($item['product_id']);
+            $variant = $variantRepository->find($item['variant_id']);
+
+            if ($product && $variant) {
+                $products[] = [
+                    'product' => $product,
+                    'variant' => $variant,
+                    'quantity' => $item['quantity']
+                ];
+            }
+        }
+
         // ✅ adres
         $userRepository = $this->entityManager->getRepository(User::class);
-
         $user = $userRepository->findOneBy([
             'login' => $_SESSION['login'] ?? null
         ]);
@@ -136,9 +188,10 @@ class CartController extends FrontController
             exit;
         }
 
+        $this->smarty->assign('products', $products);
         $this->smarty->assign('address', $address);
 
-        $this->setTemplate('pages/checkout/index.tpl');
+        $this->setTemplate('pages/checkout/index.tpl'); // ✅ dopasowane do Twojego folderu
         return $this->render();
     }
 
@@ -152,25 +205,36 @@ class CartController extends FrontController
         }
 
         $productRepository = $this->entityManager->getRepository(Product::class);
-        $variantRepository = $this->entityManager->getRepository(VariantImage::class);
         $productVariantRepository = $this->entityManager->getRepository(ProductVariant::class);
-
-        $total = 0;
 
         $order = new \src\Models\Order();
         $order->setUser($_SESSION['login'] ?? 'guest');
         $order->setCreatedAt(date('Y-m-d H:i:s'));
 
+        // ✅ adres
+        $userRepository = $this->entityManager->getRepository(User::class);
+        $user = $userRepository->findOneBy([
+            'login' => $_SESSION['login'] ?? null
+        ]);
+
+        if ($user && isset($_SESSION['selected_address'])) {
+            $addressRepository = $this->entityManager->getRepository(Address::class);
+            $address = $addressRepository->find($_SESSION['selected_address']);
+
+            if ($address) {
+                $order->setAddressId($address->getId());
+            }
+        }
+
+        $total = 0;
+
         foreach ($cart as $item) {
 
             $product = $productRepository->find($item['product_id']);
-            $variant = $variantRepository->find($item['variant_id']);
-
-            if (!$product || !$variant) continue;
+            if (!$product) continue;
 
             $productVariant = $productVariantRepository->findOneBy([
-                'product' => $product,
-                'variantName' => strtolower($variant->getColor())
+                'product' => $product
             ]);
 
             if (!$productVariant) continue;
@@ -181,32 +245,6 @@ class CartController extends FrontController
         $order->setTotal($total);
 
         $this->entityManager->persist($order);
-        $this->entityManager->flush();
-
-        foreach ($cart as $item) {
-
-            $product = $productRepository->find($item['product_id']);
-            $variant = $variantRepository->find($item['variant_id']);
-
-            if (!$product || !$variant) continue;
-
-            $productVariant = $productVariantRepository->findOneBy([
-                'product' => $product,
-                'variantName' => strtolower($variant->getColor())
-            ]);
-
-            if (!$productVariant) continue;
-
-            $orderItem = new \src\Models\OrderItem();
-            $orderItem->setProductId($item['product_id']);
-            $orderItem->setVariantId($item['variant_id']);
-            $orderItem->setQuantity($item['quantity']);
-            $orderItem->setPrice($productVariant->getPrice());
-            $orderItem->setOrderId($order->getId());
-
-            $this->entityManager->persist($orderItem);
-        }
-
         $this->entityManager->flush();
 
         unset($_SESSION['cart']);

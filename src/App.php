@@ -32,42 +32,50 @@ class App
         $page = $_GET['page'] ?? 'home';
 
         $routes = [
-            'cart/checkout' => CartController::class,
-'cart/payment' => CartController::class,
-'cart/thankyou' => CartController::class,
-            'products/addVariantImage' => AdminProductController::class,
+            // HOME
             'home' => IndexController::class,
-            'products/update' => AdminProductController::class,
+
+            // PRODUCTS
             'products' => AdminProductController::class,
             'products/create' => AdminProductController::class,
             'products/store' => AdminProductController::class,
             'products/edit' => AdminProductController::class,
+            'products/update' => AdminProductController::class,
             'products/delete' => ProductDeleteController::class,
             'products-delete-multiple' => AdminProductController::class,
+            'products/addVariantImage' => AdminProductController::class,
             'product/view' => AdminProductController::class,
+
+            // CART
             'cart' => CartController::class,
-            'address-select' => AddressController::class,
+            'cart/add' => CartController::class,
+            'cart/delete' => CartController::class,
+            'cart/clear' => CartController::class,
+            'cart/increase' => CartController::class,
+            'cart/decrease' => CartController::class,
+            'cart/checkout' => CartController::class,
+            'cart/payment' => CartController::class,
+            'cart/thankyou' => CartController::class,
+
+            // ADDRESS
+            'addresses' => AddressController::class,
             'address-create' => AddressController::class,
             'address-edit' => AddressController::class,
-            'cart/checkout' => CartController::class,
             'address-delete' => AddressController::class,
-            'addresses' => AddressController::class,
-            'cart/add' => CartController::class,
+            'address-select' => AddressController::class,
+
+            // PROFILE
             'profile' => ProfileController::class,
             'profile-edit' => ProfileEditController::class,
             'change-password' => ChangePasswordController::class,
-            'address-select' => AddressController::class,
+
+            // AUTH
             'login' => LoginController::class,
-            'logout' => LogoutController::class,
             'register' => RegisterController::class,
-            'cart/delete' => CartController::class,
-            
-'cart/clear' => CartController::class,
+            'logout' => LogoutController::class,
 
+            // USER
             'user' => UserController::class,
-            'cart/increase' => CartController::class,
-            'cart/decrease' => CartController::class,
-
         ];
 
         if (!isset($routes[$page])) {
@@ -77,14 +85,18 @@ class App
         $controllerClass = $routes[$page];
         $controller = new $controllerClass($this->entityManager);
 
-        // HOME
-        if ($page === 'address-select') return $controller->select();
-        if ($page === 'home') return $controller->index();
+        // --- CART ---
+        if ($page === 'cart') return $controller->index();
         if ($page === 'cart/add') return $controller->add();
-        // PRODUCTS
+        if ($page === 'cart/delete') return $controller->delete();
+        if ($page === 'cart/clear') return $controller->clear();
+        if ($page === 'cart/increase') return $controller->increase();
+        if ($page === 'cart/decrease') return $controller->decrease();
         if ($page === 'cart/checkout') return $controller->checkoutPage();
-if ($page === 'cart/payment') return $controller->payment();
-if ($page === 'cart/thankyou') return $controller->thankyou();
+        if ($page === 'cart/payment') return $controller->payment();
+        if ($page === 'cart/thankyou') return $controller->thankyou();
+
+        // --- PRODUCTS ---
         if ($page === 'products') return $controller->index();
         if ($page === 'products/create') return $controller->create();
         if ($page === 'products/store') return $controller->store();
@@ -93,30 +105,28 @@ if ($page === 'cart/thankyou') return $controller->thankyou();
         if ($page === 'products/delete') return $controller->delete();
         if ($page === 'products-delete-multiple') return $controller->deleteMultiple();
         if ($page === 'products/addVariantImage') return $controller->addVariantImage();
-        if ($page === 'cart') return $controller->index();        // ADDRESSES
-        if ($page === 'address-select') return $controller->select();
+        if ($page === 'product/view') return $controller->view();
+
+        // --- ADDRESS ---
+        if ($page === 'addresses') return $controller->index();
         if ($page === 'address-create') return $controller->create();
         if ($page === 'address-edit') return $controller->edit();
-        if ($page === 'cart/checkout') return $controller->checkout();
         if ($page === 'address-delete') return $controller->delete();
-        if ($page === 'addresses') return $controller->index();
-        if ($page === 'cart/delete') return $controller->delete();
-        if ($page === 'cart/clear') return $controller->clear();
-        // PROFILE
+        if ($page === 'address-select') return $controller->select();
+
+        // --- PROFILE ---
         if ($page === 'profile') return $controller->index();
         if ($page === 'profile-edit') return $controller->edit();
         if ($page === 'change-password') return $controller->index();
 
-        // AUTH
+        // --- AUTH ---
         if ($page === 'login') return $controller->index();
         if ($page === 'register') return $controller->index();
         if ($page === 'logout') return $controller->logout();
-        if ($page === 'cart/increase') return $controller->increase();
-        if ($page === 'cart/decrease') return $controller->decrease();
 
-        // USER
-        if ($page === 'user') return $controller->index();
-        if ($page === 'product/view') return $controller->view();
+        // --- HOME ---
+        if ($page === 'home') return $controller->index();
+
         return $controller->index();
     }
 }

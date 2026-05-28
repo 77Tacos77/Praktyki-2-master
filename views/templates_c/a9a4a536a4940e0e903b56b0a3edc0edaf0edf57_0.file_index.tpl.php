@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-27 13:37:00
+/* Smarty version 5.8.0, created on 2026-05-28 10:36:27
   from 'file:pages/cart/index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a16d75c80ada5_38506119',
+  'unifunc' => 'content_6a17fe8bb43a47_70679149',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a9a4a536a4940e0e903b56b0a3edc0edaf0edf57' => 
     array (
       0 => 'pages/cart/index.tpl',
-      1 => 1779881538,
+      1 => 1779957349,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a16d75c80ada5_38506119 (\Smarty\Template $_smarty_tpl) {
+function content_6a17fe8bb43a47_70679149 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\cart';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7714116686a16d75c7f5463_11039637', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4384035186a17fe8bb30342_46808864', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_7714116686a16d75c7f5463_11039637 extends \Smarty\Runtime\Block
+class Block_4384035186a17fe8bb30342_46808864 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\cart';
@@ -260,7 +260,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         Dodaj adres aby kontynuować
     </button>
 <?php } else { ?>
-    <a href="/Praktyki-2-master/?page=cart/checkout" class="buy-btn">
+<a href="/Praktyki-2-master/?page=cart/checkout" class="buy-btn">
         Przejdź do podsumowania
     </a>
 <?php }?>

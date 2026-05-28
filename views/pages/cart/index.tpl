@@ -203,7 +203,7 @@
         Dodaj adres aby kontynuować
     </button>
 {else}
-    <a href="/Praktyki-2-master/?page=cart/checkout" class="buy-btn">
+<a href="/Praktyki-2-master/?page=cart/checkout" class="buy-btn">
         Przejdź do podsumowania
     </a>
 {/if}
