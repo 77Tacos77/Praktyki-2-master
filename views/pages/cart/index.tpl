@@ -9,6 +9,11 @@
             <h2>Koszyk jest pusty 🛒</h2>
 
             <p>Dodaj produkty, aby przejść do płatności</p>
+            
+<div class="planet-wrapper">
+    <div class="planet"></div>
+    <div class="mirjan">M</div>
+</div>
 
             <a href="/Praktyki-2-master/" class="empty-btn">
                 Przejdź do produktów

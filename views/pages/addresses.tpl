@@ -7,24 +7,55 @@
     {/if}
 
     <div class="address-container">
-        <h1>Moje adresy</h1> <a href="/Praktyki-2-master/address-create" class="create-btn"> Dodaj adres </a>
-        <hr>
+
+    <h1 class="address-title">Moje adresy</h1>
+
+    <a href="/Praktyki-2-master/address-create" class="add-address-btn">
+        + Dodaj adres
+    </a>
+
+    <div class="address-list">
+
         {foreach $addresses as $address}
-            <div class="address-box{if isset($smarty.session.selected_address) && $address->getId() == $smarty.session.selected_address} selected{/if}">
-                <h2>Imię i Nazwisko: {$address->getFirstName()} {$address->getLastName()} </h2>
-                <p>Adres: {$address->getStreet()} </p>
-                <p>Kod pocztowy i Miasto: {$address->getPostcode()} {$address->getCity()} </p>
-                <p>Kraj: {$address->getCountry()} </p>
-                <p>Telefon: {$address->getPhone()} </p>
-                <div class="address-buttons">
-<a href="/Praktyki-2-master/?page=address-select&id={$address->getId()}" class="choose-btn"
->Wybierz</a>
-                    <a class="edit-btn" href="/Praktyki-2-master/address-edit&id={$address->getId()}"> Edytuj </a>
-                    <a class="delete-btn" href="/Praktyki-2-master/address-delete&id={$address->getId()}"> Usuń </a>
+
+            <div class="address-card {if isset($smarty.session.selected_address) && $address->getId() == $smarty.session.selected_address} selected {/if}">
+
+                <h2>
+                    {$address->getFirstName()} {$address->getLastName()}
+                </h2>
+
+                <p>{$address->getStreet()}</p>
+                <p>{$address->getPostcode()} {$address->getCity()}</p>
+                <p>{$address->getCountry()}</p>
+                <p>Tel: {$address->getPhone()}</p>
+
+                <div class="address-actions">
+
+                    <a href="/Praktyki-2-master/?page=address-select&id={$address->getId()}"
+                       class="address-btn choose-btn">
+                        Wybierz
+                    </a>
+
+                    <a href="/Praktyki-2-master/address-edit&id={$address->getId()}"
+                       class="address-btn edit-btn">
+                        Edytuj
+                    </a>
+
+                    <a href="/Praktyki-2-master/address-delete&id={$address->getId()}"
+                       class="address-btn delete-btn">
+                        Usuń
+                    </a>
+
                 </div>
+
             </div>
+
         {/foreach}
+
     </div>
+
+</div>
+
     <script>
         const chooseButtons = document.querySelectorAll('.choose-btn');
 

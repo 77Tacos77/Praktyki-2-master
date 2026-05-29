@@ -5,6 +5,7 @@
     <div class="products-page">
 
         <h1 class="products-title">Nasze produkty</h1>
+        <hr>
 
         <div class="products-grid">
 
