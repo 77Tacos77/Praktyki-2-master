@@ -7,14 +7,14 @@
         <hr>
 
         <div class="products-actions">
-            <a id="show-delete-mode" class="deletee-product-btn">- Usuń</a>
+            <a id="show-delete-mode" class="delete-mode-btn">- Usuń</a>
             <a href="/Praktyki-2-master/?page=products/create" class="add-product-btn">+ Dodaj produkt</a>
         </div>
         
         <hr>
 
         <form action="/Praktyki-2-master/?page=products-delete-multiple" method="post" id="delete-form" class="delete-product-btn">
-        <button type="submit" id="delete-selected" style="display:none;" class="delete-selected-btn">
+        <button type="submit" id="delete-selected" class="delete-selected-btn">
             Usuń zaznaczone
         </button>
 
@@ -28,7 +28,7 @@
                     <a href="/Praktyki-2-master/?page=products/edit&id={$product->getId()}" class="product-card-link">
                         <div class="product-card">
 
-                            <input type="checkbox" name="ids[]" value="{$product->getId()}" class="delete-checkbox" style="display:none;">
+                            <input type="checkbox" name="ids[]" value="{$product->getId()}" class="delete-checkbox" >
 
                             <div class="product-image">
                                 {assign var=image value=$product->getImages()->first()}
@@ -63,12 +63,19 @@
     </div>
 
     <script>
-        document.getElementById('show-delete-mode').addEventListener('click', function() {
-            document.querySelectorAll('.delete-checkbox').forEach(cb => {
-                cb.style.display = 'inline-block';
-            });
-            document.getElementById('delete-selected').style.display = 'inline-block';
-        });
+        document.getElementById('show-delete-mode').addEventListener('click', function () {
+
+    document.body.classList.toggle('delete-mode');
+
+    const btn = document.getElementById('delete-selected');
+
+    if (document.body.classList.contains('delete-mode')) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+
+});
     </script>
 
 {/block}

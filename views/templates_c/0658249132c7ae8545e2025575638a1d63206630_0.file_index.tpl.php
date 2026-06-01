@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-28 12:26:58
+/* Smarty version 5.8.0, created on 2026-06-01 11:29:59
   from 'file:pages/checkout/index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a181872775999_88578250',
+  'unifunc' => 'content_6a1d511746b206_28292847',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0658249132c7ae8545e2025575638a1d63206630' => 
     array (
       0 => 'pages/checkout/index.tpl',
-      1 => 1779964018,
+      1 => 1780306197,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a181872775999_88578250 (\Smarty\Template $_smarty_tpl) {
+function content_6a1d511746b206_28292847 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\checkout';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10248902356a18187275fbf6_90139815', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6107107766a1d51174472f0_71000262', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_10248902356a18187275fbf6_90139815 extends \Smarty\Runtime\Block
+class Block_6107107766a1d51174472f0_71000262 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\checkout';
@@ -171,19 +171,17 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
                 <h4>Akceptujemy płatności</h4>
 
-                <div class="payment-icons">
 
-                    <div class="payment-icons">
-
-                        <img src="/Praktyki-2-master/assets/cards/mastercard-alt.svg">
-                        <img src="/Praktyki-2-master/assets/cards/visa.svg">
-                        <img src="/Praktyki-2-master/assets\wallets\google-pay.svg">
-                        <img src="/Praktyki-2-master/assets/apm/blik.svg">
-
-                    </div>
+                    
+<div class="payment-icons">
+    <img src="/Praktyki-2-master/assets/cards/mastercard-alt.svg">
+    <img src="/Praktyki-2-master/assets/cards/visa.svg">
+    <img src="/Praktyki-2-master/assets/wallets/google-pay.svg">
+    <img src="/Praktyki-2-master/assets/apm/blik.svg">
+</div>
 
 
-                </div>
+
 
                 <p class="secure-text">
                     🔒 Bezpieczna płatność SSL

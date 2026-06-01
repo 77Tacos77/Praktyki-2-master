@@ -127,19 +127,17 @@
 
                 <h4>Akceptujemy płatności</h4>
 
-                <div class="payment-icons">
 
-                    <div class="payment-icons">
-
-                        <img src="/Praktyki-2-master/assets/cards/mastercard-alt.svg">
-                        <img src="/Praktyki-2-master/assets/cards/visa.svg">
-                        <img src="/Praktyki-2-master/assets\wallets\google-pay.svg">
-                        <img src="/Praktyki-2-master/assets/apm/blik.svg">
-
-                    </div>
+                    
+<div class="payment-icons">
+    <img src="/Praktyki-2-master/assets/cards/mastercard-alt.svg">
+    <img src="/Praktyki-2-master/assets/cards/visa.svg">
+    <img src="/Praktyki-2-master/assets/wallets/google-pay.svg">
+    <img src="/Praktyki-2-master/assets/apm/blik.svg">
+</div>
 
 
-                </div>
+
 
                 <p class="secure-text">
                     🔒 Bezpieczna płatność SSL

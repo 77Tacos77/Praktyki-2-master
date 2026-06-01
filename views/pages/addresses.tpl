@@ -62,10 +62,10 @@
         chooseButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 
-                document.querySelectorAll('.address-box').forEach(box => {
+                document.querySelectorAll('.address-card').forEach(box => {
                     box.classList.remove('selected');
                 });
-                this.closest('.address-box').classList.add('selected');
+                this.closest('.address-card').classList.add('selected');
             });
         });
     </script>

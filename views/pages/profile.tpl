@@ -7,7 +7,7 @@
         <h1 class="mb-4">Mój profil</h1>
 
         {if !$edit}
-            <div class="fs-4">
+            <div class="profile-box">
 
                 <p><strong>Imię:</strong> {$profile->getImie()}</p>
                 <p><strong>Nazwisko:</strong> {$profile->getNazwisko()}</p>
@@ -17,10 +17,21 @@
                 <p><strong>Kraj:</strong> {$profile->getKraj()}</p>
                 <p><strong>Telefon:</strong> {$profile->getNumerTelefonu()}</p>
 
-                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/profile-edit"> Edytuj profil </a>
-                 <a class="edit-btn" href="/Praktyki-2-master/change-password"> Zmień hasło </a>
-                  <a class="choose-btn" href="/Praktyki-2-master/address-import"> Importuj dane do adresu </a> </div>
+                <div class="profile-actions">
 
+    <a class="profile-btn" href="/Praktyki-2-master/profile-edit">
+        Edytuj profil
+    </a>
+
+    <a class="profile-btn" href="/Praktyki-2-master/change-password">
+        Zmień hasło
+    </a>
+
+    <a class="profile-btn secondary" href="/Praktyki-2-master/address-import">
+        Importuj dane
+    </a>
+
+</div>
             </div>
         {/if}
 

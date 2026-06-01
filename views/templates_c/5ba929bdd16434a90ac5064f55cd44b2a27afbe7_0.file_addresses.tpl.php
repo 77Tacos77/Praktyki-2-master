@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-28 13:31:01
+/* Smarty version 5.8.0, created on 2026-06-01 09:20:50
   from 'file:pages/addresses.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a182775b87014_50595284',
+  'unifunc' => 'content_6a1d32d229ba88_06958983',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ba929bdd16434a90ac5064f55cd44b2a27afbe7' => 
     array (
       0 => 'pages/addresses.tpl',
-      1 => 1779967856,
+      1 => 1780298445,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,16 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a182775b87014_50595284 (\Smarty\Template $_smarty_tpl) {
+function content_6a1d32d229ba88_06958983 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_70925436a182775b70fe0_44497209', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18226018556a1d32d228b9f4_52477774', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_70925436a182775b70fe0_44497209 extends \Smarty\Runtime\Block
+class Block_18226018556a1d32d228b9f4_52477774 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
@@ -118,10 +118,10 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         chooseButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 
-                document.querySelectorAll('.address-box').forEach(box => {
+                document.querySelectorAll('.address-card').forEach(box => {
                     box.classList.remove('selected');
                 });
-                this.closest('.address-box').classList.add('selected');
+                this.closest('.address-card').classList.add('selected');
             });
         });
     <?php echo '</script'; ?>

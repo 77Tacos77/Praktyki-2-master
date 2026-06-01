@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-27 12:46:49
+/* Smarty version 5.8.0, created on 2026-06-01 10:31:28
   from 'file:pages/profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a16cb990dd8a4_22290879',
+  'unifunc' => 'content_6a1d43609c6893_57224523',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '435ad461f5734eb46ecf9f1cf77eb82f52328c74' => 
     array (
       0 => 'pages/profile.tpl',
-      1 => 1779877755,
+      1 => 1780302686,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a16cb990dd8a4_22290879 (\Smarty\Template $_smarty_tpl) {
+function content_6a1d43609c6893_57224523 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11236327526a16cb990d0207_87006452', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_769818146a1d43609b60b8_79316672', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_11236327526a16cb990d0207_87006452 extends \Smarty\Runtime\Block
+class Block_769818146a1d43609b60b8_79316672 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
@@ -43,7 +43,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
         <h1 class="mb-4">Mój profil</h1>
 
         <?php if (!$_smarty_tpl->getValue('edit')) {?>
-            <div class="fs-4">
+            <div class="profile-box">
 
                 <p><strong>Imię:</strong> <?php echo $_smarty_tpl->getValue('profile')->getImie();?>
 </p>
@@ -60,10 +60,21 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
                 <p><strong>Telefon:</strong> <?php echo $_smarty_tpl->getValue('profile')->getNumerTelefonu();?>
 </p>
 
-                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/profile-edit"> Edytuj profil </a>
-                 <a class="edit-btn" href="/Praktyki-2-master/change-password"> Zmień hasło </a>
-                  <a class="choose-btn" href="/Praktyki-2-master/address-import"> Importuj dane do adresu </a> </div>
+                <div class="profile-actions">
 
+    <a class="profile-btn" href="/Praktyki-2-master/profile-edit">
+        Edytuj profil
+    </a>
+
+    <a class="profile-btn" href="/Praktyki-2-master/change-password">
+        Zmień hasło
+    </a>
+
+    <a class="profile-btn secondary" href="/Praktyki-2-master/address-import">
+        Importuj dane
+    </a>
+
+</div>
             </div>
         <?php }?>
 
