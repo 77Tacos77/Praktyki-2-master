@@ -26,6 +26,32 @@ class AdminProductController extends FrontController
 
         $this->smarty->assign('products', $products);
         $this->setTemplate('pages/products/index.tpl');
+        
+$products = $this->entityManager
+        ->getRepository(Product::class)
+        ->findAll();
+
+    $variantImages = $this->entityManager
+        ->getRepository(VariantImage::class)
+        ->findAll();
+
+    // 🔥 DODAJEMY KOLORY DO PRODUKTÓW
+    foreach ($products as $product) {
+
+        $colors = [];
+    
+        foreach ($variantImages as $img) {
+            if ($img->getProduct()->getId() === $product->getId()) {
+                $colors[] = $img->getColor();
+            }
+        }
+
+        // przypisujemy dynamicznie
+$product->setColors($colors);
+    }
+
+    $this->smarty->assign('products', $products);
+    $this->setTemplate('pages/products/index.tpl');
         return $this->render();
     }
     public function edit()

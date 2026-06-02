@@ -62,20 +62,22 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById('show-delete-mode').addEventListener('click', function () {
+<script>
+document.querySelectorAll(".color-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
 
-    document.body.classList.toggle('delete-mode');
+        const color = dot.dataset.color;
 
-    const btn = document.getElementById('delete-selected');
+        document.getElementById("colorFilter").value = color;
 
-    if (document.body.classList.contains('delete-mode')) {
-        btn.style.display = 'block';
-    } else {
-        btn.style.display = 'none';
-    }
+        document.getElementById("colorFilter")
+            .dispatchEvent(new Event("change"));
 
-});
-    </script>
+        // 🔥 highlight aktywnej
+        document.querySelectorAll(".color-dot")
+            .forEach(d => d.classList.remove("active"));
 
+        dot.classList.add("active");
+    });
+</spript>
 {/block}

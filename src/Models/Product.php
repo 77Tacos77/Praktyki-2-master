@@ -31,6 +31,8 @@ private Collection $variantImages;
 
     #[ORM\OneToMany(mappedBy: "product", targetEntity: ProductImage::class, cascade: ["persist", "remove"])]
 private Collection $images;
+    
+public array $colors = [];
 
 
     #[ORM\OneToMany(mappedBy: "product", targetEntity: ProductVariant::class)]
@@ -100,5 +102,24 @@ private Collection $images;
         $variant->setProduct($this);
     }
 }
+
+public function setColors(array $colors): void
+{
+    $this->colors = $colors;
+}
+
+public function getColors(): array
+{
+    return $this->colors;
+}
+
+public function getVariantImages(): Collection
+{
+    return $this->variantImages;
+}
+
+
+
+
 
 }
