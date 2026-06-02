@@ -8,66 +8,66 @@
 
     <div class="address-container">
 
-    <h1 class="address-title">Moje adresy</h1>
+        <h1 class="address-title">Moje adresy</h1>
 
-    <a href="/Praktyki-2-master/address-create" class="add-address-btn">
-        + Dodaj adres
-    </a>
+        <a href="/Praktyki-2-master/address-create" class="add-address-btn">
+            + Dodaj adres
+        </a>
 
-    <div class="address-list">
+        <div class="address-list">
 
-        {foreach $addresses as $address}
+            {foreach $addresses as $address}
 
-            <div class="address-card {if isset($smarty.session.selected_address) && $address->getId() == $smarty.session.selected_address} selected {/if}">
+                <div class="address-card {if isset($smarty.session.selected_address) && $address->getId() == $smarty.session.selected_address} selected {/if}">
 
-                <h2>
-                    {$address->getFirstName()} {$address->getLastName()}
-                </h2>
+                    <h2>
+                        {$address->getFirstName()} {$address->getLastName()}
+                    </h2>
 
-                <p>{$address->getStreet()}</p>
-                <p>{$address->getPostcode()} {$address->getCity()}</p>
-                <p>{$address->getCountry()}</p>
-                <p>Tel: {$address->getPhone()}</p>
+                    <p>{$address->getStreet()}</p>
+                    <p>{$address->getPostcode()} {$address->getCity()}</p>
+                    <p>{$address->getCountry()}</p>
+                    <p>Tel: {$address->getPhone()}</p>
 
-                <div class="address-actions">
+                    <div class="address-actions">
 
-                    <a href="/Praktyki-2-master/?page=address-select&id={$address->getId()}"
-                       class="address-btn choose-btn">
-                        Wybierz
-                    </a>
+                        <a href="/Praktyki-2-master/?page=address-select&id={$address->getId()}" class="address-btn choose-btn">
+                            Wybierz
+                        </a>
 
-                    <a href="/Praktyki-2-master/address-edit&id={$address->getId()}"
-                       class="address-btn edit-btn">
-                        Edytuj
-                    </a>
+                        <a href="/Praktyki-2-master/address-edit&id={$address->getId()}" class="address-btn edit-btn">
+                            Edytuj
+                        </a>
 
-                    <a href="/Praktyki-2-master/address-delete&id={$address->getId()}"
-                       class="address-btn delete-btn">
-                        Usuń
-                    </a>
+                        <a href="/Praktyki-2-master/address-delete&id={$address->getId()}" class="address-btn delete-btn">
+                            Usuń
+                        </a>
+
+                    </div>
 
                 </div>
 
-            </div>
+            {/foreach}
 
-        {/foreach}
+        </div>
 
     </div>
-
-</div>
 
     <script>
         const chooseButtons = document.querySelectorAll('.choose-btn');
 
         chooseButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                
-                document.querySelectorAll('.address-card').forEach(box => {
-                    box.classList.remove('selected');
-                });
-                this.closest('.address-card').classList.add('selected');
-            });
-        });
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault(); // 🔥 STOP reload
+
+                        document.querySelectorAll('.address-card').forEach(box => {
+                            box.classList.remove('selected');
+                        });
+
+                        this.closest('.address-card').classList.add('selected');
+
+                        window.location.href = this.href; // 🔥 dopiero potem redirect
+                    });
     </script>
 
 {/block}

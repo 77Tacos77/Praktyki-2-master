@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-01 10:24:05
+/* Smarty version 5.8.0, created on 2026-06-02 09:49:17
   from 'file:pages/products/index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1d41a5658a84_14391137',
+  'unifunc' => 'content_6a1e8afd84fd12_50737687',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '931ef2b4dcc648b466d441664ed123abea3830b5' => 
     array (
       0 => 'pages/products/index.tpl',
-      1 => 1780302243,
+      1 => 1780386554,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1d41a5658a84_14391137 (\Smarty\Template $_smarty_tpl) {
+function content_6a1e8afd84fd12_50737687 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1545710466a1d41a56485c5_56781157', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13412176816a1e8afd843015_07689228', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_1545710466a1d41a56485c5_56781157 extends \Smarty\Runtime\Block
+class Block_13412176816a1e8afd843015_07689228 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
@@ -111,24 +111,26 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         </form>
     </div>
 
-    <?php echo '<script'; ?>
+<?php echo '<script'; ?>
 >
-        document.getElementById('show-delete-mode').addEventListener('click', function () {
+document.querySelectorAll(".color-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
 
-    document.body.classList.toggle('delete-mode');
+        const color = dot.dataset.color;
 
-    const btn = document.getElementById('delete-selected');
+        document.getElementById("colorFilter").value = color;
 
-    if (document.body.classList.contains('delete-mode')) {
-        btn.style.display = 'block';
-    } else {
-        btn.style.display = 'none';
-    }
+        document.getElementById("colorFilter")
+            .dispatchEvent(new Event("change"));
 
-});
-    <?php echo '</script'; ?>
+        // 🔥 highlight aktywnej
+        document.querySelectorAll(".color-dot")
+            .forEach(d => d.classList.remove("active"));
+
+        dot.classList.add("active");
+    });
+<?php echo '</script'; ?>
 >
-
 <?php
 }
 }

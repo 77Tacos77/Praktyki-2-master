@@ -7,7 +7,7 @@
         <div class="filters">
 
 
-            <label>Kolor</label>
+            <label>Kolor: </label>
 
             <select id="colorFilter">
                 <option value="">Wszystkie kolory</option>
@@ -19,7 +19,7 @@
 
 
 
-            <label>Cena</label>
+            <label>Cena: </label>
 
             <select id="sortFilter">
                 <option value="">Sortuj</option>

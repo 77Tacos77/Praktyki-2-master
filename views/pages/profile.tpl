@@ -5,39 +5,83 @@
     <div class="login-container text-center">
 
         <h1 class="mb-4">Mój profil</h1>
+        <div class="profile-wrapper">
 
-        {if !$edit}
-            <div class="profile-box">
+            {if !$edit}
 
-                <p><strong>Imię:</strong> {$profile->getImie()}</p>
-                <p><strong>Nazwisko:</strong> {$profile->getNazwisko()}</p>
-                <p><strong>Ulica:</strong> {$profile->getUlica()}</p>
-                <p><strong>Kod pocztowy:</strong> {$profile->getKodPocztowy()}</p>
-                <p><strong>Miasto:</strong> {$profile->getMiasto()}</p>
-                <p><strong>Kraj:</strong> {$profile->getKraj()}</p>
-                <p><strong>Telefon:</strong> {$profile->getNumerTelefonu()}</p>
+                <div class="profile-card">
 
-                <div class="profile-actions">
+                    <div class="profile-header">
+                        <div class="avatar"><img src="/Praktyki-2-master/profile_default.jpg" alt="Avatar"></div>
+                        <h3>{$profile->getImie()} {$profile->getNazwisko()}</h3>
+                    </div>
 
-    <a class="profile-btn" href="/Praktyki-2-master/profile-edit">
-        Edytuj profil
-    </a>
+                    <div class="profile-row">
+                        <span>Imię</span>
+                        <strong>{$profile->getImie()}</strong>
+                    </div>
 
-    <a class="profile-btn" href="/Praktyki-2-master/change-password">
-        Zmień hasło
-    </a>
+                    <div class="profile-row">
+                        <span>Nazwisko</span>
+                        <strong>{$profile->getNazwisko()}</strong>
+                    </div>
 
-    <a class="profile-btn secondary" href="/Praktyki-2-master/address-import">
-        Importuj dane
-    </a>
 
-</div>
-            </div>
-        {/if}
+                    <div class="profile-row">
+                        <span>Ulica</span>
+                        <strong>{$profile->getUlica()}</strong>
+                    </div>
 
+                    <div class="profile-row">
+                        <span>Kod pocztowy</span>
+                        <strong>{$profile->getKodPocztowy()}</strong>
+                    </div>
+
+                    <div class="profile-row">
+                        <span>Miasto</span>
+                        <strong>{$profile->getMiasto()}</strong>
+                    </div>
+
+                    <div class="profile-row">
+                        <span>Kraj</span>
+                        <strong>{$profile->getKraj()}</strong>
+                    </div>
+
+                    <div class="profile-row">
+                        <span>Telefon</span>
+                        <strong>{$profile->getNumerTelefonu()}</strong>
+                    </div>
+
+                </div>
+
+                <!-- ✅ TO MUSI BYĆ OBOK -->
+                <div class="profile-side">
+
+                    <a class="profile-btn" href="/Praktyki-2-master/profile-edit">
+                        ✏️ Edytuj profil
+                    </a>
+
+                    <a class="profile-btn" href="/Praktyki-2-master/change-password">
+                        🔒 Zmień hasło
+                    </a>
+
+                    <a class="profile-btn secondary" href="/Praktyki-2-master/address-import">
+                        ⬇️ Importuj dane
+                    </a>
+
+                </div>
+
+            {/if}
+
+        </div>
         {if $edit}
             <form method="POST" class="text-start">
 
+                <div class="profile-header">
+                    <div class="avatar"><img src="/Praktyki-2-master/profile_default.jpg" alt="Avatar"></div>
+                    <h3>{$profile->getImie()} {$profile->getNazwisko()}</h3>
+                </div>
+                <hr>
                 <label>Imię</label>
                 <input class="form-control" type="text" name="imie" value="{$profile->getImie()}">
 
@@ -58,7 +102,11 @@
 
                 <label>Telefon</label>
                 <input class="form-control" type="text" name="numer_telefonu" value="{$profile->getNumerTelefonu()}">
-                <div class="profile-actions"> <a class="edit-btn" href="/Praktyki-2-master/?page=profile-edit"> Edytuj profil </a> <a class="edit-btn" href="/Praktyki-2-master/?page=change-password"> Zmień hasło </a> <a class="choose-btn" href="/Praktyki-2-master/?page=address-import"> Importuj dane do adresu </a> </div>
+
+                <button type="submit" class="profile-btn save">
+                    💾 Zapisz zmiany
+                </button>
+
             </form>
         {/if}
 

@@ -79,5 +79,5 @@ document.querySelectorAll(".color-dot").forEach(dot => {
 
         dot.classList.add("active");
     });
-</spript>
+</script>
 {/block}

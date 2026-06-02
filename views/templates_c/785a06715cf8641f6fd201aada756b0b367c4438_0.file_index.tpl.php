@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-02 09:18:25
+/* Smarty version 5.8.0, created on 2026-06-02 09:24:20
   from 'file:index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1e83c1b50718_85207145',
+  'unifunc' => 'content_6a1e85241c5375_87131689',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '785a06715cf8641f6fd201aada756b0b367c4438' => 
     array (
       0 => 'index.tpl',
-      1 => 1780384696,
+      1 => 1780385058,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1e83c1b50718_85207145 (\Smarty\Template $_smarty_tpl) {
+function content_6a1e85241c5375_87131689 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11444380996a1e83c1b3e8e6_47280982', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18903621606a1e85241abda5_05817937', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_11444380996a1e83c1b3e8e6_47280982 extends \Smarty\Runtime\Block
+class Block_18903621606a1e85241abda5_05817937 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
@@ -43,7 +43,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages';
         <div class="filters">
 
 
-            <label>Kolor</label>
+            <label>Kolor: </label>
 
             <select id="colorFilter">
                 <option value="">Wszystkie kolory</option>
@@ -64,7 +64,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
 
 
-            <label>Cena</label>
+            <label>Cena: </label>
 
             <select id="sortFilter">
                 <option value="">Sortuj</option>
