@@ -91,6 +91,12 @@ class CartController extends FrontController
         foreach ($_SESSION['cart'] as &$item) {
             if ($item['product_id'] == $productId && $item['variant_id'] == $variantId) {
                 $item['quantity']++;
+
+                $_SESSION['flash'] = [
+                    'type' => 'success',
+                    'message' => 'Zwiększono ilość produktu w koszyku! 📦'
+                ];
+
                 header('Location: /Praktyki-2-master/?page=cart');
                 exit;
             }
@@ -100,6 +106,11 @@ class CartController extends FrontController
             'product_id' => $productId,
             'variant_id' => $variantId,
             'quantity' => 1
+        ];
+
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Produkt dodany do koszyka! 🛒'
         ];
 
         header('Location: /Praktyki-2-master/?page=cart');
@@ -114,7 +125,7 @@ class CartController extends FrontController
             $_SESSION['cart'][$index]['quantity']++;
         }
 
-        header('Location: /Praktyki-2-master/?page=cart');
+        echo json_encode($this->getCartData($index));
         exit;
     }
 
@@ -129,16 +140,59 @@ class CartController extends FrontController
             if ($_SESSION['cart'][$index]['quantity'] <= 0) {
                 unset($_SESSION['cart'][$index]);
                 $_SESSION['cart'] = array_values($_SESSION['cart']);
+
+                echo json_encode([
+                    'quantity' => 0
+                ]);
+                exit;
             }
         }
 
-        header('Location: /Praktyki-2-master/?page=cart');
+        echo json_encode($this->getCartData($index));
         exit;
+    }
+    private function getCartData($index)
+    {
+        $total = 0;
+        $lineTotal = 0;
+        $quantity = 0;
+
+        $productRepository = $this->entityManager->getRepository(Product::class);
+
+        foreach ($_SESSION['cart'] as $i => $item) {
+
+            $product = $productRepository->find($item['product_id']);
+            if (!$product) continue;
+
+            $variant = $product->getVariants()->first();
+            if (!$variant) continue;
+
+            $price = $variant->getPrice();
+
+            $total += $price * $item['quantity'];
+
+            if ($i == $index) {
+                $lineTotal = $price * $item['quantity'];
+                $quantity = $item['quantity'];
+            }
+        }
+
+        return [
+            'quantity' => $quantity,
+            'lineTotal' => $lineTotal,
+            'total' => $total
+        ];
     }
 
     public function clear()
     {
         unset($_SESSION['cart']);
+
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Koszyk został wyczyszczony! 🗑️'
+        ];
+
         header('Location: /Praktyki-2-master/?page=cart');
         exit;
     }
@@ -250,14 +304,48 @@ class CartController extends FrontController
         unset($_SESSION['cart']);
 
 
-$this->setTemplate('pages/payment/index.tpl');
+        $this->setTemplate('pages/payment/index.tpl');
 
-return $this->render();
+        return $this->render();
     }
 
     public function thankyou()
     {
         $this->setTemplate('pages/cart/thankyou.tpl');
         return $this->render();
+    }
+
+
+    public function delete()
+    {
+        $index = $_GET['index'] ?? null;
+
+        if (isset($_SESSION['cart'][$index])) {
+            unset($_SESSION['cart'][$index]);
+            $_SESSION['cart'] = array_values($_SESSION['cart']);
+        }
+
+        // ✅ LICZYMY PRAWDZIWY TOTAL
+        $total = 0;
+
+        $productRepository = $this->entityManager->getRepository(Product::class);
+
+        foreach ($_SESSION['cart'] as $item) {
+
+            $product = $productRepository->find($item['product_id']);
+            if (!$product) continue;
+
+            $variant = $product->getVariants()->first();
+            if (!$variant) continue;
+
+            $total += $variant->getPrice() * $item['quantity'];
+        }
+
+        echo json_encode([
+            'status' => 'ok',
+            'total' => $total
+        ]);
+
+        exit;
     }
 }

@@ -25,6 +25,8 @@ class User extends Model
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Profile::class, cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
 
+
+
     public function __construct(string $login, string $email, string $password)
     {
         $this->login = $login;
@@ -101,5 +103,16 @@ class User extends Model
         $this->profile = $profile;
         return $this;
     }
+    
+public function getActive(): bool
+{
+    return $this->active;
 }
-?>
+
+public function setActive(bool $active): self
+{
+    $this->active = $active;
+    return $this;
+}
+
+}

@@ -13,11 +13,17 @@ abstract class Model
     #[ORM\Column(type: 'integer')]
     protected ?int $id = null;
 
-    #[ORM\Column(type: 'boolean')]
-    protected bool $active = false;
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    protected ?\DateTimeImmutable $lastSeen = null;
+
 
     #[ORM\Column(type: 'datetime_immutable')]
     protected \DateTimeImmutable $createdAt;
+
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    protected bool $active = false;
+
 
     #[ORM\Column(type: 'datetime_immutable')]
     protected \DateTimeImmutable $updatedAt;
@@ -28,6 +34,18 @@ abstract class Model
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
     }
+
+    public function getActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+        return $this;
+    }
+
 
     #[ORM\PreUpdate]
     public function updateTimestamp(): void
@@ -44,13 +62,9 @@ abstract class Model
     {
         return $this->active;
     }
-    
 
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
-        return $this;
-    }
+
+
 
     public function getCreatedAt(): \DateTimeImmutable
     {
@@ -60,5 +74,16 @@ abstract class Model
     public function getUpdatedAt(): \DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function getLastSeen(): ?\DateTimeImmutable
+    {
+        return $this->lastSeen;
+    }
+
+    public function setLastSeen(\DateTimeImmutable $lastSeen): self
+    {
+        $this->lastSeen = $lastSeen;
+        return $this;
     }
 }

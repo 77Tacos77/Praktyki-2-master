@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-01 11:22:11
+/* Smarty version 5.8.0, created on 2026-06-03 11:36:59
   from 'file:layouts/default.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1d4f43e61570_93481010',
+  'unifunc' => 'content_6a1ff5bb7637d1_14720925',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a45bbef34126b7cb3e57705756e6afb91747771d' => 
     array (
       0 => 'layouts/default.tpl',
-      1 => 1780305730,
+      1 => 1780479417,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1d4f43e61570_93481010 (\Smarty\Template $_smarty_tpl) {
+function content_6a1ff5bb7637d1_14720925 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -55,6 +55,12 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
             <a href="/Praktyki-2-master/">
                 <img class="nav-logo" src="/Praktyki-2-master/logo.png">
             </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
             <nav class="nav-menu" id="navMenu">
 
@@ -103,13 +109,13 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
         <section class="content">
             <div class="app-output">
                 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15161888506a1d4f43e55c09_59296814', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13601419276a1ff5bb75f677_08365280', "content");
 ?>
 
             </div>
         </section>
     </main>
-    
+
     <footer class="footer">
         <div class="footer-content">
 
@@ -133,10 +139,17 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15161888506a1
     <?php echo '<script'; ?>
 >
         const navMenu = document.getElementById('navMenu');
+        const navToggle = document.querySelector('.nav-toggle');
+
+        navToggle?.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                navToggle?.setAttribute('aria-expanded', 'false');
             });
         });
     <?php echo '</script'; ?>
@@ -144,29 +157,54 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15161888506a1
 
     <?php echo '<script'; ?>
 >
+        // Sistema toastów z Smarty flashów
         document.addEventListener("DOMContentLoaded", function() {
-            const toast = document.getElementById("flash-toast");
-            if (toast) {
-                setTimeout(() => toast.classList.add("show"), 100);
-                setTimeout(() => toast.classList.remove("show"), 3000);
+
+const flash = <?php echo json_encode((($tmp = $_smarty_tpl->getValue('flash') ?? null)===null||$tmp==='' ? null ?? null : $tmp));?>
+;
+
+
+console.log(flash)
+
+            if (flash) {
+                showToast(flash.message, flash.type);
             }
         });
 
-        setTimeout(() => {
-            const toast = document.querySelector(".toast");
-            if (toast) {
-                toast.style.opacity = "0";
-                toast.style.transform = "translateY(-50px)";
+        
+            function showToast(message, type = 'success') {
+                const toastBox = document.getElementById('global-toast');
+
+                const toast = document.createElement('div');
+                toast.className = `toast-box toast-${type} show`;
+                toast.textContent = message;
+
+                toastBox.appendChild(toast);
+
+                // Animacja pojawiania się
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                }, 10);
+
+                // Ukrycie po 3 sekundach
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
             }
-        }, 2500);
+        
     <?php echo '</script'; ?>
 >
+
+    <div id="global-toast"></div>
 
 </body>
 
 </html><?php }
 /* {block "content"} */
-class Block_15161888506a1d4f43e55c09_59296814 extends \Smarty\Runtime\Block
+class Block_13601419276a1ff5bb75f677_08365280 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\layouts';

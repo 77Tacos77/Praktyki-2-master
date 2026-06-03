@@ -70,9 +70,11 @@
                 <div class="variant-section">
                     <h3>Dodatkowe opcje</h3>
 
-                    <label><input type="checkbox" class="addon" data-price="50"> LED (+50 zł)</label><br>
-                    <label><input type="checkbox" class="addon" data-price="30"> Organizer (+30 zł)</label><br>
-                    <label><input type="checkbox" class="addon" data-price="40"> Półka (+40 zł)</label>
+                    <div>
+                        <label><input type="checkbox" class="addon" data-price="50"> LED (+50 zł)</label>
+                        <label><input type="checkbox" class="addon" data-price="30"> Organizer (+30 zł)</label>
+                        <label><input type="checkbox" class="addon" data-price="40"> Półka (+40 zł)</label>
+                    </div>
                 </div>
 
                 <div class="variant-preview">

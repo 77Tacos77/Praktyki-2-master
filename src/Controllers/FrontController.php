@@ -39,6 +39,26 @@ class FrontController
                 exit();
             }
         }
+        
+
+if (isset($_SESSION['user_id'])) {
+    $user = $this->entityManager
+        ->getRepository(\src\Models\User::class)
+        ->find($_SESSION['user_id']);
+
+    if ($user) {
+        $lastSeen = $user->getLastSeen();
+        $now = new \DateTimeImmutable();
+
+        if (!$lastSeen || $now->getTimestamp() - $lastSeen->getTimestamp() > 30) {
+            $user->setLastSeen($now);
+            $this->entityManager->flush();
+        }
+    }
+
+
+}
+
     }
 
     public function setTemplate(string $template): void
@@ -56,4 +76,5 @@ class FrontController
 
         return $this->smarty->fetch($this->template);
     }
+    
 }

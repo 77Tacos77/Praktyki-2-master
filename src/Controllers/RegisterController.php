@@ -1,6 +1,8 @@
 <?php
+
 namespace src\Controllers;
-if(isset($_SESSION['login'])){
+
+if (isset($_SESSION['login'])) {
 
     header('Location: index.php');
 
@@ -10,7 +12,7 @@ class RegisterController extends FrontController
 {
     public function index(): string
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $login = $_POST['login'];
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -20,11 +22,20 @@ class RegisterController extends FrontController
                 ->findOneBy(['login' => $login]);
 
             if ($existingUser) {
-                $this->smarty->assign('error', 'Użytkownik o takim loginie już istnieje');
+                $_SESSION['flash'] = [
+                    'type' => 'error',
+                    'message' => 'Użytkownik o takim loginie już istnieje ❌'
+                ];
             } else {
                 $user = new \src\Models\User($login, $email, $password);
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
+
+                $_SESSION['flash'] = [
+                    'type' => 'success',
+                    'message' => 'Konto zostało pomyślnie stworzone! ✅ Teraz się zaloguj.'
+                ];
+
                 header('Location: index.php?page=login');
                 exit();
             }
@@ -34,6 +45,3 @@ class RegisterController extends FrontController
         return $this->render();
     }
 }
-
-
-?>

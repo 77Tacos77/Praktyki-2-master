@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-27 12:47:00
+/* Smarty version 5.8.0, created on 2026-06-03 09:49:33
   from 'file:pages/products/create.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a16cba47cdca3_51470660',
+  'unifunc' => 'content_6a1fdc8dbce352_16144400',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fbbb01be8138b3573d27f5e45c7e745899318ec7' => 
     array (
       0 => 'pages/products/create.tpl',
-      1 => 1779877755,
+      1 => 1780472973,
       2 => 'file',
     ),
   ),
@@ -20,20 +20,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a16cba47cdca3_51470660 (\Smarty\Template $_smarty_tpl) {
+function content_6a1fdc8dbce352_16144400 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7600126486a16cba47ca6f8_66427867', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11405282136a1fdc8dbcb148_21562730', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_7600126486a16cba47ca6f8_66427867 extends \Smarty\Runtime\Block
+class Block_11405282136a1fdc8dbcb148_21562730 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
@@ -80,7 +80,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\prod
             <h1 class="form-title">
                 Dodaj produkt
             </h1>
-
+            <hr>
             <div class="form-section">
 
                 <h3>Dane produktu</h3>
@@ -122,7 +122,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\prod
                 </div>
 
             </div>
-
+            <hr>
             <div class="form-section">
 
                 <h3>Wariant produktu</h3>

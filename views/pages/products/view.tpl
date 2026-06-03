@@ -8,7 +8,7 @@
         <div class="product-wrapper">
 
             <!-- LEWA STRONA -->
-            <div class="product-image">
+            <div class="view-image">
                 {if $product->getImages() && $product->getImages()->first()}
                     <img id="mainProductImage" src="/Praktyki-2-master/uploads/{$product->getImages()->first()->getAlt()}" width="400">
                 {/if}

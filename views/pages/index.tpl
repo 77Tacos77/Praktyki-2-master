@@ -6,7 +6,6 @@
     <div class="products-page">
         <div class="filters">
 
-
             <label>Kolor: </label>
 
             <select id="colorFilter">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-05-27 12:47:55
+/* Smarty version 5.8.0, created on 2026-06-03 09:28:34
   from 'file:pages/products/edit.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a16cbdb9b29c9_92115838',
+  'unifunc' => 'content_6a1fd7a24127b9_89847593',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ee0ee2e33c0d1e4f93fb3d10de69f6d463f38e24' => 
     array (
       0 => 'pages/products/edit.tpl',
-      1 => 1779877755,
+      1 => 1780471688,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a16cbdb9b29c9_92115838 (\Smarty\Template $_smarty_tpl) {
+function content_6a1fd7a24127b9_89847593 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_922716116a16cbdb993b87_88494832', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12934128316a1fd7a23bce23_58386120', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_922716116a16cbdb993b87_88494832 extends \Smarty\Runtime\Block
+class Block_12934128316a1fd7a23bce23_58386120 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
@@ -122,9 +122,11 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <div class="variant-section">
                     <h3>Dodatkowe opcje</h3>
 
-                    <label><input type="checkbox" class="addon" data-price="50"> LED (+50 zł)</label><br>
-                    <label><input type="checkbox" class="addon" data-price="30"> Organizer (+30 zł)</label><br>
-                    <label><input type="checkbox" class="addon" data-price="40"> Półka (+40 zł)</label>
+                    <div>
+                        <label><input type="checkbox" class="addon" data-price="50"> LED (+50 zł)</label>
+                        <label><input type="checkbox" class="addon" data-price="30"> Organizer (+30 zł)</label>
+                        <label><input type="checkbox" class="addon" data-price="40"> Półka (+40 zł)</label>
+                    </div>
                 </div>
 
                 <div class="variant-preview">

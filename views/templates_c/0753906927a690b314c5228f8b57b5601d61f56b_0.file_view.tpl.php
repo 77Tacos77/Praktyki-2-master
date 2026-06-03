@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-02 08:25:49
+/* Smarty version 5.8.0, created on 2026-06-03 09:09:06
   from 'file:pages/products/view.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1e776de2a700_78173982',
+  'unifunc' => 'content_6a1fd312979ba1_67232980',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0753906927a690b314c5228f8b57b5601d61f56b' => 
     array (
       0 => 'pages/products/view.tpl',
-      1 => 1780381206,
+      1 => 1780470543,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1e776de2a700_78173982 (\Smarty\Template $_smarty_tpl) {
+function content_6a1fd312979ba1_67232980 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6484785216a1e776de1c990_74931475', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_290630956a1fd312969865_82362991', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_6484785216a1e776de1c990_74931475 extends \Smarty\Runtime\Block
+class Block_290630956a1fd312969865_82362991 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\products';
@@ -44,7 +44,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\prod
         <div class="product-wrapper">
 
             <!-- LEWA STRONA -->
-            <div class="product-image">
+            <div class="view-image">
                 <?php if ($_smarty_tpl->getValue('product')->getImages() && $_smarty_tpl->getValue('product')->getImages()->first()) {?>
                     <img id="mainProductImage" src="/Praktyki-2-master/uploads/<?php echo $_smarty_tpl->getValue('product')->getImages()->first()->getAlt();?>
 " width="400">

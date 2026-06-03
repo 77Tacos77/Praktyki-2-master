@@ -41,7 +41,7 @@ class App
             'products/store' => AdminProductController::class,
             'products/edit' => AdminProductController::class,
             'products/update' => AdminProductController::class,
-            'products/delete' => ProductDeleteController::class,
+            'products/remove' => CartController::class,
             'products-delete-multiple' => AdminProductController::class,
             'products/addVariantImage' => AdminProductController::class,
             'product/view' => AdminProductController::class,
@@ -102,7 +102,7 @@ class App
         if ($page === 'products/store') return $controller->store();
         if ($page === 'products/edit') return $controller->edit();
         if ($page === 'products/update') return $controller->update();
-        if ($page === 'products/delete') return $controller->delete();
+        if ($page === 'products/remove') return $controller->delete();
         if ($page === 'products-delete-multiple') return $controller->deleteMultiple();
         if ($page === 'products/addVariantImage') return $controller->addVariantImage();
         if ($page === 'product/view') return $controller->view();

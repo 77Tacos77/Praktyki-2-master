@@ -44,7 +44,7 @@
             <h1 class="form-title">
                 Dodaj produkt
             </h1>
-
+            <hr>
             <div class="form-section">
 
                 <h3>Dane produktu</h3>
@@ -86,7 +86,7 @@
                 </div>
 
             </div>
-
+            <hr>
             <div class="form-section">
 
                 <h3>Wariant produktu</h3>

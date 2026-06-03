@@ -42,7 +42,7 @@ class ProfileEditController extends FrontController
 
             $_SESSION['flash'] = [
                 'type' => 'success',
-                'message' => 'Dane zostały zapisane!'
+                'message' => 'Twoje dane zostały pomyślnie zaktualizowane! 👤'
             ];
 
             header("Location: index.php?page=profile");

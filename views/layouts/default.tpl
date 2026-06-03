@@ -30,6 +30,12 @@
                 <img class="nav-logo" src="/Praktyki-2-master/logo.png">
             </a>
 
+            <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <nav class="nav-menu" id="navMenu">
 
                 <a class="nav-link {if $currentPage == 'home'}active{/if}" href="/Praktyki-2-master/">
@@ -79,7 +85,7 @@
             </div>
         </section>
     </main>
-    
+
     <footer class="footer">
         <div class="footer-content">
 
@@ -101,31 +107,62 @@
 
     <script>
         const navMenu = document.getElementById('navMenu');
+        const navToggle = document.querySelector('.nav-toggle');
+
+        navToggle?.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                navToggle?.setAttribute('aria-expanded', 'false');
             });
         });
     </script>
 
     <script>
+        // Sistema toastów z Smarty flashów
         document.addEventListener("DOMContentLoaded", function() {
-            const toast = document.getElementById("flash-toast");
-            if (toast) {
-                setTimeout(() => toast.classList.add("show"), 100);
-                setTimeout(() => toast.classList.remove("show"), 3000);
+
+const flash = {$flash|default:null|json_encode nofilter};
+
+
+console.log(flash)
+
+            if (flash) {
+                showToast(flash.message, flash.type);
             }
         });
 
-        setTimeout(() => {
-            const toast = document.querySelector(".toast");
-            if (toast) {
-                toast.style.opacity = "0";
-                toast.style.transform = "translateY(-50px)";
+        {literal}
+            function showToast(message, type = 'success') {
+                const toastBox = document.getElementById('global-toast');
+
+                const toast = document.createElement('div');
+                toast.className = `toast-box toast-${type} show`;
+                toast.textContent = message;
+
+                toastBox.appendChild(toast);
+
+                // Animacja pojawiania się
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                }, 10);
+
+                // Ukrycie po 3 sekundach
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
             }
-        }, 2500);
+        {/literal}
     </script>
+
+    <div id="global-toast"></div>
 
 </body>
 

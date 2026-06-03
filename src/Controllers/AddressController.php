@@ -41,7 +41,7 @@ class AddressController extends FrontController
             $this->entityManager->flush();
             $_SESSION['flash'] = [
                 'type' => 'success',
-                'message' => 'Adres został dodany!'
+                'message' => 'Nowy adres został dodany! 📍'
             ];
             header('Location: index.php?page=cart');
             exit();
@@ -61,7 +61,7 @@ class AddressController extends FrontController
         if (!$addressId) {
             $_SESSION['flash'] = [
                 'type' => 'error',
-                'message' => 'Nie znaleziono adresu!'
+                'message' => 'Nie znaleziono adresu! ❌'
             ];
             header('Location: index.php?page=addresses');
             exit();
@@ -72,7 +72,7 @@ class AddressController extends FrontController
         if (!$address) {
             $_SESSION['flash'] = [
                 'type' => 'error',
-                'message' => 'Adres nie istnieje!'
+                'message' => 'Adres nie istnieje! ❌'
             ];
             header('Location: index.php?page=addresses');
             exit();
@@ -92,7 +92,7 @@ class AddressController extends FrontController
 
             $_SESSION['flash'] = [
                 'type' => 'success',
-                'message' => 'Adres został zaktualizowany!'
+                'message' => 'Adres został zaktualizowany! ✅'
             ];
 
             header('Location: index.php?page=addresses');
@@ -113,7 +113,7 @@ class AddressController extends FrontController
         $this->entityManager->flush();
         $_SESSION['flash'] = [
             'type' => 'success',
-            'message' => 'Adres został usunięty!'
+            'message' => 'Adres został usunięty! 🗑️'
         ];
         header('Location: /Praktyki-2-master/addresses');
         exit();
@@ -126,7 +126,7 @@ class AddressController extends FrontController
 
         $_SESSION['flash'] = [
             'type' => 'success',
-            'message' => 'Pomyślnie wybrano adres dostawy!'
+            'message' => 'Adres dostawy został wybrany! 🌟'
         ];
 
         header('Location: index.php?page=cart');

@@ -88,11 +88,12 @@
                                 <!-- ILOŚĆ -->
                                 <div class="cart-quantity">
 
-                                    <a href="/Praktyki-2-master/?page=cart/decrease&index={$smarty.foreach.products.index}" class="qty-btn">-</a>
+                                    <button class="qty-btn" data-url="/Praktyki-2-master/?page=cart/decrease&index={$smarty.foreach.products.index}">-</button>
 
-                                    <span>{$item.quantity}</span>
+                                    <span class="qty-value">{$item.quantity}</span>
 
-                                    <a href="/Praktyki-2-master/?page=cart/increase&index={$smarty.foreach.products.index}" class="qty-btn">+</a>
+                                    <button class="qty-btn" data-url="/Praktyki-2-master/?page=cart/increase&index={$smarty.foreach.products.index}">+</button>
+
 
                                 </div>
 
@@ -101,6 +102,13 @@
                                     {$lineTotal} zł
                                 </div>
 
+                                <div class="cart-remove">
+                                    <button type="button" data-url="/Praktyki-2-master/?page=cart/delete&index={$smarty.foreach.products.index}" class="remove-btn">
+                                        ×
+                                    </button>
+                                </div>
+
+
                             </div>
 
                         {/foreach}
@@ -108,7 +116,7 @@
                     </div>
 
                     <!-- TOTAL -->
-                   
+
 
                 </div>
 
@@ -137,15 +145,15 @@
                     </div>
 
                     <hr>
-                     <div class="cart-total-box">
+                    <div class="cart-total-box">
 
                         <div class="cart-total-row">
                             <span>Łącznie:</span>
-                            <strong>{$total} zł</strong>
+                            <strong id="cart-total">{$total} zł</strong>
 
-                            
+
                         </div>
-                        
+
                     </div>
                     {if !$address}
                         <button class="buy-btn" disabled style="opacity:0.5;">
@@ -156,15 +164,84 @@
                             Przejdź do podsumowania
                         </a>
                     {/if}
-<a href="/Praktyki-2-master/?page=cart/clear" class="clear-cart-btn">
-                                Wyczyść koszyk
-                            </a>
+                    <a href="/Praktyki-2-master/?page=cart/clear" class="clear-cart-btn">
+                        Wyczyść koszyk
+                    </a>
                 </div>
-                    
+
             </div>
 
         </div>
 
     {/if}
+    <script>
+        document.querySelectorAll(".qty-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
 
+                const item = this.closest(".cart-item");
+                const url = this.dataset.url;
+                const qtyEl = item.querySelector(".qty-value");
+
+                qtyEl.classList.add("bump");
+
+                setTimeout(() => {
+                    qtyEl.classList.remove("bump");
+                }, 200);
+
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+
+                        // ✅ jeśli ilość spadła do 0 → usuń element
+                        if (data.quantity === 0) {
+
+                            item.classList.add("removing");
+
+                            setTimeout(() => {
+                                item.remove();
+                            }, 300);
+
+                            return;
+                        }
+
+                        // ✅ aktualizacja ilości
+                        if (data.quantity !== undefined) {
+                            qtyEl.innerText = data.quantity;
+                        }
+
+                        // ✅ aktualizacja ceny w wierszu
+                        if (data.lineTotal !== undefined) {
+                            item.querySelector(".cart-total").innerText = data.lineTotal + " zł";
+                        }
+
+                        // ✅ aktualizacja totala
+                        if (data.total !== undefined) {
+                            document.querySelector("#cart-total").innerText = data.total + " zł";
+                        }
+                    });
+            });
+        });
+
+        document.querySelectorAll(".remove-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+
+                const item = this.closest(".cart-item");
+                const url = this.dataset.url;
+
+                item.classList.add("removing");
+
+                setTimeout(() => {
+                    fetch(url)
+                        .then(res => res.json())
+                        .then(data => {
+                            item.remove();
+
+                            if (data.total !== undefined) {
+                                document.querySelector("#cart-total").innerText = data.total + " zł";
+                            }
+                        });
+                }, 300);
+            });
+        });
+    </script>
 {/block}

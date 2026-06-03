@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-01 09:45:22
+/* Smarty version 5.8.0, created on 2026-06-03 08:57:58
   from 'file:pages/cart/index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a1d389219a603_46856853',
+  'unifunc' => 'content_6a1fd076675994_73633688',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a9a4a536a4940e0e903b56b0a3edc0edaf0edf57' => 
     array (
       0 => 'pages/cart/index.tpl',
-      1 => 1780299921,
+      1 => 1780469875,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a1d389219a603_46856853 (\Smarty\Template $_smarty_tpl) {
+function content_6a1fd076675994_73633688 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\cart';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21104720906a1d3892181331_22150051', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16937671036a1fd076653e12_76986367', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/default.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_21104720906a1d3892181331_22150051 extends \Smarty\Runtime\Block
+class Block_16937671036a1fd076653e12_76986367 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Praktyki-2-Master\\views\\pages\\cart';
@@ -133,14 +133,15 @@ $_smarty_tpl->tpl_vars['__smarty_foreach_products']->value['index']++;
                                 <!-- ILOŚĆ -->
                                 <div class="cart-quantity">
 
-                                    <a href="/Praktyki-2-master/?page=cart/decrease&index=<?php echo ($_smarty_tpl->getValue('__smarty_foreach_products')['index'] ?? null);?>
-" class="qty-btn">-</a>
+                                    <button class="qty-btn" data-url="/Praktyki-2-master/?page=cart/decrease&index=<?php echo ($_smarty_tpl->getValue('__smarty_foreach_products')['index'] ?? null);?>
+">-</button>
 
-                                    <span><?php echo $_smarty_tpl->getValue('item')['quantity'];?>
+                                    <span class="qty-value"><?php echo $_smarty_tpl->getValue('item')['quantity'];?>
 </span>
 
-                                    <a href="/Praktyki-2-master/?page=cart/increase&index=<?php echo ($_smarty_tpl->getValue('__smarty_foreach_products')['index'] ?? null);?>
-" class="qty-btn">+</a>
+                                    <button class="qty-btn" data-url="/Praktyki-2-master/?page=cart/increase&index=<?php echo ($_smarty_tpl->getValue('__smarty_foreach_products')['index'] ?? null);?>
+">+</button>
+
 
                                 </div>
 
@@ -149,6 +150,14 @@ $_smarty_tpl->tpl_vars['__smarty_foreach_products']->value['index']++;
                                     <?php echo $_smarty_tpl->getValue('lineTotal');?>
  zł
                                 </div>
+
+                                <div class="cart-remove">
+                                    <button type="button" data-url="/Praktyki-2-master/?page=cart/delete&index=<?php echo ($_smarty_tpl->getValue('__smarty_foreach_products')['index'] ?? null);?>
+" class="remove-btn">
+                                        ×
+                                    </button>
+                                </div>
+
 
                             </div>
 
@@ -159,7 +168,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                     </div>
 
                     <!-- TOTAL -->
-                   
+
 
                 </div>
 
@@ -195,16 +204,16 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                     </div>
 
                     <hr>
-                     <div class="cart-total-box">
+                    <div class="cart-total-box">
 
                         <div class="cart-total-row">
                             <span>Łącznie:</span>
-                            <strong><?php echo $_smarty_tpl->getValue('total');?>
+                            <strong id="cart-total"><?php echo $_smarty_tpl->getValue('total');?>
  zł</strong>
 
-                            
+
                         </div>
-                        
+
                     </div>
                     <?php if (!$_smarty_tpl->getValue('address')) {?>
                         <button class="buy-btn" disabled style="opacity:0.5;">
@@ -215,17 +224,88 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                             Przejdź do podsumowania
                         </a>
                     <?php }?>
-<a href="/Praktyki-2-master/?page=cart/clear" class="clear-cart-btn">
-                                Wyczyść koszyk
-                            </a>
+                    <a href="/Praktyki-2-master/?page=cart/clear" class="clear-cart-btn">
+                        Wyczyść koszyk
+                    </a>
                 </div>
-                    
+
             </div>
 
         </div>
 
     <?php }?>
+    <?php echo '<script'; ?>
+>
+        document.querySelectorAll(".qty-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
 
+                const item = this.closest(".cart-item");
+                const url = this.dataset.url;
+                const qtyEl = item.querySelector(".qty-value");
+
+                qtyEl.classList.add("bump");
+
+                setTimeout(() => {
+                    qtyEl.classList.remove("bump");
+                }, 200);
+
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+
+                        // ✅ jeśli ilość spadła do 0 → usuń element
+                        if (data.quantity === 0) {
+
+                            item.classList.add("removing");
+
+                            setTimeout(() => {
+                                item.remove();
+                            }, 300);
+
+                            return;
+                        }
+
+                        // ✅ aktualizacja ilości
+                        if (data.quantity !== undefined) {
+                            qtyEl.innerText = data.quantity;
+                        }
+
+                        // ✅ aktualizacja ceny w wierszu
+                        if (data.lineTotal !== undefined) {
+                            item.querySelector(".cart-total").innerText = data.lineTotal + " zł";
+                        }
+
+                        // ✅ aktualizacja totala
+                        if (data.total !== undefined) {
+                            document.querySelector("#cart-total").innerText = data.total + " zł";
+                        }
+                    });
+            });
+        });
+
+        document.querySelectorAll(".remove-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+
+                const item = this.closest(".cart-item");
+                const url = this.dataset.url;
+
+                item.classList.add("removing");
+
+                setTimeout(() => {
+                    fetch(url)
+                        .then(res => res.json())
+                        .then(data => {
+                            item.remove();
+
+                            if (data.total !== undefined) {
+                                document.querySelector("#cart-total").innerText = data.total + " zł";
+                            }
+                        });
+                }, 300);
+            });
+        });
+    <?php echo '</script'; ?>
+>
 <?php
 }
 }
